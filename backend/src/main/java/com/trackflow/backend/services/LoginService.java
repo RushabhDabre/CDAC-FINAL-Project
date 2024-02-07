@@ -1,17 +1,27 @@
 package com.trackflow.backend.services;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.trackflow.backend.entities.Employee;
-import com.trackflow.backend.repositories.EmployeeRepository;
+import com.trackflow.backend.entities.Login;
+import com.trackflow.backend.repositories.LoginRepository;
 
-public class EmployeeServices {
+@Service
+public class LoginService {
 	@Autowired
-	EmployeeRepository crepo;
+	LoginRepository lrepo;
 	
-	public List<Employee> getAll(){
-		return crepo.findAll();
+	public Login getLogin(String uid, String pwd) {
+		Login l;
+		Optional<Login> ol = lrepo.getLogin(uid, pwd);
+		try {
+			l = ol.get();
+		}catch(Exception e) {
+			l = null;
+		}
+		return l;
 	}
+	
 }

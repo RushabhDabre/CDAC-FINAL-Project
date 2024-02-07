@@ -1,7 +1,16 @@
 package com.trackflow.backend.repositories;
+
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.trackflow.backend.entities.Employee;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import com.trackflow.backend.entities.Login;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+@Repository
+public interface LoginRepository extends JpaRepository<Login, Integer> {
 
+	@Query("select l from Login l where username =:username and password =:password")
+	public Optional<Login> getLogin(String username, String password);
+	
+	
 }
