@@ -12,7 +12,7 @@ function App() {
       <TaskList/>    
       <Routes>
         {/* <Route path="/" element={<CreateTask/>}/> */}
-        {/* <Route path="/" element={<CreateProject/>}/> */}
+        {/* <Route path="/" element={<CreateTask/>}/> */}
       </Routes>
     </div>
   );
