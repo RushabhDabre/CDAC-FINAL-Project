@@ -9,7 +9,7 @@ export default function CreateTask() {
         <div className="container d-flex justify-content-center ">
         <LoadingBar color="#f11946" ref={ref} shadow={true} /> 
         <div className='container d-flex justify-content-center'>
-            <div className=" shadow-lg p-4 m-5" style={{"width": '40rem'}}>
+            <div className="shadow-lg p-4 m-5" style={{"width": '40rem'}}>
                 <h5 className="d-flex mb-4"><b>Add New Task</b></h5>      
                 <form >
                     <div className="mb-3">   
