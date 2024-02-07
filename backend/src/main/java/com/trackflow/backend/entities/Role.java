@@ -1,6 +1,5 @@
 package com.trackflow.backend.entities;
 
-import java.util.*;
 import jakarta.persistence.*;
 import lombok.*;
 
