@@ -5,6 +5,7 @@ import AddEmployee from './Components/AddEmployee';
 import CreateTask from './Components/CreateTask';
 import './App.css';
 import TaskList from './Components/TaskList';
+import Login from './Components/Login'
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<CreateTask/>}/> */}
         {/* <Route path="/" element={<CreateTask/>}/> */}
+         { <Route path="/" element={<Login/>}/>}
+
       </Routes>
     </div>
   );
