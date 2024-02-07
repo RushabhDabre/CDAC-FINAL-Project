@@ -1,10 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export default function 
-() {
+export default function Task() {
   return (
-    <div>
-        
-    </div>
-  )
+    <div></div>
+  );
 }
