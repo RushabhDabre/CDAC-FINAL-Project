@@ -12,12 +12,12 @@ public class LoginService {
 	@Autowired
 	LoginRepository lrepo;
 	
-//	public Login save(Login u)
-//	{
-//		return lrepo.save(u);
-//	}
+	public Login save(Login u)
+	{
+		return lrepo.save(u);
+	}
 	
-	public Login getUser(int id)
+	public Login getLogin(int id)
 	{
 		return lrepo.findById(id).get();
 	}

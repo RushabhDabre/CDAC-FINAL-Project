@@ -4,7 +4,6 @@ public class SignupRequest {
 
 	String username,password;
 	
-
 	public String getUsername() {
 		return username;
 	}
