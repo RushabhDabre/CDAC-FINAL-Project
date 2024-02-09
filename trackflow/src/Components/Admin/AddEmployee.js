@@ -22,10 +22,10 @@ export default function AddEmployee() {
         basicSal:0,
         incentives:0,
         hireDate:"",
-        did:0,
+        did:1,
         username:"",
         password:"",
-        roleid:0
+        roleid:2
        }
     
        const reducer = (state,action) => {

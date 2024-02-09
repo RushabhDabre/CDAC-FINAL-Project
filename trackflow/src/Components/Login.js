@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useRef } from 'react';
+import React, { useState, useReducer, useRef, useEffect } from 'react';
 import {  useNavigate } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 
@@ -12,6 +12,10 @@ export default function AddEmployee() {
         username:"",
         password:""
     }
+
+    useEffect(()=>{
+        localStorage.setItem("accessToken",msg);
+    });
 
     const reducer = (state,action) => {
         switch(action.type){
@@ -31,7 +35,7 @@ export default function AddEmployee() {
             headers: {'content-type':'application/json'},
             body: JSON.stringify(info)
         }
-        fetch("http://localhost:8080/chkLogin",reqOptions)
+        fetch("http://localhost:8080/login",reqOptions)
         // .then(resp => resp.text())
         .then(resp => {
             if(resp.ok){
@@ -42,23 +46,21 @@ export default function AddEmployee() {
         })
         .then(text => text.length ? JSON.parse(text) : {})
         .then(obj => {
+            setMsg(obj.accessToken);
+            console.log(msg);
             if(Object.keys(obj).length === 0){
-                setMsg("Wrong usrname/password");
+                alert("Wrong usrname/password");
             }else{
-                if(obj.status === false){
-                    alert("Request has not been approved");
-                    navigate('/');
-                }else{
-                    if(obj.role_id.role_id === 1){
-                        ref.current.complete();
-                        setTimeout(() => navigate("/admin_dashboard"), 500);
-                    }else if(obj.role_id.role_id === 2){
-                        ref.current.complete();
-                        setTimeout(() => navigate("/pm_dashboard"), 500);
-                    }else if(obj.role_id.role_id === 3){
-                        ref.current.complete();
-                        setTimeout(() => navigate("/emp_dashboard"), 500);
-                    }
+                const role_id = obj.roles[0]; // Assuming roles is an array
+                if(role_id === "admin"){
+                    ref.current.complete();
+                    setTimeout(() => navigate("/admin_dashboard"), 500);
+                } else if(role_id === "pm"){
+                    ref.current.complete();
+                    setTimeout(() => navigate("/pm_dashboard"), 500);
+                } else if(role_id === "employee"){
+                    ref.current.complete();
+                    setTimeout(() => navigate("/emp_dashboard"), 500);
                 }
             }
         })
