@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.AddEmployee;
+import com.example.demo.entities.Designation;
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Login;
 import com.example.demo.entities.Role;
+import com.example.demo.services.DesignationService;
 import com.example.demo.services.EmployeeService;
 import com.example.demo.services.LoginService;
 import com.example.demo.services.RoleService;
@@ -28,6 +30,9 @@ public class EmployeeController {
 	@Autowired
 	RoleService rservice;
 	
+	@Autowired
+	DesignationService dservice;
+	
  	@GetMapping("/getEmployee")
  	public Employee getEmployee(@RequestParam("loginid") int loginid)
  	{
@@ -37,13 +42,15 @@ public class EmployeeController {
 	
  	@PostMapping("/regEmployee")
  	public Employee regEmployee(@RequestBody AddEmployee emp)
+ 	
  	{
- 		Role r = rservice.getById(3);
+ 		System.out.println(emp);
+ 		Role r = rservice.getById(emp.getRoleid());
  		Login l = new Login(emp.getUsername(),emp.getPassword(), r, false);
- 		
+ 		Designation d = dservice.getById(emp.getDid()); 		
  		Login saved=lservice.save(l);
  		
- 		Employee e= new Employee(emp.getFullname(),emp.getDob(),emp.getGender(),emp.getNationality() ,emp.getEmail(),emp.getPhNo(),emp.getCurrentAddress(),emp.getPermanentAddress(),emp.getBasicSal(), emp.getHireDate(), emp.getIncentives(), emp.getDesignation(), saved);
+ 		Employee e= new Employee(emp.getFullname(),emp.getDob(),emp.getGender(),emp.getNationality() ,emp.getEmail(),emp.getPhNo(),emp.getCurrentAddress(),emp.getPermanentAddress(),emp.getBasicSal(), emp.getIncentives(), emp.getHireDate(), d, saved);
  		
  		return eservice.saveEmployee(e);	
  	}

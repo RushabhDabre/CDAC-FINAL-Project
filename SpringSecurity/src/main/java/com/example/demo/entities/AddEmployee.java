@@ -1,12 +1,16 @@
 package com.example.demo.entities;
 
-import java.util.Date;
+import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AddEmployee {
 
 		//Dummy Entity
-		String username,password,nationality,fullname,gender,email,phNo,currentAddress,permanentAddress,designation;
+		String username,password,nationality,fullname,gender,email,phNo,currentAddress,permanentAddress;
 		double basicSal,incentives;
+		int roleid, did;
+		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date hireDate,dob;
 		
 		public String getNationality() {
@@ -69,12 +73,7 @@ public class AddEmployee {
 		public void setBasicSal(double basicSal) {
 			this.basicSal = basicSal;
 		}
-		public String getDesignation() {
-			return designation;
-		}
-		public void setDesignation(String designation) {
-			this.designation = designation;
-		}
+		
 		public double getIncentives() {
 			return incentives;
 		}
@@ -93,4 +92,26 @@ public class AddEmployee {
 		public void setDob(Date dob) {
 			this.dob = dob;
 		}
+		public int getRoleid() {
+			return roleid;
+		}
+		public void setRoleid(int roleid) {
+			this.roleid = roleid;
+		}
+		public int getDid() {
+			return did;
+		}
+		public void setDid(int did) {
+			this.did = did;
+		}
+		@Override
+		public String toString() {
+			return "AddEmployee [username=" + username + ", password=" + password + ", nationality=" + nationality
+					+ ", fullname=" + fullname + ", gender=" + gender + ", email=" + email + ", phNo=" + phNo
+					+ ", currentAddress=" + currentAddress + ", permanentAddress=" + permanentAddress + ", basicSal="
+					+ basicSal + ", incentives=" + incentives + ", roleid=" + roleid + ", did=" + did + ", hireDate="
+					+ hireDate + ", dob=" + dob + "]";
+		}
+		
+		
 }

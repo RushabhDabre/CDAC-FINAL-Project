@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 public class Employee {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		int empId;
+		int empid;
 		
 		@Column
-		String fullName;
+		String fullname;
 		
 		@Column
 		Date dob;
@@ -29,62 +29,65 @@ public class Employee {
 		String email;
 			
 		@Column
-		String phNo;
+		String contact;
 		
 		@Column
-		String currentAddress;
+		String currentaddress;
 		
 		@Column
-		String permanentAddress;
+		String permanentaddress;
 		
 		@Column
-		double basicSal;
+		double basicsal;
 		
 		@Column
-		Date hireDate;
+		Date hiredate;
 		
 		@Column
 		double incentives;
 		
-		String designation;
-		
 		@OneToOne
 		@JoinColumn(name = "login_id")
 		Login login_id;
+		
+		@ManyToOne
+		@JoinColumn(name="designation_id")
+		Designation desg;
+		
 
-		public Employee(String fullName, Date dob, String gender, String nationality, String email, String phNo,
-				String currentAddress, String permanentAddress, double basicSal, Date hireDate, double incentives,
-				String designation, Login login_id) {
+		public Employee( String fullName, Date dob, String gender, String nationality, String email,
+				String phNo, String currentAddress, String permanentAddress, double basicSal,
+				double incentives, Date hireDate, Designation desg, Login login_id) {
 			super();
-			this.fullName = fullName;
+			this.fullname = fullName;
 			this.dob = dob;
 			this.gender = gender;
 			this.nationality = nationality;
 			this.email = email;
-			this.phNo = phNo;
-			this.currentAddress = currentAddress;
-			this.permanentAddress = permanentAddress;
-			this.basicSal = basicSal;
-			this.hireDate = hireDate;
+			this.contact = phNo;
+			this.currentaddress = currentAddress;
+			this.permanentaddress = permanentAddress;
+			this.basicsal = basicSal;
 			this.incentives = incentives;
-			this.designation = designation;
+			this.hiredate = hireDate;
+			this.desg = desg;
 			this.login_id = login_id;
 		}
 
 		public int getEmpId() {
-			return empId;
+			return empid;
 		}
 
 		public void setEmpId(int empId) {
-			this.empId = empId;
+			this.empid = empId;
 		}
 
 		public String getFullName() {
-			return fullName;
+			return fullname;
 		}
 
 		public void setFullName(String fullName) {
-			this.fullName = fullName;
+			this.fullname = fullName;
 		}
 
 		public Date getDob() {
@@ -120,43 +123,43 @@ public class Employee {
 		}
 
 		public String getPhNo() {
-			return phNo;
+			return contact;
 		}
 
 		public void setPhNo(String phNo) {
-			this.phNo = phNo;
+			this.contact = phNo;
 		}
 
 		public String getCurrentAddress() {
-			return currentAddress;
+			return currentaddress;
 		}
 
 		public void setCurrentAddress(String currentAddress) {
-			this.currentAddress = currentAddress;
+			this.currentaddress = currentAddress;
 		}
 
 		public String getPermanentAddress() {
-			return permanentAddress;
+			return permanentaddress;
 		}
 
 		public void setPermanentAddress(String permanentAddress) {
-			this.permanentAddress = permanentAddress;
+			this.permanentaddress = permanentAddress;
 		}
 
 		public double getBasicSal() {
-			return basicSal;
+			return basicsal;
 		}
 
 		public void setBasicSal(double basicSal) {
-			this.basicSal = basicSal;
+			this.basicsal = basicSal;
 		}
 
 		public Date getHireDate() {
-			return hireDate;
+			return hiredate;
 		}
 
 		public void setHireDate(Date hireDate) {
-			this.hireDate = hireDate;
+			this.hiredate = hireDate;
 		}
 
 		public double getIncentives() {
@@ -167,20 +170,20 @@ public class Employee {
 			this.incentives = incentives;
 		}
 
-		public String getDesignation() {
-			return designation;
-		}
-
-		public void setDesignation(String designation) {
-			this.designation = designation;
-		}
-
 		public Login getLogin_id() {
 			return login_id;
 		}
 
 		public void setLogin_id(Login login_id) {
 			this.login_id = login_id;
+		}
+
+		public Designation getDesg() {
+			return desg;
+		}
+
+		public void setDesg(Designation desg) {
+			this.desg = desg;
 		}
 
 }

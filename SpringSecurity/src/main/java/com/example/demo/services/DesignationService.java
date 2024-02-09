@@ -16,4 +16,8 @@ public class DesignationService {
 	public List<Designation> getAll(){
 		return drepo.findAll();
 	}
+	
+	public Designation getById(int id) {
+		return drepo.findById(id).get();
+	}
 }

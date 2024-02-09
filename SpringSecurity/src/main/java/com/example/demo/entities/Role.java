@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,11 +10,14 @@ import jakarta.persistence.Table;
 @Table(name="roles")
 public class Role {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int role_id;
 	String role_name;
+	
 	public int getRole_id() {
 		return role_id;
 	}
+	
 	public void setRole_id(int role_id) {
 		this.role_id = role_id;
 	}

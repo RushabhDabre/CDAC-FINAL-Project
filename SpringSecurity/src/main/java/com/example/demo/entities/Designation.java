@@ -7,9 +7,10 @@ import jakarta.persistence.*;
 public class Designation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "designationid")
 	int designationID;
 	
-	@Column
+	@Column(name = "designation_name")
 	String designationName;	
 	
 	public int getDesignationID() {
