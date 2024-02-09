@@ -20,6 +20,7 @@ function App() {
         <Route path="/pm_dashboard" element={<PmDashboard/>}/>
         <Route path="/emp_dashboard" element={<EmpDashboard/>}/>
       </Routes>
+      <AddEmployee/>
     </div>
   );
 }
