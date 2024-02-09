@@ -47,11 +47,17 @@ export default function AddEmployee() {
             body: JSON.stringify(user)
         }
         fetch("http://localhost:8080/regEmployee",reqOptions)
-        .then(res=>res.json())
+        .then(res=>{
+            if(res.ok)
+                return res.json();
+            else
+                throw new Error("Server Error");
+        } )
         .then(obj=>{
+            alert("Regestration Successful");
             console.log(JSON.stringify(obj));
         })
-        // .catch((error)=>{alert("server error. Try Again!")});
+        .catch((error)=>{alert("server error. Try Again!")});
     }
 
     return (
@@ -134,9 +140,7 @@ export default function AddEmployee() {
                             <label className='text-muted'><h6>Designation</h6></label>
                             <select name="designation" 
                             value={user.did} onChange={(e)=>{dispatch({type:'update',fld:'did', val: e.target.value})}}>
-
-
-
+                                
                             </select>
                         </div>
                         <div className="mb-3">   
