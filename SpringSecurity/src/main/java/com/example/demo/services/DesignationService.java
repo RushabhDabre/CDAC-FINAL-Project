@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,14 @@ public class DesignationService {
 	}
 	
 	public Designation getById(int id) {
-		return drepo.findById(id).get();
+//		return drepo.findById(id).get();
+		Optional<Designation> or = drepo.findById(id);
+		Designation d;
+		try {
+			d = or.get();
+		}catch(Exception e) {
+			d = null;
+		}
+		return d;
 	}
 }

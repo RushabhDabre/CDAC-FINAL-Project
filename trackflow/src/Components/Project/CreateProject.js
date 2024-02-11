@@ -1,3 +1,4 @@
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import React, { useRef } from 'react'
 import {  useNavigate } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar'

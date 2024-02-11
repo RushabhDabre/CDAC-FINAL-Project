@@ -12,6 +12,7 @@ import EmpDashboard from './Components/Employee/EmpDashboard';
 function App() {
   return (
     <div className='App-header'>  
+        {/* <Login/> */}
       <Routes>
         {/* <Route path="/" element={<CreateTask/>}/> */}
         {/* <Route path="/" element={<AddEmployee/>}/> */}
@@ -20,7 +21,7 @@ function App() {
         <Route path="/pm_dashboard" element={<PmDashboard/>}/>
         <Route path="/emp_dashboard" element={<EmpDashboard/>}/>
       </Routes>
-      <AddEmployee/>
+      {/* <AddEmployee/> */}
     </div>
   );
 }

@@ -7,26 +7,25 @@ import jakarta.persistence.*;
 public class Designation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "designationid")
-	int designationID;
+	int designationid;
 	
-	@Column(name = "designation_name")
-	String designationName;	
+	@Column
+	String designation_name;	
 	
 	public int getDesignationID() {
-		return designationID;
+		return designationid;
 	}
 
-	public void setDesignationID(int designationID) {
-		this.designationID = designationID;
+	public void setDesignationID(int designationid) {
+		this.designationid = designationid;
 	}
 
 	public String getDesignationName() {
-		return designationName;
+		return designation_name;
 	}
 
-	public void setDesignationName(String designationName) {
-		this.designationName = designationName;
+	public void setDesignationName(String designation_name) {
+		this.designation_name = designation_name;
 	}
 
 }

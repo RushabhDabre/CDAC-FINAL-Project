@@ -5,20 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entities.Designation;
-import com.example.demo.services.DesignationService;
+import com.example.demo.entities.Role;
+import com.example.demo.services.RoleService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class DesignationController {
+public class RoleController {
 	@Autowired
-	DesignationService dservice;
+	RoleService rservice;
 	
-	@GetMapping("/getAllDesign")
-	public List<Designation> getAll(){
-		return dservice.getAll();
-	}	
+	@GetMapping("/getAllRoles")
+	public List<Role> getAll(){
+		return rservice.getAll();
+	}
 }

@@ -1,6 +1,8 @@
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import React, { useState, useReducer, useRef, useEffect } from 'react';
 import {  useNavigate } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
+
 
 export default function AddEmployee() {
     const ref = useRef(null) //used for Loading Bar
@@ -14,7 +16,7 @@ export default function AddEmployee() {
     }
 
     useEffect(()=>{
-        localStorage.setItem("accessToken",msg);
+        localStorage.setItem("accessToken",JSON.stringify(msg));
     });
 
     const reducer = (state,action) => {
@@ -47,6 +49,7 @@ export default function AddEmployee() {
         .then(text => text.length ? JSON.parse(text) : {})
         .then(obj => {
             setMsg(obj.accessToken);
+            // setMsg(obj);
             console.log(msg);
             if(Object.keys(obj).length === 0){
                 alert("Wrong usrname/password");
