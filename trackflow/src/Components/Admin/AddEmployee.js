@@ -20,7 +20,8 @@ export default function AddEmployee() {
     const [allRoles, setAllRoles] = useState([]);
     const [allDesign , setAllDesign] = useState([]);
     
-    const access = JSON.parse(localStorage.getItem("accessToken"));
+    const access = JSON.parse(localStorage.getItem("loggedUser")).accessToken;
+    console.log(access)
     
     useEffect(()=> {
         fetch("http://localhost:8080/getAllDesign",{
@@ -28,7 +29,7 @@ export default function AddEmployee() {
             headers: {Authorization: `Bearer ${access}`}
         })
         .then(resp => resp.json())
-        .then(obj => setAllDesign(obj))
+        .then(obj => {setAllDesign(obj); console.log(JSON.stringify(allDesign))})
     },[]);
 
     useEffect(()=> {
@@ -39,20 +40,6 @@ export default function AddEmployee() {
         .then(resp => resp.json())
         .then(obj => setAllRoles(obj))
     },[]);
-    
-     
-    // useEffect(()=> {
-    //     fetch("http://localhost:8080/getAllDesign")
-    //     .then(resp => resp.json())
-    //     .then(dsg => setAllDesign(dsg))
-    // },[]);
-
-    // useEffect(() => {
-    //     fetch("http://localhost:8080/getAllRoles")
-    //     .then(resp => resp.json())
-    //     .then(roles => setAllRoles(roles))
-    // }, []);
-    
 
     const init ={
         fullname: "",
@@ -92,13 +79,12 @@ export default function AddEmployee() {
         }
         fetch("http://localhost:8080/regEmployee",reqOptions)
         .then(res=>{
-            setmsg(res);
             if(res.ok){
                 return res.json();
             }else{
                 setVisible(false)
                 setTimeout(() => setVisible(true), 2000);
-                throw new Error("Server Error");
+                // throw new Error("Server Error");
             }
         } )
         .then(obj=>{
@@ -240,7 +226,7 @@ export default function AddEmployee() {
                                 <label className='form-label text-muted'><h6>Select Role : </h6></label>
                                 <select className='form-select' id='role_id' name="role_id" 
                                      onChange={(e)=>{dispatch({type:'update',fld:'role_id', val: e.target.value})}}  >
-                                        {/* <option selected>Select</option> */}
+                                         {/* <option selected>Select</option> */}
                                     {
                                         allRoles.map(data => {
                                             return <option value={data.role_id}>{data.role_name}</option>
@@ -292,15 +278,19 @@ export default function AddEmployee() {
                         </div>
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
-                            <div className="col-auto ">
-                                <button type="submit" className="btn btn-success w-100 font-weight-bold mt-2" disabled={!isValid} onClick={(e)=>{sendData(e)}} >Add Employee</button>
-                            </div>
                             <div className="col-auto">
-                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{ref.current.complete(); setTimeout(() => navigate("/"), 500);}}>Cancel</button>
+                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{ref.current.complete(); setTimeout(() => navigate("/"), 500);}}>Cancel</button>
+                            </div>
+                            <div className="col-auto ">
+                                <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2" disabled={!isValid} onClick={(e)=>{sendData(e)}} >Add Employee</button>
                             </div>
                         </div>
                     </form>   
                     <div className='text-dark'>{JSON.stringify(user)}</div> 
+
+                    {
+                        // <p> {JSON.stringify(user)} </p>
+                    }
                 </div> 
             </div>           
         </div>

@@ -1,0 +1,5 @@
+.nav-pills li a:hover {
+    /* background-color: rgb(61, 61, 243); */
+    background-color: rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px ; */
+}

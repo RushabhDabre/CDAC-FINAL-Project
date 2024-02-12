@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,9 @@ public class EmployeeController {
 	@Autowired
 	DesignationService dservice;
 	
+	@Autowired
+	PasswordEncoder encoder;
+	
  	@GetMapping("/getEmployee")
  	public Employee getEmployee(@RequestParam("loginid") int loginid)
  	{
@@ -45,9 +49,9 @@ public class EmployeeController {
  	
  	{
  		System.out.println(emp);
- 		Role r = rservice.getById(emp.getRoleid());
- 		Login l = new Login(emp.getUsername(),emp.getPassword(), r, false);
- 		Designation d = dservice.getById(emp.getDid()); 		
+ 		Role r = rservice.getById(emp.getRole_id());
+ 		Login l = new Login(emp.getUsername(), encoder.encode(emp.getPassword()), r, false);
+ 		Designation d = dservice.getById(emp.getDesignationID()); 		
  		Login saved=lservice.save(l);
  		
  		Employee e= new Employee(emp.getFullname(),emp.getDob(),emp.getGender(),emp.getNationality() ,emp.getEmail(),emp.getPhNo(),emp.getCurrentAddress(),emp.getPermanentAddress(),emp.getBasicSal(), emp.getIncentives(), emp.getHireDate(), d, saved);

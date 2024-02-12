@@ -8,20 +8,23 @@ import Login from './Components/Login'
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import PmDashboard from './Components/Project Manager/PmDashboard';
 import EmpDashboard from './Components/Employee/EmpDashboard';
+import SideBar from './Components/Sidebar/SideBar';
+// import TaskDashboard from './Components/TaskDashboard';
 
 function App() {
   return (
     <div className='App-header'>  
-        {/* <Login/> */}
+        {/* <TaskDashboard/> */}
+        {/* <SideBar/> */}
+        {/* <AddEmployee/> */}
       <Routes>
-        {/* <Route path="/" element={<CreateTask/>}/> */}
-        {/* <Route path="/" element={<AddEmployee/>}/> */}
-        <Route path="/" element={<Login/>}/>
+         <Route path="/" element={<Login/>}/> 
         <Route path="/admin_dashboard" element={<AdminDashboard/>}/>
         <Route path="/pm_dashboard" element={<PmDashboard/>}/>
-        <Route path="/emp_dashboard" element={<EmpDashboard/>}/>
+        <Route path="/emp_dashboard" element={<EmpDashboard/>}/> 
+        <Route path="/addemp" element={<AddEmployee/>}/> 
+
       </Routes>
-      {/* <AddEmployee/> */}
     </div>
   );
 }

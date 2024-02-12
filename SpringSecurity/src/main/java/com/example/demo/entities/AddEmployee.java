@@ -9,7 +9,7 @@ public class AddEmployee {
 		//Dummy Entity
 		String username,password,nationality,fullname,gender,email,phNo,currentAddress,permanentAddress;
 		double basicSal,incentives;
-		int roleid, did;
+		int role_id, designationID;
 		@JsonFormat(pattern = "yyyy-MM-dd")
 		Date hireDate,dob;
 		
@@ -92,24 +92,25 @@ public class AddEmployee {
 		public void setDob(Date dob) {
 			this.dob = dob;
 		}
-		public int getRoleid() {
-			return roleid;
+		
+		public int getRole_id() {
+			return role_id;
 		}
-		public void setRoleid(int roleid) {
-			this.roleid = roleid;
+		public void setRole_id(int role_id) {
+			this.role_id = role_id;
 		}
-		public int getDid() {
-			return did;
+		public int getDesignationID() {
+			return designationID;
 		}
-		public void setDid(int did) {
-			this.did = did;
+		public void setDesignationID(int designationID) {
+			this.designationID = designationID;
 		}
 		@Override
 		public String toString() {
 			return "AddEmployee [username=" + username + ", password=" + password + ", nationality=" + nationality
 					+ ", fullname=" + fullname + ", gender=" + gender + ", email=" + email + ", phNo=" + phNo
 					+ ", currentAddress=" + currentAddress + ", permanentAddress=" + permanentAddress + ", basicSal="
-					+ basicSal + ", incentives=" + incentives + ", roleid=" + roleid + ", did=" + did + ", hireDate="
+					+ basicSal + ", incentives=" + incentives + ", role_id=" + role_id + ", designationID=" + designationID + ", hireDate="
 					+ hireDate + ", dob=" + dob + "]";
 		}
 		

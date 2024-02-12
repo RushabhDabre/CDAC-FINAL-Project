@@ -90,10 +90,12 @@ public class AppSecurityConfigurer {
 		http.authorizeHttpRequests(authorize -> {
 			authorize.requestMatchers("/").permitAll();
 			authorize.requestMatchers("/login").permitAll();
+			authorize.requestMatchers("/pm_dashboard").permitAll();
+			authorize.requestMatchers("/emp_dashboard").permitAll();
+			
 			authorize.requestMatchers("/regEmployee").permitAll();
 			authorize.requestMatchers("/getAllDesign").hasAuthority("admin");
 			authorize.requestMatchers("/getAllRoles").hasAuthority("admin");
-			authorize.requestMatchers("/getoneDesign").hasAuthority("admin");
 			//hasAuthority 
 			//authorize.requestMatchers("/c").hasAuthority("USER");
 			//authorize.requestMatchers("/admin").hasAnyAuthority("ADMIN","USER");

@@ -2,11 +2,13 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import React, { useState, useReducer, useRef, useEffect } from 'react';
 import {  useNavigate } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
-
+import { useForm } from "react-hook-form";
 
 export default function AddEmployee() {
     const ref = useRef(null) //used for Loading Bar
     let navigate = useNavigate();
+    const { register, formState: {errors , isValid}, watch } = useForm({mode: 'all'});
+    const [isVisible, setVisible] = useState(true);
     const [msg, setMsg] = useState("");
 
     //info - about one user, initial state
@@ -49,11 +51,11 @@ export default function AddEmployee() {
         .then(text => text.length ? JSON.parse(text) : {})
         .then(obj => {
             setMsg(obj.accessToken);
-            // setMsg(obj);
-            console.log(msg);
+
             if(Object.keys(obj).length === 0){
                 alert("Wrong usrname/password");
             }else{
+                localStorage.setItem("loggedUser", JSON.stringify(obj));
                 const role_id = obj.roles[0]; // Assuming roles is an array
                 if(role_id === "admin"){
                     ref.current.complete();
@@ -76,30 +78,33 @@ export default function AddEmployee() {
             <div className='container d-flex justify-content-center'>
                 <div className=" shadow-lg p-4 m-5" style={{"width":'25rem'}}>
                     <h3 className="d-flex mb-2 text-dark justify-content-center"><b>LOGIN FORM</b></h3>      
+                    <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger">{msg}</strong></div>
                     <form method='post'>                       
                         <div className="mb-3">   
                             <label htmlFor='username' className='text-muted'><h6>username</h6></label>
                             <input type="text" id='username' name='username' placeholder="e.g. John Week" className="form-control"
+                            {...register("username",{ required: true, pattern: /^[a-zA-Z][a-zA-Z0-9_]{6,15}$/})} //for Validation
                             value={info.username} onChange={(e)=>{dispatch({type:'update',fld:'username', val: e.target.value})}} />
-                            <div id='emailHelp' className='form-text'></div>
+                            <span className='text-danger fs-6'>{errors.username?.type === "required" && "feild is required"}{errors.username?.type === "pattern" && "First letter must be Alphabet and only underscore is allowed!!"}</span>
                         </div>
                         <div className="mb-3">   
                             <label htmlFor='password' className='text-muted'><h6>Password</h6></label>
                             <input type="text" id='password' name='password' placeholder="********" className="form-control" 
+                            {...register("password",{ required: true, pattern: /^[A-Za-z\d@$!%*?&]{8,12}$/})} //for Validation
                             value={info.password} onChange={(e)=>{dispatch({type:'update',fld:'password', val: e.target.value})}} />
-                            <div id='emailHelp' className='form-text'></div>
+                            <span className='text-danger fs-6'>{errors.password?.type === "required" && "You must specify a password"}{errors.password?.type === "pattern" && "Password must be between 8 - 12 words!"}</span >
                         </div>
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center mb-3">
-                            <div className="col-auto ">
-                                <button type="submit" onClick={(e)=> {sendData(e)}} className="btn btn-success w-100 font-weight-bold mt-2" >LOGIN</button>
-                            </div>
                             <div className="col-auto">
-                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{dispatch({type:'reset'})}}>Cancel</button>
+                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{ref.current.complete(); setTimeout(() => navigate("/"), 500);}}>Cancel</button>
+                            </div>
+                            <div className="col-auto ">
+                                <button type="submit" onClick={(e)=> {sendData(e)}} className="btn btn-primary w-100 font-weight-bold mt-2" disabled={!isValid} >LOGIN</button>
                             </div>
                         </div>
                     </form> 
-                       <p className='text-dark'>{JSON.stringify(info)}</p>
+                       {/* <p className='text-dark'>{JSON.stringify(info)}</p> */}
                 </div> 
             </div>           
         </div>
