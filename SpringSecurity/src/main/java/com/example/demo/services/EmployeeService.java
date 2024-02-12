@@ -36,4 +36,8 @@ public class EmployeeService {
 		return erepo.getListEmployees();
 	}
 	
+	public List<Employee> getAllEmp(){
+		return erepo.findAll();
+	}
+	
 }

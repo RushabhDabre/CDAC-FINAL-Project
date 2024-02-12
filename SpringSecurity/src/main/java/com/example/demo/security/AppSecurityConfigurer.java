@@ -93,6 +93,7 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/pm_dashboard").permitAll();
 			authorize.requestMatchers("/emp_dashboard").permitAll();
 			
+			authorize.requestMatchers("/getallEmp").permitAll();
 			authorize.requestMatchers("/regEmployee").permitAll();
 			authorize.requestMatchers("/getAllDesign").hasAuthority("admin");
 			authorize.requestMatchers("/getAllRoles").hasAuthority("admin");

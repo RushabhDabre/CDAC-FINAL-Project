@@ -60,7 +60,7 @@ export default function AddEmployee() {
                 if(role_id === "admin"){
                     ref.current.complete();
                     setTimeout(() => navigate("/admin_dashboard"), 500);
-                } else if(role_id === "pm"){
+                } else if(role_id === "project_manager"){
                     ref.current.complete();
                     setTimeout(() => navigate("/pm_dashboard"), 500);
                 } else if(role_id === "employee"){

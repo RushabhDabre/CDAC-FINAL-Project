@@ -279,18 +279,14 @@ export default function AddEmployee() {
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
-                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{ref.current.complete(); setTimeout(() => navigate("/"), 500);}}>Cancel</button>
+                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{ref.current.complete(); setTimeout(() => navigate("/userinfo"), 500);}}>Cancel</button>
                             </div>
                             <div className="col-auto ">
                                 <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2" disabled={!isValid} onClick={(e)=>{sendData(e)}} >Add Employee</button>
                             </div>
                         </div>
                     </form>   
-                    <div className='text-dark'>{JSON.stringify(user)}</div> 
-
-                    {
-                        // <p> {JSON.stringify(user)} </p>
-                    }
+                    {/* <div className='text-dark'>{JSON.stringify(user)}</div>  */}
                 </div> 
             </div>           
         </div>

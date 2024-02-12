@@ -44,9 +44,9 @@ export default function  SideBar({username}) {
                     <hr className='text-secondary d-none d-sm-block'/>
                     <ul className="nav nav-pills flex-column mt-3 mt-sm-0">
                         <li className="nav-item text-dark fs-4 my-1 py-2 py-sm-0">
-                            <Link  className="nav-link text-dark fs-5" to="/addemp">
-                                <i className='bi bi-speedometer2'>
-                                    <span className='ms-3 d-none d-sm-inline'>Dashboard</span>
+                            <Link  className="nav-link text-dark fs-5" to="/userinfo">
+                                <i className='bi bi-person-add'>
+                                    <span className='ms-3 d-none d-sm-inline'>User Details</span>
                                 </i>
                             </Link>
                         </li>
