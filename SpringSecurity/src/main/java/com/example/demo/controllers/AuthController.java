@@ -98,11 +98,11 @@ public class AuthController {
 		        .body(new UserInfoResponse(userDetails.getId(),
 		                                   userDetails.getUsername(),	                                   
 		                                   roles)); */
-	    return ResponseEntity.ok()
-	            //.header("Authorization", "Bearer " + jwtToken)
-	            .body(new UserInfoResponse(userDetails.getId(),
-                        userDetails.getUsername(),	                                   
-                        roles,jwtToken));
+//	    return ResponseEntity.ok()
+//	            //.header("Authorization", "Bearer " + jwtToken)
+//	            .body(new UserInfoResponse(userDetails.getId(),
+//                        userDetails.getUsername(),	                                   
+//                        roles,jwtToken));
 	  }
 	  
 //	  @PostMapping("/regDoctor")

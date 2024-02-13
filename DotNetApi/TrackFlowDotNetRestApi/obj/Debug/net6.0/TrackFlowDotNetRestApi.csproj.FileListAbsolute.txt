@@ -30,3 +30,13 @@ A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\obj\Debug\ne
 A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\obj\Debug\net6.0\TrackFlowDotNetRestApi.pdb
 A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\obj\Debug\net6.0\TrackFlowDotNetRestApi.genruntimeconfig.cache
 A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\obj\Debug\net6.0\ref\TrackFlowDotNetRestApi.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Humanizer.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\MySqlConnector.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+A:\CDAC-Project\CDAC-FINAL-Project\DotNetApi\TrackFlowDotNetRestApi\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll

@@ -57,10 +57,10 @@ public class Login {
 	}
 
 	
-	/*public String getRole() {
-		// TODO Auto-generated method stub
+	public Role getRole() {
+		
 		return role;
-	}*/
+	}
 	
 	
 
