@@ -17,6 +17,9 @@ public interface LoginRepository extends JpaRepository<Login, Integer> {
 	@Query("select l from Login l where uid = :uid")
 	public Login getLogin(String uid);
 	
+	@Query("select count(*) from Login l where uid=?1")
+	public int userCheck(String user_id);
+	
 //	@Modifying
 //	@Query("update User set active = true where id = :id")
 //	public int approve(int id);

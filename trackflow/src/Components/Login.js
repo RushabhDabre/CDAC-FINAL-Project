@@ -10,6 +10,7 @@ export default function AddEmployee() {
     const { register, formState: {errors , isValid}, watch } = useForm({mode: 'all'});
     const [isVisible, setVisible] = useState(true);
     const [msg, setMsg] = useState("");
+    const [error, setErrors] = useState("");
 
     //info - about one user, initial state
     const init = {
@@ -69,7 +70,11 @@ export default function AddEmployee() {
                 }
             }
         })
-        .catch((error)=>{alert("server error. Try Again!")});
+        .catch((error)=>{
+            setErrors("username or password is incorrect");
+            setVisible(false);
+            setTimeout(() => setVisible(true), 2000);
+        });
     }
 
     return (
@@ -78,7 +83,7 @@ export default function AddEmployee() {
             <div className='container d-flex justify-content-center'>
                 <div className=" shadow-lg p-4 m-5" style={{"width":'25rem'}}>
                     <h3 className="d-flex mb-2 text-dark justify-content-center"><b>LOGIN FORM</b></h3>      
-                    <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger">{msg}</strong></div>
+                    <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger fs-6">{error}</strong></div>
                     <form method='post'>                       
                         <div className="mb-3">   
                             <label htmlFor='username' className='text-muted'><h6>username</h6></label>
@@ -89,7 +94,7 @@ export default function AddEmployee() {
                         </div>
                         <div className="mb-3">   
                             <label htmlFor='password' className='text-muted'><h6>Password</h6></label>
-                            <input type="text" id='password' name='password' placeholder="********" className="form-control" 
+                            <input type="password" id='password' name='password' placeholder="********" className="form-control" 
                             {...register("password",{ required: true, pattern: /^[A-Za-z\d@$!%*?&]{8,12}$/})} //for Validation
                             value={info.password} onChange={(e)=>{dispatch({type:'update',fld:'password', val: e.target.value})}} />
                             <span className='text-danger fs-6'>{errors.password?.type === "required" && "You must specify a password"}{errors.password?.type === "pattern" && "Password must be between 8 - 12 words!"}</span >

@@ -98,11 +98,18 @@ public class AuthController {
 		        .body(new UserInfoResponse(userDetails.getId(),
 		                                   userDetails.getUsername(),	                                   
 		                                   roles)); */
-//	    return ResponseEntity.ok()
-//	            //.header("Authorization", "Bearer " + jwtToken)
-//	            .body(new UserInfoResponse(userDetails.getId(),
-//                        userDetails.getUsername(),	                                   
-//                        roles,jwtToken));
+	    return ResponseEntity.ok()
+	            //.header("Authorization", "Bearer " + jwtToken)
+	            .body(new UserInfoResponse(userDetails.getId(),
+                       userDetails.getUsername(),	                                   
+                       roles,jwtToken));
+	  }
+	  
+	  @PostMapping("/userCheck")
+	  public int userCheck(@RequestBody LoginCheck l) {
+		  System.out.println(l);
+		  int res = lservice.userCheck(l.getUsername());
+		  return res;
 	  }
 	  
 //	  @PostMapping("/regDoctor")

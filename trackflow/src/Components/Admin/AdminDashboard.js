@@ -1,19 +1,16 @@
 import React from 'react'
-// import AddEmployee from './AddEmployee'
-import SideBar from '../Sidebar/SideBar'
-import TaskList from '../Task/TaskList';
+import { Outlet } from 'react-router-dom';
+import AdminSidebar from './AdminSidebar'
 
 export default function AdminDashboard() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid ">
       <div className="row">
-        <div className="position-fixed top-0 start-0">
-          <SideBar  />
+        <div className="col-sm-auto d-flex sticky-top p-0" style={{"height":"100vh"}}>
+          <AdminSidebar />
         </div>
-        <div className="col-md-8 offset-md-3 d-flex justify-content-center align-items-center">
-          <div className="content">
-      
-          </div>
+        <div className="col-sm-auto d-flex justify-content-center align-items-center">
+              <Outlet/>
         </div>
       </div>
     </div>

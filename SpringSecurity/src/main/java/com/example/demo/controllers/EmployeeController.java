@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,8 @@ import com.example.demo.services.DesignationService;
 import com.example.demo.services.EmployeeService;
 import com.example.demo.services.LoginService;
 import com.example.demo.services.RoleService;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -64,5 +67,15 @@ public class EmployeeController {
  	@GetMapping("/getallEmp")
 	public List<Employee> getAll(){
 		return eservice.getAllEmp();
+	}
+ 	
+ 	@GetMapping("/getOneEmp/{userid}")
+ 	public Employee getEmpById(@PathVariable("userid") int empid) {
+ 		return eservice.getEmpById(empid);
+ 	}
+ 	
+ 	@PostMapping("/updateall")
+	public int UpdateAll(@RequestBody Employee emp) {
+		return eservice.UpdateAll(emp.getEmpId(), emp.getFullName(), emp.getDob(), emp.getGender(), emp.getNationality(), emp.getEmail(), emp.getPhNo(), emp.getCurrentAddress(), emp.getPermanentAddress(), emp.getBasicSal(), emp.getIncentives(),emp.getHireDate(), emp.getDesg().getDesignationID(), emp.getLogin_id().getLogin_id());
 	}
 }

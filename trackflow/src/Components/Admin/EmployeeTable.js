@@ -57,10 +57,13 @@ export default function EmployeeTable() {
     setCurrentPage(1); // Reset to the first page when changing records per page
   };
 
+  const handleUpdate = (empId) => {
+    navigate(`/admin_dashboard/updateemp/${empId}`);
+  };
+
   return (
-    <div className="container mt-4">
-      <div className="container mt-4">
-        <div className="row mb-3">
+    <div className="container-fluid ">
+        <div className="row">
           <div className="col-2 d-flex align-items-center">
             <span className='text-black fs-6 me-2'>Show</span>
             <select className='form-select form-select-sm' value={recordsPerPage} onChange={handleRecordsPerPageChange}>
@@ -75,57 +78,58 @@ export default function EmployeeTable() {
             <span className='text-black fs-6 ms-2'>entries</span>
           </div>
           <div className='col-7'></div>
-          <div className="col-3">
+          <div className="col-3 mt-2">
             <input className="form-control" type="text" placeholder="Search" onChange={handleFilter} />
           </div>
         </div>
-        <div className="row mb-3">
-        <button className='col-auto mb-3 btn btn-success align-items-end' data-bs-target="#empModal" onClick={()=>{navigate('/addemp')}}>Add Employee</button>
-        {/* <div className='modal fade' id='empModal' tabIndex={-1} aria-labelledby='ModalLabel' aria-hidden="true"><AddEmployee/></div> */}
+        <div className="row">
+          <button className='col-auto mb-3 btn btn-success mt-2 ms-3' data-bs-target="#empModal" onClick={()=>{navigate('/admin_dashboard/addemp')}}>Add Employee</button>
         </div>
-      </div>
-      <table className="table table-bordered table-striped table-hover" >
-        <thead className='table-dark'>
-          <tr>
-            <th className="fs-6 fw-medium">ID</th>
-            <th className="fs-6 fw-medium">Full Name</th>
-            <th className="fs-6 fw-medium">Dob</th>
-            <th className="fs-6 fw-medium">Gender</th>
-            <th className="fs-6 fw-medium">Nationality</th>
-            <th className="fs-6 fw-medium">Email</th>
-            <th className="fs-6 fw-medium">Contact</th>
-            <th className="fs-6 fw-medium">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRecords.map((v) => {
-            return (<tr key={v.empId}>
-              <td className="fs-6">{v.empId}</td>
-              <td className="fs-6">{v.fullName}</td>
-              <td className="fs-6">{v.dob}</td>
-              <td className="fs-6">{v.gender}</td>
-              <td className="fs-6">{v.nationality}</td>
-              <td className="fs-6">{v.email}</td>
-              <td className="fs-6">{v.phNo}</td>
-              <td className="fs-6">
-                <button className="btn btn-info me-2">Update</button>
-                <button className="btn btn-danger">Delete</button>
-              </td>
-            </tr>);
-          })}
-        </tbody>
-      </table>
+        <table className="table table-bordered table-striped table-hover" >
+          <thead className='table-dark'>
+            <tr>
+              <th className="fs-6 fw-medium">ID</th>
+              <th className="fs-6 fw-medium">Full Name</th>
+              <th className="fs-6 fw-medium">Dob</th>
+              <th className="fs-6 fw-medium">Gender</th>
+              <th className="fs-6 fw-medium">Nationality</th>
+              <th className="fs-6 fw-medium">Email</th>
+              <th className="fs-6 fw-medium">Contact</th>
+              <th className="fs-6 fw-medium">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentRecords.map((v) => {
+              return (<tr key={v.empId}>
+                <td className="fs-6">{v.empId}</td>
+                <td className="fs-6">{v.fullName}</td>
+                <td className="fs-6">{v.dob}</td>
+                <td className="fs-6">{v.gender}</td>
+                <td className="fs-6">{v.nationality}</td>
+                <td className="fs-6">{v.email}</td>
+                <td className="fs-6">{v.phNo}</td>
+                <td className="fs-6">
+                  <button className="btn btn-info me-2" onClick={() => handleUpdate(v.empId)}>Update</button>
+                  <button className="btn btn-danger">Delete</button>
+                </td>
+              </tr>);
+            })}
+          </tbody>
+        </table>
         <div className='row '>
-          <div className='col-12 d-flex justify-content-between align-items-center'>
-            <span className=' text-black fs-6'>Showing {firstIndex + 1} to {Math.min(lastIndex, filteredRecords.length)} of {filteredRecords.length} records</span>
+          <div className='col-3'>
+            <span className='text-black fs-6'>Showing {firstIndex + 1} to {Math.min(lastIndex, filteredRecords.length)} of {filteredRecords.length} records</span>
+          </div>
+          <div className='col-6'></div>
+          <div className='col-3 d-flex justify-content-end'>
             <ul className="pagination">
-                <li className="page-item"><a href="#" className="page-link" onClick={prePage}>Prev</a></li>
+                <li className="page-item"><a  className="page-link" onClick={prePage}>Prev</a></li>
                 {Array.from({ length: totalPages }).map((_, index) => (
                   <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
-                    <a href="#" className="page-link" onClick={() => changePage(index + 1)}>{index + 1}</a>
+                    <a  className="page-link" onClick={() => changePage(index + 1)}>{index + 1}</a>
                   </li>
                 ))}
-                <li className="page-item"><a href="#" className="page-link" onClick={nextPage}>Next</a></li>
+                <li className="page-item"><a  className="page-link" onClick={nextPage}>Next</a></li>
             </ul>
           </div>
         </div>

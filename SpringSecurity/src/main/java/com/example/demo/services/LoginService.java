@@ -22,6 +22,11 @@ public class LoginService {
 		return lrepo.findById(id).get();
 	}
 	
+	public int userCheck(String s) {
+		int res = lrepo.userCheck(s);
+		return res;
+	}
+	
 //	public boolean approve(int id)
 //	{
 //		if (lrepo.approve(id) == 1)
