@@ -108,8 +108,14 @@ export default function UpdateEmployee() {
         const reqOptions = {
             method: 'POST',
             headers: {'content-type':'application/json'},
-            body: JSON.stringify(user)
+            body: JSON.stringify({
+                basicSal:user.basicSal,
+                incentives:user.incentives,
+                designationID:user.designationID,
+                role_id:user.role_id
+            })
         }
+        console.log(JSON.stringify(user))
         fetch("http://localhost:8080/updateall",reqOptions)
         .then(res=>{
             if(res.ok){
@@ -231,7 +237,7 @@ export default function UpdateEmployee() {
                                         <option value="">Select</option>
                                     {
                                         allDesign.map(data => {
-                                            return <option key={data.designationID} value={data.designationID}>{data.designationName}</option>
+                                            return <option key={data.designationID}  selected={user.designationID === data.designationID? true: false} value={data.designationID}>{data.designationName}</option>
                                         })
                                     }
                                 </select>
@@ -244,7 +250,7 @@ export default function UpdateEmployee() {
                                          <option value="" >Select</option>
                                     {
                                         allRoles.map(data => {
-                                            return <option value={data.role_id}>{data.role_name}</option>
+                                            return <option key={data.role_id} value={data.role_id} selected={user.role_id === data.role_id? true: false} >{data.role_name}</option>
                                         })
                                     }
                                 </select>
@@ -283,16 +289,17 @@ export default function UpdateEmployee() {
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
-                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{navigate("/admin_dashboard/userinfo")}}>Cancel</button>
+                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{navigate("/ADMIN/userinfo")}}>Cancel</button>
                             </div>
                             <div className="col-auto ">
-                                <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2"   >Add Employee</button>
+                                <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2" >Update</button>
                                 {/* disabled={!isValid} */}
                             </div>
                         </div>
                     </form>   
+            <div className='text-dark'>{JSON.stringify(user)}</div>            
                 </div> 
-            </div>           
+            </div>
         </div>
   )
 }

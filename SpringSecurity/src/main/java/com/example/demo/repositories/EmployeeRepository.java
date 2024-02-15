@@ -24,7 +24,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	public List<Employee> getListEmployees();
 	
 	@Modifying
-	@Query(value ="update employees set fullname=?2, dob=?3, gender=?4, nationality=?5, email=?6, contact=?7, currentaddress=?8, permanentaddress=?9, basicsal=?10, incentives=?11, hiredate=?12, designation_id=?13, login_id=?14 where empid = ?1", nativeQuery= true)
-	public int UpdateAll(int empid, String fullname, Date dob, String gender, String nationality, String email, String contact, String currentaddress, String permanentaddress, double basicsal, double incentives, Date hiredate, int designation_id, int login_id);
+	@Query(value ="update employees e join login l on e.login_id = l.login_id set e.basicsal = ?2, e.incentives = ?3, e.designation_id = ?4, l.role_id = ?5 where e.empid = ?1;", nativeQuery = true)
+	public int UpdateAll(int empid, double basicsal, double incentives, int designation_id, int login_id);
 
 }

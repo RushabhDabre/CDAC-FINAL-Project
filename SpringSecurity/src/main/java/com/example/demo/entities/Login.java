@@ -55,13 +55,14 @@ public class Login {
 		this.role = role;
 		this.active = active;
 	}
-
+	
+	public Login(Role role) {
+		super();
+		this.role = role;
+	}
 	
 	public Role getRole() {
 		
 		return role;
 	}
-	
-	
-
 }

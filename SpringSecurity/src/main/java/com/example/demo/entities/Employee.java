@@ -73,6 +73,14 @@ public class Employee {
 			this.desg = desg;
 			this.login_id = login_id;
 		}
+		
+		public Employee(double basicsal, double incentives, Login login_id, Designation desg) {
+			super();
+			this.basicsal = basicsal;
+			this.incentives = incentives;
+			this.login_id = login_id;
+			this.desg = desg;
+		}
 
 		public int getEmpId() {
 			return empid;
@@ -186,4 +194,12 @@ public class Employee {
 			this.desg = desg;
 		}
 
+		@Override
+		public String toString() {
+			return "Employee [empid=" + empid + ", fullname=" + fullname + ", dob=" + dob + ", gender=" + gender
+					+ ", nationality=" + nationality + ", email=" + email + ", contact=" + contact + ", currentaddress="
+					+ currentaddress + ", permanentaddress=" + permanentaddress + ", basicsal=" + basicsal
+					+ ", hiredate=" + hiredate + ", incentives=" + incentives + ", login_id=" + login_id + ", desg="
+					+ desg + "]";
+		}
 }

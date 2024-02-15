@@ -58,13 +58,13 @@ export default function EmployeeTable() {
   };
 
   const handleUpdate = (empId) => {
-    navigate(`/admin_dashboard/updateemp/${empId}`);
+    navigate(`/ADMIN/updateemp/${empId}`);
   };
 
   return (
-    <div className="container-fluid ">
+    <div className="container-fluid">
         <div className="row">
-          <div className="col-2 d-flex align-items-center">
+          <div className="col-md-2 d-flex align-items-center">
             <span className='text-black fs-6 me-2'>Show</span>
             <select className='form-select form-select-sm' value={recordsPerPage} onChange={handleRecordsPerPageChange}>
               <option value="1">1</option>
@@ -83,9 +83,9 @@ export default function EmployeeTable() {
           </div>
         </div>
         <div className="row">
-          <button className='col-auto mb-3 btn btn-success mt-2 ms-3' data-bs-target="#empModal" onClick={()=>{navigate('/admin_dashboard/addemp')}}>Add Employee</button>
+          <button className='col-auto mb-3 btn btn-success mt-2 ms-3' data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/addemp')}}>Add Employee</button>
         </div>
-        <table className="table table-bordered table-striped table-hover" >
+        <table className="table table-borderedA table-hover" >
           <thead className='table-dark'>
             <tr>
               <th className="fs-6 fw-medium">ID</th>

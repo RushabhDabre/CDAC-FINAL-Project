@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 export default function AddEmployee() {
     const ref = useRef(null) //used for Loading Bar
     let navigate = useNavigate();
-    const { register, formState: {errors , isValid}, watch } = useForm({mode: 'all'});
+    const { register, formState: {errors , isValid} } = useForm({mode: 'all'});
     const [isVisible, setVisible] = useState(true);
     const [msg, setMsg] = useState("");
     const [error, setErrors] = useState("");
@@ -60,7 +60,7 @@ export default function AddEmployee() {
                 const role_id = obj.roles[0]; // Assuming roles is an array
                 if(role_id === "admin"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/admin_dashboard"), 500);
+                    setTimeout(() => navigate("/ADMIN/adminHome"), 500);
                 } else if(role_id === "project_manager"){
                     ref.current.complete();
                     setTimeout(() => navigate("/pm_dashboard"), 500);

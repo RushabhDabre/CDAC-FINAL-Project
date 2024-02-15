@@ -17,6 +17,7 @@ import com.example.demo.entities.Designation;
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Login;
 import com.example.demo.entities.Role;
+import com.example.demo.entities.UpdateCompany;
 import com.example.demo.services.DesignationService;
 import com.example.demo.services.EmployeeService;
 import com.example.demo.services.LoginService;
@@ -55,7 +56,7 @@ public class EmployeeController {
  	{
  		System.out.println(emp);
  		Role r = rservice.getById(emp.getRole_id());
- 		Login l = new Login(emp.getUsername(), encoder.encode(emp.getPassword()), r, false);
+ 		Login l = new Login(emp.getUsername(), encoder.encode(emp.getPassword()), r, true);
  		Designation d = dservice.getById(emp.getDesignationID()); 		
  		Login saved=lservice.save(l);
  		
@@ -75,7 +76,19 @@ public class EmployeeController {
  	}
  	
  	@PostMapping("/updateall")
-	public int UpdateAll(@RequestBody Employee emp) {
-		return eservice.UpdateAll(emp.getEmpId(), emp.getFullName(), emp.getDob(), emp.getGender(), emp.getNationality(), emp.getEmail(), emp.getPhNo(), emp.getCurrentAddress(), emp.getPermanentAddress(), emp.getBasicSal(), emp.getIncentives(),emp.getHireDate(), emp.getDesg().getDesignationID(), emp.getLogin_id().getLogin_id());
+	public Employee UpdateAll(@RequestBody UpdateCompany emp) {
+ 		
+ 		return eservice.UpdateAll(emp);
 	}
+ 	
+// 	@PostMapping("/updateall")
+//	public Employee UpdateAll(@RequestBody UpdateCompany emp) {
+// 		System.out.println(emp);
+// 		Role role = rservice.getById(emp.getRole_id()); 
+// 		Login login = new Login(role);
+// 		Designation designation = dservice.getById(emp.getDesignationID());
+// 		Employee e = new Employee(emp.getBasicSal(), emp.getIncentives(),login,designation);
+// 		return e;
+//	}
+ 	
 }

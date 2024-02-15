@@ -65,54 +65,75 @@ export default function AddEmployee() {
 
     const [user ,dispatch] =useReducer(reducer,init);
 
-    
+    const [selectedDesignation, setSelectedDesignation] = useState(0);
+    const [selectedRole, setSelectedRole] = useState(0);
+
+    const handleDesignationChange = (e) => {
+        console.log(e.target.value)
+        dispatch({type:'update',fld:'designationID', val: e.target.value})
+        setSelectedDesignation(e.target.value); // Update selected role when user selects a role
+    };
+    const handleRoleChange = (e) => {
+        dispatch({type:'update',fld:'role_id', val: e.target.value});
+        setSelectedRole(e.target.value); // Update selected role when user selects a role
+    };
 
     const sendData = (e) => {
         e.preventDefault();
-        fetch("http://localhost:8080/userCheck",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-            },
-            body:JSON.stringify({
-                username:user.username.value
-            })
-        })
-        // .then((resp)=>resp.json())
-        .then((count)=>{
-            if(count === 0){
-                console.log("user does not exist!");
-                const reqOptions = {
-                    method: 'POST',
-                    headers: {'content-type':'application/json'},
-                    body: JSON.stringify(user)
-                }
-                fetch("http://localhost:8080/regEmployee",reqOptions)
-                .then(res=>{
-                    if(res.ok){
-                        return res.json();
-                    }else{
-                        // throw new Error("Server Error");
-                    }
-                } )
-                .then(obj=>{
-                    ref.current.complete();
-                    alert("Regestration Successful");
-                    console.log(JSON.stringify(obj));
-                })
-                .catch((error)=>{navigate("/errorPage")});
-            }else{
-                setmsg("Username already Exist!");
-                setVisible(false)
-                setTimeout(() => setVisible(true), 2000);
-                const userinput = document.getElementById('username')
-                if(userinput){
-                    userinput.focus();
-                }
-            }
-        }).catch((error)=>{navigate("/errorPage")});
-
         
+        if (selectedRole == 0) {
+            alert("Role is required!"); // Display error message if role is not selected
+            return; // Prevent form submission
+        }
+        if(selectedDesignation == 0) {
+            alert("Designation is required!"); // Display error message if designation is not selected
+            return; // Prevent form submission
+        }
+        
+            fetch("http://localhost:8080/userCheck",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                },
+                body:JSON.stringify({
+                    username:user.username
+                })
+            })
+            .then((resp)=>resp.json())
+            .then((count)=>{
+                if(count === 0){     
+                    console.log("user does not exist!");
+                    const reqOptions = {
+                        method: 'POST',
+                        headers: {'content-type':'application/json'},
+                        body: JSON.stringify(user)
+                    }
+                    fetch("http://localhost:8080/regEmployee",reqOptions)
+                    .then(res=>{
+                        if(res.ok){
+                            return res.json();
+                        }else{
+                            // throw new Error("Server Error");
+                        }
+                    } )
+                    .then(obj=>{
+                        ref.current.complete();
+                        alert("Regestration Successful");
+                        console.log(JSON.stringify(obj));
+                    })
+                    .catch((error)=>{navigate("/errorPage")});
+                }else{
+                    setmsg("Username already Exist!");
+                    setVisible(false)
+                    setTimeout(() => setVisible(true), 2000);
+                    const userinput = document.getElementById('username')
+                    if(userinput){
+                        userinput.focus();
+                    }
+                }
+            }).catch((error)=>{navigate("/errorPage")});
+        
+
     }
 
     return (
@@ -231,11 +252,12 @@ export default function AddEmployee() {
                             <div className="col-6">   
                                 <label htmlFor='designation' className='form-label text-muted'><h6>Select Designation : </h6></label>
                                 <select className='form-select' id='designationID' name="designationID" 
-                                 onChange={(e)=>{dispatch({type:'update',fld:'designationID', val: e.target.value})}} >
-                                        <option selected>Select</option>
+                                 onChange={(e)=>handleDesignationChange(e)} >
+                                    {/* handleDesignationChange(e) dispatch({type:'update',fld:'designationID', val: e.target.value}) */}
+                                    <option key={0} selected value={0}>Select</option>
                                     {
                                         allDesign.map(data => {
-                                            return <option value={data.designationID}>{data.designationName}</option>
+                                            return <option key={data.designationID}  value={data.designationID}>{data.designationName}</option>
                                         })
                                     }
                                 </select>
@@ -244,11 +266,11 @@ export default function AddEmployee() {
                             <div className="col-6">   
                                 <label className='form-label text-muted'><h6>Select Role : </h6></label>
                                 <select className='form-select' id='role_id' name="role_id" 
-                                     onChange={(e)=>{dispatch({type:'update',fld:'role_id', val: e.target.value})}}  >
-                                         <option selected>Select</option>
+                                    onChange={(e)=>handleRoleChange(e)}  >
+                                    <option selected value={0} key={0} >Select</option>
                                     {
                                         allRoles.map(data => {
-                                            return <option value={data.role_id}>{data.role_name}</option>
+                                            return <option key={data.role_id} value={data.role_id}>{data.role_name}</option>
                                         })
                                     }
                                 </select>
@@ -298,14 +320,14 @@ export default function AddEmployee() {
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
-                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{navigate("/admin_dashboard/userinfo")}}>Cancel</button>
+                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{navigate("/ADMIN/userinfo")}}>Cancel</button>
                             </div>
                             <div className="col-auto ">
                                 <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2" disabled={!isValid} onClick={(e)=>{sendData(e)}} >Add Employee</button>
                             </div>
                         </div>
                     </form>   
-                    {/* <div className='text-dark'>{JSON.stringify(user)}</div>  */}
+                    <div className='text-dark'>{JSON.stringify(user)}</div> 
                 </div> 
             </div>           
         </div>

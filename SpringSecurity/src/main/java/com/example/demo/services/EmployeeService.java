@@ -10,13 +10,28 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.Designation;
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Login;
+import com.example.demo.entities.Role;
+import com.example.demo.entities.UpdateCompany;
+import com.example.demo.repositories.DesignationRepository;
 import com.example.demo.repositories.EmployeeRepository;
+import com.example.demo.repositories.LoginRepository;
+import com.example.demo.repositories.RoleRepository;
 
 @Service
 public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository erepo;
+	
+	@Autowired
+	LoginRepository lrepo;
+	
+	@Autowired
+	RoleRepository rrepo;
+	
+	@Autowired
+	DesignationRepository drepo;
+	
 	
 	public Employee saveEmployee(Employee emp)
 	{
@@ -55,8 +70,21 @@ public class EmployeeService {
 		return emp;
 	}
 	
-	public int UpdateAll(int empid, String fullname, Date dob, String gender, String nationality, String email, String contact, String currentaddress, String permanentaddress, double basicsal, double incentives, Date hiredate, int designation_id, int login_id) {
-		return erepo.UpdateAll(empid, fullname, dob, gender, nationality, email, contact, currentaddress, permanentaddress, basicsal, incentives, hiredate, designation_id, login_id);
+	public Employee UpdateAll(UpdateCompany emp) {//int
+		Optional<Employee> empok = erepo.findById(emp.getEmpid());//
+		Employee employee = empok.get(); //
+		Login login = employee.getLogin_id();//
+		Role role = rrepo.findById(emp.getRole_id()).get();
+		Designation designation = drepo.findById(emp.getDesignationID()).get();
+		login.setRole(role);
+		employee.setBasicSal(emp.getBasicSal());
+		employee.setIncentives(emp.getIncentives());
+		employee.setLogin_id(login);//
+		employee.setDesg(designation);
+		employee.setEmpId(emp.getEmpid());
+		return erepo.save(employee);
 	}
-	
+//	public Employee UpdateAll(int empid, double basicsal, double incentives, int designation_id, int login_id) {
+//	return erepo.UpdateAll(empid, basicsal, incentives, designation_id, login_id);
+//	}
 }
