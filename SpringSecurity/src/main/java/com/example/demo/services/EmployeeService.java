@@ -84,6 +84,7 @@ public class EmployeeService {
 		employee.setEmpId(emp.getEmpid());
 		return erepo.save(employee);
 	}
+	
 //	public Employee UpdateAll(int empid, double basicsal, double incentives, int designation_id, int login_id) {
 //	return erepo.UpdateAll(empid, basicsal, incentives, designation_id, login_id);
 //	}

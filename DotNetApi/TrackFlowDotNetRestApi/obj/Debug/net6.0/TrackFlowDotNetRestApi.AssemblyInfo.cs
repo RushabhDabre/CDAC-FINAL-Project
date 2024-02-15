@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrackFlowDotNetRestApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+475e095c34d45d6b750f178e432621032db918e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrackFlowDotNetRestApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrackFlowDotNetRestApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
