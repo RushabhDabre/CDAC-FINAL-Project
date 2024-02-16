@@ -12,7 +12,7 @@ export default function EmployeeTable() {
   const [recordsPerPage, setRecordsPerPage] = useState(5); // Default value
 
   useEffect(() => {
-    fetch("http://localhost:8080/getallEmp", {
+    fetch("http://localhost:8080/getActiveEmployees", {
       method: 'GET',
       headers: {'content-type': 'application/json'},
     })
@@ -22,6 +22,24 @@ export default function EmployeeTable() {
       setFilteredRecords(obj);
     });
   }, []);
+
+  const deactivate = (empId) => {
+    fetch(`http://localhost:8080/inactiveEmp/${empId}`, {
+            method: 'POST', 
+            headers: {'Content-Type': 'application/json'},
+        })
+        .then(response => {
+          if (response.ok) {
+              alert('Employee inactivated successfully');
+              console.log('Employee inactivated successfully');
+          } else {
+              console.error('Failed to inactivate employee');
+          }
+      })
+      .catch(error => {
+          console.error('Error inactivating employee:', error);
+      });
+  }
 
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
@@ -67,8 +85,6 @@ export default function EmployeeTable() {
           <div className="col-md-2 d-flex align-items-center">
             <span className='text-black fs-6 me-2'>Show</span>
             <select className='form-select form-select-sm' value={recordsPerPage} onChange={handleRecordsPerPageChange}>
-              <option value="1">1</option>
-              <option value="2">2</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -83,7 +99,7 @@ export default function EmployeeTable() {
           </div>
         </div>
         <div className="row">
-          <button className='col-auto mb-3 btn btn-success mt-2 ms-3' data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/addemp')}}>Add Employee</button>
+          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/addemp')}}>Add Employee</button>
         </div>
         <table className="table table-borderedA table-hover" >
           <thead className='table-dark'>
@@ -110,7 +126,7 @@ export default function EmployeeTable() {
                 <td className="fs-6">{v.phNo}</td>
                 <td className="fs-6">
                   <button className="btn btn-info me-2" onClick={() => handleUpdate(v.empId)}>Update</button>
-                  <button className="btn btn-danger">Delete</button>
+                  <button className="btn btn-danger" onClick={() => deactivate(v.empId)}>Deactivate</button>
                 </td>
               </tr>);
             })}

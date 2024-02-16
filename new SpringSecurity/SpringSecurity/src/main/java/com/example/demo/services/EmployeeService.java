@@ -50,9 +50,9 @@ public class EmployeeService {
 		return erepo.getEmployee(l);
 	}
 	
-	public List<Employee> getEmployees()
+	public List<Employee> getActiveEmployees()
 	{
-		return erepo.getListEmployees();
+		return erepo.getActiveEmployees();
 	}
 	
 	public List<Employee> getAllEmp(){
@@ -83,6 +83,24 @@ public class EmployeeService {
 		employee.setDesg(designation);
 		employee.setEmpId(emp.getEmpid());
 		return erepo.save(employee);
+	}
+	
+	public int InactiveAcc(int empid) {
+		try {
+			Optional<Employee> empok = erepo.findById(empid);
+			if(empok.isPresent()) {
+				Employee employee = erepo.findById(empid).get();//
+				Login login = employee.getLogin_id();//
+				login.setActive(false);
+				lrepo.save(login);
+				return 1;
+			}else {
+				return 0;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 	
 //	public Employee UpdateAll(int empid, double basicsal, double incentives, int designation_id, int login_id) {

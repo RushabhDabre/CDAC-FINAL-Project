@@ -109,6 +109,7 @@ export default function UpdateEmployee() {
             method: 'POST',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({
+                empid:empId,
                 basicSal:user.basicSal,
                 incentives:user.incentives,
                 designationID:user.designationID,
@@ -137,7 +138,7 @@ export default function UpdateEmployee() {
             <div className='container d-flex justify-content-center'>
                 <div className=" shadow-lg p-4 m-5" style={{"width": '40rem'}}>
                     <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger">{msg}</strong></div>
-                    <h5 className="d-flex mb-4 text-dark"><b>Add Employee</b></h5>      
+                    <h5 className="d-flex mb-4 text-dark"><b>Update Employee Details</b></h5>      
                     <form onSubmit={(e) => sendData(e)}>
                         <div className="form-group ">   
                             <label className='form-label text-muted'><h6>Name</h6></label>
@@ -155,15 +156,15 @@ export default function UpdateEmployee() {
                                 <label className='text-muted'><h6>Gender</h6></label><br/>
                                 <div className='col-6 form-check'>
                                     <label className="text-muted"><h6>Male</h6></label>
-                                    <input type="radio" className="form-check-input  form-check-input-sm" name="gender"
-                                    {...register("gender",{required: true})} //for Validation
+                                    <input type="radio" className="form-check-input  form-check-input-sm" name="gender" 
+                                    disabled={user.gender === "M" ? true : false} {...register("gender",{required: true})} //for Validation
                                     value="M" onChange={(e)=>{dispatch({type:'update',fld:'gender', val: e.target.value})}}  />
                                 </div>
 
                                 <div className='col-6 form-check'>
                                     <label className='text-muted'><h6>Female</h6></label>
                                     <input type="radio" className="form-check-input form-check-input-lg" name="gender"
-                                    {...register("gender",{required: true})} //for Validation
+                                    disabled={user.gender === "F" ? true : false} {...register("gender",{required: true})} //for Validation
                                     value="F" onChange={(e)=>{dispatch({type:'update',fld:'gender', val: e.target.value})}} />           
                                 </div>
                                 <span className='text-danger fs-6'>{errors.gender?.type === "required" && "Please select!"}</span>
@@ -176,7 +177,7 @@ export default function UpdateEmployee() {
                                     <label className='text-muted'><h6>Email</h6></label>
                                 </div>
                                 <div className="col-auto ">   
-                                    <input  type="email" placeholder="e.g. jw@gmail.com" className="form-control"
+                                    <input  type="email" placeholder="e.g. jw@gmail.com" className="form-control" 
                                     value={user.email} onChange={(e)=>{dispatch({type:'update',fld:'email', val: e.target.value})}} disabled />
                                 </div>
                             </div>
@@ -297,7 +298,7 @@ export default function UpdateEmployee() {
                             </div>
                         </div>
                     </form>   
-            <div className='text-dark'>{JSON.stringify(user)}</div>            
+            {/* <div className='text-dark'>{JSON.stringify(user)}</div>             */}
                 </div> 
             </div>
         </div>

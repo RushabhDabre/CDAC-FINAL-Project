@@ -49,7 +49,13 @@ public class EmployeeController {
  		Login l = lservice.getLogin(loginid);
  		return eservice.getEmployee(l);
  	}
-	
+ 	
+ 	@GetMapping("/getActiveEmployees")
+ 	public List<Employee> getActiveEmployees()
+ 	{
+ 		return eservice.getActiveEmployees();
+ 	}
+ 	
  	@PostMapping("/regEmployee")
  	public Employee regEmployee(@RequestBody AddEmployee emp)
  	
@@ -77,18 +83,11 @@ public class EmployeeController {
  	
  	@PostMapping("/updateall")
 	public Employee UpdateAll(@RequestBody UpdateCompany emp) {
- 		
  		return eservice.UpdateAll(emp);
 	}
  	
-// 	@PostMapping("/updateall")
-//	public Employee UpdateAll(@RequestBody UpdateCompany emp) {
-// 		System.out.println(emp);
-// 		Role role = rservice.getById(emp.getRole_id()); 
-// 		Login login = new Login(role);
-// 		Designation designation = dservice.getById(emp.getDesignationID());
-// 		Employee e = new Employee(emp.getBasicSal(), emp.getIncentives(),login,designation);
-// 		return e;
-//	}
- 	
+ 	@PostMapping("/inactiveEmp/{userid}")
+ 	public int InactiveAcc(@PathVariable("userid")int id) {
+ 		return eservice.InactiveAcc(id);
+ 	}
 }

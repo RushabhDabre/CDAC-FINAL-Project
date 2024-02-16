@@ -99,9 +99,11 @@ public class AppSecurityConfigurer {
 			
 			//for update
 			authorize.requestMatchers("/updateall").permitAll();
+			authorize.requestMatchers("/getActiveEmployees").permitAll();
 			authorize.requestMatchers("/getallEmp").permitAll();
 //			authorize.requestMatchers("/getOneEmp").permitAll();
 			authorize.requestMatchers("/getOneEmp/{userid}").permitAll();
+			authorize.requestMatchers("/inactiveEmp/{userid}").permitAll();
 			
 			
 			//hasAuthority 
