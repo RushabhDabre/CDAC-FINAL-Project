@@ -16,9 +16,12 @@ namespace TrackFlowDotNetRestApi.Models
         {
         }
 
+        public virtual DbSet<Client> Clients { get; set; } = null!;
         public virtual DbSet<Designation> Designations { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Login> Logins { get; set; } = null!;
+        public virtual DbSet<PrjMgr> PrjMgrs { get; set; } = null!;
+        public virtual DbSet<Prjteam> Prjteams { get; set; } = null!;
         public virtual DbSet<Project> Projects { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Task> Tasks { get; set; } = null!;
@@ -36,6 +39,33 @@ namespace TrackFlowDotNetRestApi.Models
         {
             modelBuilder.UseCollation("utf8mb4_0900_ai_ci")
                 .HasCharSet("utf8mb4");
+
+            modelBuilder.Entity<Client>(entity =>
+            {
+                entity.ToTable("clients");
+
+                entity.Property(e => e.Clientid).HasColumnName("clientid");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(150)
+                    .HasColumnName("address");
+
+                entity.Property(e => e.Clientname)
+                    .HasMaxLength(200)
+                    .HasColumnName("clientname");
+
+                entity.Property(e => e.Contact)
+                    .HasMaxLength(45)
+                    .HasColumnName("contact");
+
+                entity.Property(e => e.Domain)
+                    .HasMaxLength(100)
+                    .HasColumnName("domain");
+
+                entity.Property(e => e.Website)
+                    .HasMaxLength(200)
+                    .HasColumnName("website");
+            });
 
             modelBuilder.Entity<Designation>(entity =>
             {
@@ -144,6 +174,62 @@ namespace TrackFlowDotNetRestApi.Models
                     .HasConstraintName("login_ibfk_1");
             });
 
+            modelBuilder.Entity<PrjMgr>(entity =>
+            {
+                entity.ToTable("prj_mgr");
+
+                entity.HasIndex(e => e.Empid, "empid_idx");
+
+                entity.HasIndex(e => e.Pid, "pid_idx");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Comments)
+                    .HasMaxLength(250)
+                    .HasColumnName("comments");
+
+                entity.Property(e => e.Empid).HasColumnName("empid");
+
+                entity.Property(e => e.Lastdate).HasColumnName("lastdate");
+
+                entity.Property(e => e.Pid).HasColumnName("pid");
+
+                entity.HasOne(d => d.PidNavigation)
+                    .WithMany(p => p.PrjMgrs)
+                    .HasForeignKey(d => d.Pid)
+                    .HasConstraintName("mpid");
+            });
+
+            modelBuilder.Entity<Prjteam>(entity =>
+            {
+                entity.HasKey(e => e.Teamid)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("prjteams");
+
+                entity.HasIndex(e => e.Piid, "pid_idx");
+
+                entity.Property(e => e.Teamid).HasColumnName("teamid");
+
+                entity.Property(e => e.Assigneddate).HasColumnName("assigneddate");
+
+                entity.Property(e => e.Comments)
+                    .HasMaxLength(255)
+                    .HasColumnName("comments");
+
+                entity.Property(e => e.Empid).HasColumnName("empid");
+
+                entity.Property(e => e.Piid).HasColumnName("piid");
+
+                entity.Property(e => e.Releasedate).HasColumnName("releasedate");
+
+                entity.HasOne(d => d.Pi)
+                    .WithMany(p => p.Prjteams)
+                    .HasForeignKey(d => d.Piid)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("pid");
+            });
+
             modelBuilder.Entity<Project>(entity =>
             {
                 entity.HasKey(e => e.Pid)
@@ -151,11 +237,17 @@ namespace TrackFlowDotNetRestApi.Models
 
                 entity.ToTable("projects");
 
+                entity.HasIndex(e => e.ClientId, "clientid_idx");
+
                 entity.HasIndex(e => e.Empid, "empid_idx");
 
-                entity.Property(e => e.Pid)
-                    .ValueGeneratedNever()
-                    .HasColumnName("pid");
+                entity.Property(e => e.Pid).HasColumnName("pid");
+
+                entity.Property(e => e.ClientId).HasColumnName("client-id");
+
+                entity.Property(e => e.Comments)
+                    .HasMaxLength(200)
+                    .HasColumnName("comments");
 
                 entity.Property(e => e.Deadline).HasColumnName("deadline");
 
@@ -164,10 +256,6 @@ namespace TrackFlowDotNetRestApi.Models
                     .HasColumnName("description");
 
                 entity.Property(e => e.Empid).HasColumnName("empid");
-
-                entity.Property(e => e.Isuues)
-                    .HasMaxLength(200)
-                    .HasColumnName("isuues");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(45)
@@ -180,6 +268,11 @@ namespace TrackFlowDotNetRestApi.Models
                 entity.Property(e => e.Title)
                     .HasMaxLength(200)
                     .HasColumnName("title");
+
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Projects)
+                    .HasForeignKey(d => d.ClientId)
+                    .HasConstraintName("clientid");
 
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.Projects)
@@ -204,11 +297,9 @@ namespace TrackFlowDotNetRestApi.Models
 
                 entity.HasIndex(e => e.Empid, "empid_idx");
 
-                entity.HasIndex(e => e.Pid, "fk_pid");
+                entity.HasIndex(e => e.Pid, "fk_pid_idx");
 
-                entity.Property(e => e.Taskid)
-                    .ValueGeneratedNever()
-                    .HasColumnName("taskid");
+                entity.Property(e => e.Taskid).HasColumnName("taskid");
 
                 entity.Property(e => e.Deadline).HasColumnName("deadline");
 
@@ -219,7 +310,7 @@ namespace TrackFlowDotNetRestApi.Models
                 entity.Property(e => e.Empid).HasColumnName("empid");
 
                 entity.Property(e => e.Issues)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("issues");
 
                 entity.Property(e => e.Pid).HasColumnName("pid");
@@ -228,6 +319,10 @@ namespace TrackFlowDotNetRestApi.Models
                     .HasMaxLength(45)
                     .HasColumnName("status")
                     .HasDefaultValueSql("'to-do'");
+
+                entity.Property(e => e.Taskname)
+                    .HasMaxLength(100)
+                    .HasColumnName("taskname");
 
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.Tasks)

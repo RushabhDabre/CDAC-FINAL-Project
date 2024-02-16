@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace TrackFlowDotNetRestApi.Models
 {
     public partial class Designation
-    {
-        public Designation()
+    {        public Designation()
         {
             Employees = new HashSet<Employee>();
         }
