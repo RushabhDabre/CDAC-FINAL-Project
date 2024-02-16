@@ -10,11 +10,12 @@ import EmployeeTable from './Components/Admin/EmployeeTable';
 import ErrorPage from './Components/ErrorPage';
 import UpdateEmployee from './Components/Admin/UpdateEmployee';
 import AdminSidebar from './Components/Admin/AdminSidebar';
+import CreateProject from './Components/Project/CreateProject';
 
 function App() {
   return (
     <div className='App-header'>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Login/>}/> 
         <Route path="/ADMIN" element={<AdminSidebar/>}>
           <Route path="adminHome" element={<AdminDashboard/>}/>
@@ -26,7 +27,9 @@ function App() {
         <Route path="/pm_dashboard" element={<PmDashboard/>}/>
         <Route path="/emp_dashboard" element={<EmpDashboard/>}/> 
         <Route path="/errorPage" element={<ErrorPage/>}/> 
-      </Routes>
+      </Routes> */}
+      {/* <AddEmployee/> */}
+      <CreateProject/>
     </div>
   );
 }

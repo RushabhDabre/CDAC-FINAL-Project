@@ -22,10 +22,23 @@ namespace TrackFlowDotNetRestApi.Models
         public int? Empid { get; set; }
         public int? ClientId { get; set; }
 
+
         public virtual Client? Client { get; set; }
         public virtual Employee? Emp { get; set; }
         public virtual ICollection<PrjMgr> PrjMgrs { get; set; }
         public virtual ICollection<Prjteam> Prjteams { get; set; }
         public virtual ICollection<Task> Tasks { get; set; }
+
+        public Project(string title, string tectstack, string description, DateTime? deadline, string? status, string? comments, int? empid, int? clientId)
+        {
+            Title=title;
+            Tectstack=tectstack;
+            Description=description;
+            Deadline=deadline;
+            Status=status;
+            Comments=comments;
+            Empid=empid;
+            ClientId=clientId;
+        }
     }
 }

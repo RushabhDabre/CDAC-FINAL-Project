@@ -18,5 +18,6 @@ namespace TrackFlowDotNetRestApi.Models
         public string? Contact { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Client> Clients { get; set; }
     }
 }

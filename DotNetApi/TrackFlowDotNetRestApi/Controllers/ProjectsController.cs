@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using TrackFlowDotNetRestApi.Models;
-using System.http.web;
 using System.Reflection;
 
 namespace TrackFlowDotNetRestApi.Controllers
@@ -12,14 +11,15 @@ namespace TrackFlowDotNetRestApi.Controllers
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-   // [EnableCors]
+    // [EnableCors]
     public class ProjectsController : ControllerBase
     {
+
         [HttpGet]
         public List<Employee> GetEmps()
         {
             List<Employee> result = new List<Employee>();
-            using(var db = new trackflowdbContext())
+            using (var db = new trackflowdbContext())
             {
                 result = db.Employees.ToList();
             }
@@ -31,7 +31,7 @@ namespace TrackFlowDotNetRestApi.Controllers
         public List<Project> GetProjects()
         {
             List<Project> result = new List<Project>();
-            using(var db = new trackflowdbContext())
+            using (var db = new trackflowdbContext())
             {
                 result = db.Projects.ToList();
             }
@@ -40,9 +40,10 @@ namespace TrackFlowDotNetRestApi.Controllers
 
         [HttpPost]
 
-        public Project AddProject (Project project)
+        public Project AddProject(string title, string tectstack, string description, DateTime? deadline, string? status, string? comments, int? empid, int? clientId)
         {
-            using(var db = new trackflowdbContext())
+           Project project = new Project(title, tectstack, description, deadline, status, comments, empid, clientId);
+            using (var db = new trackflowdbContext())
             {
                 db.Projects.Add(project);
                 db.SaveChanges();
@@ -51,7 +52,7 @@ namespace TrackFlowDotNetRestApi.Controllers
         }
 
         [HttpPost]
-        public Project UpdateProject (Project project)
+        public Project UpdateProject(Project project)
         {
             using (var db = new trackflowdbContext())
             {
@@ -62,12 +63,10 @@ namespace TrackFlowDotNetRestApi.Controllers
         }
 
 
-
-
         [HttpGet]
         public List<Prjteam> GetPrjteam()
         {
-            List<Prjteam> result  = new List<Prjteam>();
+            List<Prjteam> result = new List<Prjteam>();
             using (var db = new trackflowdbContext())
             {
                 result = db.Prjteams.ToList();
@@ -76,29 +75,56 @@ namespace TrackFlowDotNetRestApi.Controllers
         }
 
 
-        }
+        [HttpGet]
 
-    [HttpGet]
-    [Route("api/employees/withoutrelease")]
-    public IHttpActionResult GetEmp()
-    {
-        using (var db = new trackflowdbContext())
+        public Project GetProject(int id)
         {
-            try
+            Project project = new Project();
+            using (var db = new trackflowdbContext())
             {
-                var empsWithoutRelease = db.Employees
-                    .Where(e => !db.Prjteams.Any(t => t.Empid == e.Empid && t.Releasedate != null))
-                    .ToList();
-
-                return Ok(empsWithoutRelease);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
+                project = db.Projects.FirstOrDefault(p => p.Pid == id);
+                return project;
             }
         }
+
+
+        [HttpGet]
+        
+        public Project GetProjectByEmpId(int  empid)
+        {
+            Project project = new Project();
+            using (var db = new trackflowdbContext())
+            {
+                project = db.Projects.FirstOrDefault(p => p.Empid == empid);
+                return project;
+            }
+
+        }
+
+        [HttpGet]
+        public List<Employee> GetManagers()
+        {
+            List<Employee> managersList;
+
+            using (var  db = new trackflowdbContext())
+            {
+                managersList =db.Employees.Where(emp => emp.Login.RoleId == 2).ToList();
+            }
+
+            return managersList;
+        }
+
+
+        [HttpGet]
+        public List<Client> GetClients()
+        {
+            List<Client> result = new List<Client>();
+            using (var db = new trackflowdbContext())
+            {
+                result = db.Clients.ToList();
+            }
+            return result;
+        }
+
     }
-}
-
-
 }
