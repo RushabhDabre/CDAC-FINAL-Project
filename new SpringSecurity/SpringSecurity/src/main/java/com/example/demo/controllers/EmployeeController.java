@@ -56,9 +56,14 @@ public class EmployeeController {
  		return eservice.getActiveEmployees();
  	}
  	
+ 	@GetMapping("/getBenchEmployees")
+ 	public List<Employee> getBenchEmployees()
+ 	{
+ 		return eservice.getBenchEmployees();
+ 	}
+ 	
  	@PostMapping("/regEmployee")
  	public Employee regEmployee(@RequestBody AddEmployee emp)
- 	
  	{
  		System.out.println(emp);
  		Role r = rservice.getById(emp.getRole_id());

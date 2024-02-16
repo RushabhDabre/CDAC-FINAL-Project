@@ -3,7 +3,7 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Client")
+@Table(name = "Clients")
 public class Client {
 
     @Id
@@ -30,7 +30,7 @@ public class Client {
     	
     }
 
-	public Client(int clientid, String clientname, String website, String domain, String address, String contact) {
+	public Client(String clientname, String website, String domain, String address, String contact) {
 		this.clientname = clientname;
 		this.website = website;
 		this.domain = domain;
