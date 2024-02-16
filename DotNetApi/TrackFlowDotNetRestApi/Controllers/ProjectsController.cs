@@ -74,7 +74,6 @@ namespace TrackFlowDotNetRestApi.Controllers
             return result;
         }
 
-
         [HttpGet]
 
         public Project GetProject(int id)
@@ -98,22 +97,23 @@ namespace TrackFlowDotNetRestApi.Controllers
                 project = db.Projects.FirstOrDefault(p => p.Empid == empid);
                 return project;
             }
-
         }
-
         [HttpGet]
         public List<Employee> GetManagers()
         {
             List<Employee> managersList;
 
-            using (var  db = new trackflowdbContext())
+            using (var db = new trackflowdbContext())
             {
-                managersList =db.Employees.Where(emp => emp.Login.RoleId == 2).ToList();
+                // Retrieve managers who are not assigned to any project
+                managersList = db.Employees
+                                  .Where(emp => emp.Login.RoleId == 2
+                                          && !db.PrjMgrs.Any(prjMgr => prjMgr.Empid == emp.Empid))
+                                  .ToList();
             }
 
             return managersList;
         }
-
 
         [HttpGet]
         public List<Client> GetClients()
