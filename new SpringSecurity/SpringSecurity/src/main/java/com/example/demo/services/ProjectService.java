@@ -31,4 +31,15 @@ public class ProjectService {
 		}
 		return p;
 	}
+	
+	public Project InsertProject(Project project) {
+		Project saved = null;
+		try {
+			saved = prepo.save(project);
+		}catch(Exception e) {
+			saved = null;
+			e.printStackTrace();
+		}
+		return saved;
+	}
 }

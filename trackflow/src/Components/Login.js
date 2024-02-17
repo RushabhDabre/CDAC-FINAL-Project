@@ -34,6 +34,7 @@ export default function AddEmployee() {
     const [info, dispatch] = useReducer(reducer,init);
 
     const sendData = (e) => {
+
         e.preventDefault();
         const reqOptions = {
             method: 'POST',
@@ -51,8 +52,7 @@ export default function AddEmployee() {
         })
         .then(text => text.length ? JSON.parse(text) : {})
         .then(obj => {
-            setMsg(obj.accessToken);
-
+            setMsg(obj.accessToken);           
             if(Object.keys(obj).length === 0){
                 alert("Wrong usrname/password");
             }else{
@@ -63,10 +63,10 @@ export default function AddEmployee() {
                     setTimeout(() => navigate("/ADMIN/adminHome"), 500);
                 } else if(role_id === "project_manager"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/pm_dashboard"), 500);
+                    setTimeout(() => navigate("/PM/PMHome"), 500);
                 } else if(role_id === "employee"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/emp_dashboard"), 500);
+                    setTimeout(() => navigate("/EMP/EmpHome"), 500);
                 }
             }
         })

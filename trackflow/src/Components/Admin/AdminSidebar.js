@@ -55,7 +55,7 @@ export default function AdminSidebar() {
                         </Link>
                     </li>
                     <li className='sidebar px-4 py-3 fs-5'>
-                        <Link className='text-decoration-none text-secondary fs-6'>
+                        <Link className='text-decoration-none text-secondary fs-6' to={'CreateProject'}>
                             <BsMenuButtonWideFill className='icon fs-6'/> Projects
                         </Link>
                     </li>

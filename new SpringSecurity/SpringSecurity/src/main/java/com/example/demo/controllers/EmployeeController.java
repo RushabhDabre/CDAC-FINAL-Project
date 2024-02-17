@@ -43,6 +43,7 @@ public class EmployeeController {
 	@Autowired
 	PasswordEncoder encoder;
 	
+	
  	@GetMapping("/getEmployee")
  	public Employee getEmployee(@RequestParam("loginid") int loginid)
  	{
@@ -61,6 +62,14 @@ public class EmployeeController {
  	{
  		return eservice.getBenchEmployees();
  	}
+ 	
+ 	
+ 	@GetMapping("/getManagers")
+ 	public List<Employee> getManagers()
+ 	{
+ 		return eservice.getManagers();
+ 	}
+ 	
  	
  	@PostMapping("/regEmployee")
  	public Employee regEmployee(@RequestBody AddEmployee emp)

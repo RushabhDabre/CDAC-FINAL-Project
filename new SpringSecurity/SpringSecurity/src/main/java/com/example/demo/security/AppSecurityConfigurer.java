@@ -90,14 +90,15 @@ public class AppSecurityConfigurer {
 		http.authorizeHttpRequests(authorize -> {
 			authorize.requestMatchers("/").permitAll();
 			authorize.requestMatchers("/login").permitAll();
+			authorize.requestMatchers("/getEmployee").permitAll();
 			
-			//for Insert
+			//for User Registration
 			authorize.requestMatchers("/userCheck").permitAll();
 			authorize.requestMatchers("/regEmployee").permitAll();
 			authorize.requestMatchers("/getAllDesign").hasAuthority("admin");
 			authorize.requestMatchers("/getAllRoles").hasAuthority("admin");
 			
-			//for update
+			//for update Registration
 			authorize.requestMatchers("/updateall").permitAll();
 			authorize.requestMatchers("/getActiveEmployees").permitAll();
 			authorize.requestMatchers("/getallEmp").permitAll();
@@ -105,9 +106,16 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/getOneEmp/{userid}").permitAll();
 			authorize.requestMatchers("/inactiveEmp/{userid}").permitAll();
 			
-			//for team
+			//for team 
 			authorize.requestMatchers("/createTeam").permitAll();
 			authorize.requestMatchers("/getBenchEmployees").permitAll();
+			
+			//for project
+			authorize.requestMatchers("/createProject").permitAll();
+			authorize.requestMatchers("/getAllProjects").permitAll();
+			authorize.requestMatchers("/getManagers").permitAll();
+			authorize.requestMatchers("/getClients").permitAll();
+			
 			
 			//hasAuthority 
 			//authorize.requestMatchers("/c").hasAuthority("USER");

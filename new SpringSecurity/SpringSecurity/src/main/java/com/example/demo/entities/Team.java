@@ -13,7 +13,7 @@ public class Team {
 	@Column
 	String comments;
 	
-	@Column
+	@Column(name="assignedDate")
 	Date assigneddate;
 	
 	@Column

@@ -20,7 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	/*
 	 SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL);
 	 * */
-	@Query(value = "SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL)",nativeQuery = true)
+	@Query(value = "SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL) AND l.role_id = 2;",nativeQuery = true)
 	public List<Employee> getBenchEmployees();
 	
 	@Modifying
@@ -30,4 +30,33 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Modifying
 	@Query(value ="update employees e join login l on e.login_id = l.login_id set l.status = 0 where e.empid = ?1;", nativeQuery = true)
 	public int InactiveAcc(int empid);
+	
+	@Query(value="SELECT * FROM employees e WHERE e.login_id IN ( SELECT l.login_id FROM login l WHERE l.status = 0 AND l.role_id = 2);",nativeQuery = true)
+	public List<Employee> getManagers();
+	
 }
+
+/*
+ DELIMITER //
+CREATE TRIGGER insert_team_after_project_insert
+AFTER INSERT ON projects
+FOR EACH ROW
+BEGIN
+    INSERT INTO teams (pid, empid, comments, assigned_date, status, releasedate)
+    VALUES (NEW.pid, NEW.empid, 'You are the team lead of this project', CURRENT_DATE, 1, NULL);
+END //
+DELIMITER ;
+
+ */
+
+
+/*
+ * 
+ SELECT e.*
+FROM employees e
+JOIN login l ON e.login_id = l.login_id
+LEFT JOIN teams t ON e.empid = t.empid
+WHERE l.role_id = 2
+AND t.releasedate IS NOT NULL;
+
+ */
