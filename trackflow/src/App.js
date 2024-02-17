@@ -16,6 +16,7 @@ import ViewProject from './Components/Project Manager/ViewProject';
 import CreateTask from './Components/Project Manager/CreateTask'
 import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
+import GetAllProject from './Components/Admin/GetAllProject';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="addemp" element={<AddEmployee/>}/> 
           <Route path="updateemp/:empId" element={<UpdateEmployee/>}/>
           <Route path="CreateProject" element={<CreateProject/>}/>
+          <Route path="ShowProject" element={<GetAllProject/>}/>
         </Route>
 
         <Route path="/PM" element={<PmSidebar/>}>
