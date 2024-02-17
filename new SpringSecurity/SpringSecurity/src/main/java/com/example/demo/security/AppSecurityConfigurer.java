@@ -109,10 +109,12 @@ public class AppSecurityConfigurer {
 			//for team 
 			authorize.requestMatchers("/createTeam").permitAll();
 			authorize.requestMatchers("/getBenchEmployees").permitAll();
+			authorize.requestMatchers("/teamList").permitAll();
 			
 			//for project
 			authorize.requestMatchers("/createProject").permitAll();
 			authorize.requestMatchers("/getAllProjects").permitAll();
+			authorize.requestMatchers("/getProjectByEmpId/{empid}").permitAll();
 			authorize.requestMatchers("/getManagers").permitAll();
 			authorize.requestMatchers("/getClients").permitAll();
 			

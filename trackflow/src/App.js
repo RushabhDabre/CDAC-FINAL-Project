@@ -17,6 +17,7 @@ import CreateTask from './Components/Project Manager/CreateTask'
 import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
+import AddTeam from './Components/Project Manager/AddTeam';
 
 function App() {
   return (
@@ -34,9 +35,10 @@ function App() {
         </Route>
 
         <Route path="/PM" element={<PmSidebar/>}>
-          <Route path="PMHome" element={<EmpDashboard/>}/>
+          <Route path="PMHome" element={<PmDashboard/>}/>
           <Route path="PMProjects" element={<ViewProject/>}/> 
           <Route path="PMTasks" element={<CreateTask/>}/> 
+          <Route path="addTeam" element={<AddTeam/>}/> 
         </Route>
 
         <Route path="/EMP" element={<EmpSidebar/>}>

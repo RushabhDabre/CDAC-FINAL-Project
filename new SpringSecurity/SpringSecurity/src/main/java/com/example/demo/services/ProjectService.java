@@ -20,6 +20,10 @@ public class ProjectService {
 		return prepo.findAll();
 	}
 	
+	public List<Project> getProjectByEmpId(int empid){
+		return prepo.getProjectByEmpId(empid);
+	}
+	
 	public Project getById(int id) {
 		Optional<Project> op = prepo.findById(id);
 		Project p;

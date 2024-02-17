@@ -16,12 +16,11 @@ public class AddMember {
 	}
 	
 
-	public AddMember(int empid, int pid, String comments, Date assigneddate) {
+	public AddMember(int empid, int pid, String comments) {
 		super();
 		this.empid = empid;
 		this.pid = pid;
 		this.comments = comments;
-		this.assigneddate = assigneddate;
 	}
 
 

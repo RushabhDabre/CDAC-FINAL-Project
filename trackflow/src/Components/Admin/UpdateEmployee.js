@@ -127,7 +127,7 @@ export default function UpdateEmployee() {
         } )
         .then(obj=>{
             ref.current.complete();
-            alert("Data Updated Successfully Successful");
+            alert("Data Updated Successfully");
         })
         .catch((error)=>{navigate("/errorPage")});
     }

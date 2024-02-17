@@ -15,7 +15,6 @@ export default function CreateProject() {
         techstack: '',
         description: '',
         deadline: '',
-        status:'',
         comments:'',
         empid:0,
         clientid:0
@@ -145,20 +144,7 @@ export default function CreateProject() {
                                 ))}
                             </select>
                         </div>
-  
-
                         <br/>    
-                       <div className='text-dark'>
-                       <label>Status:</label>
-                        <select name="status" value={project.status} onChange={(e)=>{dispatch({type:'update',fld:'status', val: e.target.value})}} required>
-                        <option name="status" Value={"To-do"} > To-do</option>
-                        <option name="status" Value={"In-Progress"}> In-Progress</option>
-                        <option name="status" Value={"Almost-Done"}> Almost-Done</option>
-                        <option name="status" Value={"Done"}> Done</option>
-                        </select>
-                       </div>
-                       <br/>    
-                       
                        <div className='text-dark'>
                             <label htmlFor="managerSelect">Select Client:</label>
                             <select id="clientid" name='clientid' onChange={(e) => { dispatch({ type: 'update', fld: 'clientid', val: e.target.value }) }}>
@@ -168,16 +154,14 @@ export default function CreateProject() {
                                 ))}
                             </select>
                         </div>
-  
-                             
-                        
+                 
                         </div>
                         <div className="row g-3 align-items-center d-flex justify-content-center mb-3">
                             <div className="col-auto ">
                                 <button type="submit" className="btn btn-success w-100 font-weight-bold mt-2" >Create Project</button>
                             </div>
                             <div className="col-auto">
-                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2">Cancel</button>
+                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{navigate("/ADMIN/userinfo")}}>Cancel</button>
                             </div>
                         </div>
                             

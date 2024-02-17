@@ -52,7 +52,8 @@ export default function AddEmployee() {
         })
         .then(text => text.length ? JSON.parse(text) : {})
         .then(obj => {
-            setMsg(obj.accessToken);           
+            setMsg(obj.accessToken);
+            
             if(Object.keys(obj).length === 0){
                 alert("Wrong usrname/password");
             }else{

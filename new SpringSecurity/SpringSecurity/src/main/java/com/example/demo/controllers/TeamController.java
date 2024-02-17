@@ -1,14 +1,14 @@
 package com.example.demo.controllers;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +32,7 @@ public class TeamController {
 	@Autowired
 	ProjectService pservice;
 
-	@GetMapping("/createTeam")
+	@PostMapping("/createTeam")
 	public Team addTeam(@RequestBody AddMember meme) {
 		Employee e = eservice.getEmpById(meme.getEmpid());
 		Project p = pservice.getById(meme.getPid());
@@ -41,5 +41,10 @@ public class TeamController {
 		Team t = new Team(meme.getComments(), cdate, true, e, p);
 		
 		return tservice.createTeam(t);
+	}
+	
+	@GetMapping("/teamList")
+	public List<Object> teamList(){
+		return tservice.teamList();
 	}
 }

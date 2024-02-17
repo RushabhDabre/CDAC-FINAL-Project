@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,12 +36,18 @@ public class ProjectController {
 		return pservice.getAll();
 	}
 	
+	
+	@GetMapping("/getProjectByEmpId/{empid}")
+	public List<Project> getProjectByEmpId(@PathVariable("empid") int empid){
+		return pservice.getProjectByEmpId(empid);
+	}
+	
 	@PostMapping("/createProject")
 	public Project insertProject(@RequestBody CreateProject project) {
 		Client c = cservice.getById(project.getClientid());
 		Employee e = eservice.getEmpById(project.getEmpid());
 		
-		Project p = new Project(project.getTitle(), project.getTechstack(), project.getDescription(), project.getDeadline(), project.getStatus(), project.getComments(), e, c);
+		Project p = new Project(project.getTitle(), project.getTechstack(), project.getDescription(), project.getDeadline(), true, project.getComments(), e, c);
 		
 		return pservice.InsertProject(p);
 	}

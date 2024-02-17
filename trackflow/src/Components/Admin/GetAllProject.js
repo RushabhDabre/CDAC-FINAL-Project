@@ -43,7 +43,7 @@ export default function GetAllProject() {
 
     const handleFilter = (e) => {
       const newData = originalRecords.filter(row => {
-        return row.fullName.toLowerCase().includes(e.target.value.toLowerCase());
+        return row.title.toLowerCase().includes(e.target.value.toLowerCase());
       });
       setFilteredRecords(newData);
       setCurrentPage(1); // Reset to the first page when filtering

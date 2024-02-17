@@ -20,7 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	/*
 	 SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL);
 	 * */
-	@Query(value = "SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL) AND l.role_id = 2;",nativeQuery = true)
+	@Query(value = "SELECT e.*, l.role_id FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND l.role_id = 3 AND e.empid not in (select empid from teams where status = 1)",nativeQuery = true)
 	public List<Employee> getBenchEmployees();
 	
 	@Modifying
@@ -31,7 +31,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Query(value ="update employees e join login l on e.login_id = l.login_id set l.status = 0 where e.empid = ?1;", nativeQuery = true)
 	public int InactiveAcc(int empid);
 	
-	@Query(value="SELECT * FROM employees e WHERE e.login_id IN ( SELECT l.login_id FROM login l WHERE l.status = 0 AND l.role_id = 2);",nativeQuery = true)
+	@Query(value="SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id where (l.role_id = 2 and status = 1) and e.empid not in(select p.empid from projects p where p.status = 1)",nativeQuery = true)
 	public List<Employee> getManagers();
 	
 }
@@ -46,17 +46,5 @@ BEGIN
     VALUES (NEW.pid, NEW.empid, 'You are the team lead of this project', CURRENT_DATE, 1, NULL);
 END //
 DELIMITER ;
-
- */
-
-
-/*
- * 
- SELECT e.*
-FROM employees e
-JOIN login l ON e.login_id = l.login_id
-LEFT JOIN teams t ON e.empid = t.empid
-WHERE l.role_id = 2
-AND t.releasedate IS NOT NULL;
 
  */

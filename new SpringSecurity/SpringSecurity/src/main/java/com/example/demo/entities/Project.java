@@ -25,7 +25,7 @@ public class Project {
     public Date deadline;
 
     @Column
-    public String status;
+    public boolean status;
 
     @Column
     public String comments;
@@ -42,7 +42,7 @@ public class Project {
     	
     }
     
-	public Project(String title, String techstack, String description, Date deadline, String status, String comments,
+	public Project(String title, String techstack, String description, Date deadline, boolean status, String comments,
 			Employee empid, Client clientid) {
 		super();
 		this.title = title;
@@ -95,11 +95,11 @@ public class Project {
 		this.deadline = deadline;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
