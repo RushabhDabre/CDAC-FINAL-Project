@@ -41,7 +41,7 @@ export default function PmSidebar() {
             </div>
         </nav>
         <div className="row">
-            <div className="col-sm-auto position-fixed sticky-top p-0" style={{  top: "40px", bottom: "0", backgroundColor: "#f7f8f9", zIndex: "1020", overflowY: "auto", width: "200px"  }}>
+            <div className="col-md-6 position-fixed sticky-top " style={{  top: "40px", bottom: "0", backgroundColor: "#f7f8f9", width: "200px"  }}>
                 <ul className="list-unstyled m-0">
                     <li className='sidebar px-4 py-3 fs-6'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'PMHome'}>
@@ -62,7 +62,7 @@ export default function PmSidebar() {
                     </li>
                 </ul>
             </div>
-            <div className="col-md d-flex justify-content-center align-items-center" style={{ overflowY: "auto", paddingLeft: "200px" }}>
+            <div className='col-md-9 offset-md-2 position-absolute' style={{top: "40px"}}>
                 <Outlet/>
             </div>
         </div>

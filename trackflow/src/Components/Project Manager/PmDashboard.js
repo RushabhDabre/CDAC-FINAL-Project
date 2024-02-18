@@ -1,98 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import {  useNavigate } from "react-router-dom";
+import React from 'react';
+import './dashboard.css';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill} from 'react-icons/bs';
 
 export default function PmDashboard() {
-  let navigate = useNavigate();
-
-  useEffect(()=>{
-    const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
-    fetch(`http://localhost:8080/getEmployee?loginid=${loginId}`)
-    .then(resp=>resp.json())
-    .then(empinfo => {
-      localStorage.setItem("empinfo",JSON.stringify(empinfo));
-    })
-  });
-
-  const [projectRecord, setProjectRecord] = useState([]);
-  useEffect(() => {
-    const eid = JSON.parse(localStorage.getItem("empinfo")).empId;
-    fetch(`http://localhost:8080/getProjectByEmpId/${eid}`, {
-      method: 'GET',
-      headers: {'content-type': 'application/json'},
-    })
-    .then(resp => resp.json())
-    .then(obj => {
-      setProjectRecord(obj);
-      localStorage.setItem("projectInfo",JSON.stringify(obj));
-    });
-  }, []);
-
-  const [teamRecord, setTeamRecord] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:8080/teamList', {
-      method: 'GET',
-      headers: {'content-type': 'application/json'},
-    })
-    .then(resp => resp.json())
-    .then(obj => {setTeamRecord(obj); console.log(JSON.stringify(teamRecord));});
-  }, []);
-
-   
-
   return (
-    <div className="container-fluid ">
-          <div className='row'>
-            <table className="table table-bordered table-hover" >
-              <thead className='table-dark'>
-                <tr>
-                  <th className="fs-6 fw-medium">PID</th>
-                  <th className="fs-6 fw-medium">Title</th>
-                  <th className="fs-6 fw-medium">techstack</th>
-                  <th className="fs-6 fw-medium">Description</th>
-                  <th className="fs-6 fw-medium">Deadline</th>
-                  <th className="fs-6 fw-medium">Comments</th>
-                  <th className="fs-6 fw-medium">Assign</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projectRecord.map((v) => {
-                  return (<tr key={v.empId}>
-                    <td className="fs-6">{v.pid}</td>
-                    <td className="fs-6">{v.title}</td>
-                    <td className="fs-6">{v.techstack}</td>
-                    <td className="fs-6">{v.description}</td>
-                    <td className="fs-6">{v.deadline}</td>
-                    <td className="fs-6">{v.comments}</td>
-                    <td className="fs-6">
-                      <button className="btn btn-info" onClick={()=>navigate('/PM/addTeam')}>Add</button>
-                    </td>
-                  </tr>);
-                })}
-              </tbody>
-            </table>
-          </div>
-          <div className='row'>
-            <table className="table table-bordered table-hover" >
-              <thead className='table-dark'>
-                <tr>
-                  <th className="fs-6 fw-medium fs-6">Project Title</th>
-                  <th className="fs-6 fw-medium fs-6">Employee Name</th>
-                  <th className="fs-6 fw-medium fs-6">Comments</th>
-                  <th className="fs-6 fw-medium fs-6">Assigned Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {teamRecord.map((item, index) => {
-                  return (<tr key={index}>
-                    {item.map((value, subIndex) => (
-                      <td className="fs-6 fw-medium fs-6" key={subIndex}>{value}</td>
-                    ))}
-                    {/* <td className="fs-6">{v.pid}</td> */}
-                  </tr>);
-                })}
-              </tbody>
-            </table>
-          </div>
-    </div>
-  )
+    <main >
+      <div className='main-title'>
+            <h3 className='text-dark'>DASHBOARD</h3>
+        </div>
+      <div className='main-cards'>
+        <div className='card'>
+            <div className='card-inner'>
+                <h3 className='fs-6'>PRODUCTS</h3>
+                <BsFillArchiveFill className='card_icon fs-6'/>
+            </div>
+            <h1 className='fs-6'>300</h1>
+        </div>
+        <div className='card'>
+            <div className='card-inner'>
+                <h3 className='fs-6'>CATEGORIES</h3>
+                <BsFillGrid3X3GapFill className='card_icon fs-6'/>
+            </div>
+            <h1 className='fs-6'>12</h1>
+        </div>
+        <div className='card'>
+            <div className='card-inner'>
+                <h3 className='fs-6'>CUSTOMERS</h3>
+                <BsPeopleFill className='card_icon fs-6'/>
+            </div>
+            <h1 className='fs-6'>33</h1>
+        </div>
+        <div className='card'>
+            <div className='card-inner'>
+                <h3 className='fs-6'>ALERTS</h3>
+                <BsFillBellFill className='card_icon fs-6'/>
+            </div>
+            <h1 className='fs-6'>42</h1>
+        </div>
+      </div>
+    </main>
+    
+  );
 }

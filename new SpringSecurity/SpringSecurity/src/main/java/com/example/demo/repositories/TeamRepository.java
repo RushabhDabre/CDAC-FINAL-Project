@@ -10,6 +10,6 @@ import com.example.demo.entities.Team;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Integer> {
 	
-	@Query(value="select p.title, e.fullname , t.comments, t.assigned_date from teams t join employees e on t.empid = e.empid join projects p on t.pid = p.pid",nativeQuery = true)
+	@Query(value="select e.fullname , t.comments, t.assigned_date from teams t join employees e on t.empid = e.empid join projects p on t.pid = p.pid",nativeQuery = true)
 	public List<Object> teamList();
 }

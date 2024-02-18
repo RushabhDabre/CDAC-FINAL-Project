@@ -18,6 +18,7 @@ import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
+import ModalBtn from './Components/ModalBtn';
 
 function App() {
   return (
@@ -43,7 +44,8 @@ function App() {
 
         <Route path="/EMP" element={<EmpSidebar/>}>
           <Route path="EmpHome" element={<EmpDashboard/>}/>
-          <Route path="ViewTasks" element={<TaskList/>}/> 
+          <Route path="ViewTasks" element={<ModalBtn/>}/> 
+          {/* <Route path="ViewTasks" element={<TaskList/>}/>  */}
         </Route> 
         
 

@@ -327,7 +327,7 @@ export default function AddEmployee() {
                             </div>
                         </div>
                     </form>   
-                    <div className='text-dark'>{JSON.stringify(user)}</div> 
+                    {/* <div className='text-dark'>{JSON.stringify(user)}</div>  */}
                 </div> 
             </div>           
         </div>
