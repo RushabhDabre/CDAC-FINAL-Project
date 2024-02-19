@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 
-export default function GetAllProject() {
+export default function GetAllProject({openModal}) {
     let navigate = useNavigate();
     const [originalRecords, setOriginalRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
@@ -74,7 +74,8 @@ export default function GetAllProject() {
           </div>
         </div>
         <div className="row">
-          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button>
+          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}}  onClick={openModal}>Add Project</button>
+          {/* <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button> */}
         </div>
         <table className="table table-borderedA table-hover" >
           <thead className='table-dark'>

@@ -9,8 +9,17 @@ import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
 export default function EmpSidebar() {
     let navigate = useNavigate();
     
+    useEffect(()=>{
+        const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
+        fetch(`http://localhost:8080/getEmployee?loginid=${loginId}`)
+        .then(resp=>resp.json())
+        .then(empinfo => {
+          localStorage.setItem("empinfo",JSON.stringify(empinfo));
+        })
+    });
+
     const HandleLogOut=()=>{
-        localStorage.removeItem('accessToken');
+        localStorage.clear();
         setTimeout(() => navigate("/"), 500);
     };
 

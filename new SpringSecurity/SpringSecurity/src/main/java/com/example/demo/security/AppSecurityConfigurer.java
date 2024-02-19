@@ -109,7 +109,7 @@ public class AppSecurityConfigurer {
 			//for team 
 			authorize.requestMatchers("/createTeam").permitAll();
 			authorize.requestMatchers("/getBenchEmployees").permitAll();
-			authorize.requestMatchers("/teamList").permitAll();
+			authorize.requestMatchers("/teamList/{pid}").permitAll();
 			
 			//for project
 			authorize.requestMatchers("/createProject").permitAll();

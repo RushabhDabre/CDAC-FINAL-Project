@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.Project;
 import com.example.demo.entities.Team;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.ProjectRepository;
@@ -32,7 +33,8 @@ public class TeamService {
 		return saved;
 	}
 	
-	public List<Object> teamList(){
-		return trepo.teamList();
+	public List<Team> teamList(int pid){
+		Project p = prepo.findById(pid).get();
+		return trepo.teamList(p);
 	}
 }

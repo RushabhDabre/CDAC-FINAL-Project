@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Sidebar.css';
 import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { RiShutDownLine } from "react-icons/ri";
@@ -7,10 +7,20 @@ import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/inde
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
 
 export default function PmSidebar() {
+    
+    useEffect(()=>{
+        const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
+        fetch(`http://localhost:8080/getEmployee?loginid=${loginId}`)
+        .then(resp=>resp.json())
+        .then(empinfo => {
+          localStorage.setItem("empinfo",JSON.stringify(empinfo));
+        })
+      });
+    
     let navigate = useNavigate();
     
     const HandleLogOut=()=>{
-        localStorage.removeItem('accessToken');
+        localStorage.clear();
         setTimeout(() => navigate("/"), 500);
     };
 
