@@ -54,6 +54,13 @@ public class Project {
 		this.empid = empid;
 		this.clientid = clientid;
 	}
+	
+	
+
+	public Project(Employee empid) {
+		super();
+		this.empid = empid;
+	}
 
 	public int getPid() {
 		return pid;

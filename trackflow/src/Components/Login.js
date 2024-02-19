@@ -23,9 +23,9 @@ export default function AddEmployee() {
         password:""
     }
 
-    useEffect(()=>{
-        localStorage.setItem("accessToken",JSON.stringify(msg));
-    });
+    // useEffect(()=>{
+    //     localStorage.setItem("accessToken",JSON.stringify(msg));
+    // });
 
     const reducer = (state,action) => {
         switch(action.type){

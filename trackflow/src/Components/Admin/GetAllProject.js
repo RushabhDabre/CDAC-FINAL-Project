@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 
-export default function GetAllProject({openModal}) {
+export default function GetAllProject() {
     let navigate = useNavigate();
     const [originalRecords, setOriginalRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
@@ -74,18 +74,17 @@ export default function GetAllProject({openModal}) {
           </div>
         </div>
         <div className="row">
-          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}}  onClick={openModal}>Add Project</button>
-          {/* <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button> */}
+          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button>
         </div>
         <table className="table table-borderedA table-hover" >
           <thead className='table-dark'>
             <tr>
               <th className="fs-6 fw-medium">PID</th>
               <th className="fs-6 fw-medium">Title</th>
+              <th className="fs-6 fw-medium">Developer</th>
               <th className="fs-6 fw-medium">techstack</th>
               <th className="fs-6 fw-medium">Description</th>
               <th className="fs-6 fw-medium">Deadline</th>
-              <th className="fs-6 fw-medium">Status</th>
               <th className="fs-6 fw-medium">Comments</th>
             </tr>
           </thead>
@@ -94,10 +93,10 @@ export default function GetAllProject({openModal}) {
               return (<tr key={v.empId}>
                 <td className="fs-6">{v.pid}</td>
                 <td className="fs-6">{v.title}</td>
+                <td className="fs-6">{v.empid.fullName}</td>
                 <td className="fs-6">{v.techstack}</td>
                 <td className="fs-6">{v.description}</td>
                 <td className="fs-6">{v.deadline}</td>
-                <td className="fs-6">{v.status}</td>
                 <td className="fs-6">{v.comments}</td>
               </tr>);
             })}

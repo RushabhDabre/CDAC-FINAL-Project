@@ -13,4 +13,9 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 	
 	@Query(value="select * from projects where empid = :id",nativeQuery = true)
 	public List<Project> getProjectByEmpId(int id);
+	
+	@Query(value="select p.pid from projects p where p.empid = (select e.empid from employees e where e.login_id = :id) ;",nativeQuery = true)
+	public List<Project> getProjectByLoginId(int id);
+	
+	
 }

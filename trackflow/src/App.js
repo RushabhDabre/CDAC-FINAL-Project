@@ -1,5 +1,5 @@
 import './App.css';
-import { React } from 'react';
+import { React, useRef } from 'react';
 import {Route, Routes} from 'react-router-dom';
 import AddEmployee from './Components/Admin/AddEmployee';
 import Login from './Components/Login'
@@ -18,12 +18,18 @@ import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
-import ModalBtn from './Components/ModalBtn';
 
 function App() {
+  const projectRef = useRef(null);
+
+  const openModal = () => {
+    projectRef.current.click();
+  };
+
   return (
     <div className='App-header'>
       <Routes>
+        {/* <Route path="/" element={<CreateProject/>}/>  */}
         <Route path="/" element={<Login/>}/> 
 
         <Route path="/ADMIN" element={<AdminSidebar/>}>
@@ -32,7 +38,7 @@ function App() {
           <Route path="addemp" element={<AddEmployee/>}/> 
           <Route path="updateemp/:empId" element={<UpdateEmployee/>}/>
           <Route path="CreateProject" element={<CreateProject/>}/>
-          <Route path="ShowProject" element={<GetAllProject/>}/>
+          <Route path="ShowProject"  element={<GetAllProject/>}/>
         </Route>
 
         <Route path="/PM" element={<PmSidebar/>}>
@@ -44,8 +50,7 @@ function App() {
 
         <Route path="/EMP" element={<EmpSidebar/>}>
           <Route path="EmpHome" element={<EmpDashboard/>}/>
-          <Route path="ViewTasks" element={<ModalBtn/>}/> 
-          {/* <Route path="ViewTasks" element={<TaskList/>}/>  */}
+          <Route path="ViewTasks" element={<TaskList/>}/> 
         </Route> 
         
 

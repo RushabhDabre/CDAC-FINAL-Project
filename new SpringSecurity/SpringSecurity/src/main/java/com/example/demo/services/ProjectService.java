@@ -24,6 +24,10 @@ public class ProjectService {
 		return prepo.getProjectByEmpId(empid);
 	}
 	
+	public List<Project> getProjectByLoginId(int loginid){
+		return prepo.getProjectByLoginId(loginid);
+	}
+	
 	public Project getById(int id) {
 		Optional<Project> op = prepo.findById(id);
 		Project p;

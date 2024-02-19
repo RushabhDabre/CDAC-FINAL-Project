@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
-
+import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
+import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
 
 export default function EmployeeTable() {
   // const [showModal, setModal]
@@ -22,6 +23,22 @@ export default function EmployeeTable() {
       setFilteredRecords(obj);
     });
   }, []);
+
+  const confirmation = (empId) =>{
+    confirmAlert({
+        title: 'Confirm to deactivate',
+        message: 'Are you sure?',
+        buttons: [
+            {
+                label: 'Yes',
+                onClick: () => {deactivate(empId)}
+            },
+            {
+                label: 'No',
+            }
+        ]
+    });
+}
 
   const deactivate = (empId) => {
     fetch(`http://localhost:8080/inactiveEmp/${empId}`, {
@@ -126,7 +143,7 @@ export default function EmployeeTable() {
                 <td className="fs-6">{v.phNo}</td>
                 <td className="fs-6">
                   <button className="btn btn-info me-2" onClick={() => handleUpdate(v.empId)}>Update</button>
-                  <button className="btn btn-danger" onClick={() => deactivate(v.empId)}>Deactivate</button>
+                  <button className="btn btn-danger" onClick={() => confirmation(v.empId)}>Deactivate</button>
                 </td>
               </tr>);
             })}

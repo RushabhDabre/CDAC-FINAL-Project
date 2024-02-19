@@ -226,7 +226,7 @@ export default function UpdateEmployee() {
                                 <label className='text-muted'><h6>HireDate</h6></label>
                                 <input  type="date" placeholder="" className="form-control" name='hireDate'
                                 {...register("hdate",{required: true})} //for Validation
-                                value={user.hireDate} onChange={(e)=>{dispatch({type:'update',fld:'hireDate', val: e.target.value})}} required/>  
+                                value={user.hireDate} onChange={(e)=>{dispatch({type:'update',fld:'hireDate', val: e.target.value})}} disabled/>  
                                 <span className='text-danger fs-6'>{errors.hdate?.type === "required" && "feild is required"}</span>
                             </div>
                         </div>
@@ -234,7 +234,7 @@ export default function UpdateEmployee() {
                             <div className="col-6">   
                                 <label htmlFor='designation' className='form-label text-muted'><h6>Select Designation : </h6></label>
                                 <select className='form-select' id='designationID' name="designationID" 
-                                 onChange={(e)=>{dispatch({type:'update',fld:'designationID', val: e.target.value})}} >
+                                 onChange={(e)=>{dispatch({type:'update',fld:'designationID', val: e.target.value})}} required >
                                         <option value="">Select</option>
                                     {
                                         allDesign.map(data => {
@@ -247,7 +247,7 @@ export default function UpdateEmployee() {
                             <div className="col-6">   
                                 <label className='form-label text-muted'><h6>Select Role : </h6></label>
                                 <select className='form-select' id='role_id' name="role_id" 
-                                     onChange={(e)=>{dispatch({type:'update',fld:'role_id', val: e.target.value})}}  >
+                                     onChange={(e)=>{dispatch({type:'update',fld:'role_id', val: e.target.value})}} required >
                                          <option value="" >Select</option>
                                     {
                                         allRoles.map(data => {
@@ -290,11 +290,10 @@ export default function UpdateEmployee() {
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
-                                <button type="button" className="btn btn-danger w-100 font-weight-bold mt-2" onClick={()=>{navigate("/ADMIN/userinfo")}}>Cancel</button>
+                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{navigate("/ADMIN/userinfo")}}>Cancel</button>
                             </div>
                             <div className="col-auto ">
-                                <button type="submit" className="btn btn-primary w-100 font-weight-bold mt-2" >Update</button>
-                                {/* disabled={!isValid} */}
+                                <button type="submit" className="btn w-100 font-weight-bold mt-2" style={{"backgroundColor":"#323452", "color":"whitesmoke"}} >Update</button>
                             </div>
                         </div>
                     </form>   

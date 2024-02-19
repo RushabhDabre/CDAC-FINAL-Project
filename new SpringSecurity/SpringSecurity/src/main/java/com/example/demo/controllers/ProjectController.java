@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.CreateProject;
 import com.example.demo.entities.Employee;
+import com.example.demo.entities.Login;
 import com.example.demo.entities.Project;
 import com.example.demo.services.ClientService;
 import com.example.demo.services.EmployeeService;
+import com.example.demo.services.LoginService;
 import com.example.demo.services.ProjectService;
 
 @RestController
@@ -27,6 +29,9 @@ public class ProjectController {
 	
 	@Autowired
 	ClientService cservice;
+	
+	@Autowired
+	LoginService lservice;
 	
 	@Autowired
 	EmployeeService eservice;
@@ -42,6 +47,13 @@ public class ProjectController {
 		return pservice.getProjectByEmpId(empid);
 	}
 	
+	@GetMapping("/getProjectByLoginId/{loginid}")
+	public List<Project> getProjectByLoginId(@PathVariable("loginid") int loginid){
+		Login l = lservice.getLogin(loginid);
+		Employee e = eservice.getEmployee(l);
+		return pservice.getProjectByEmpId(e.getEmpId());
+	}
+	
 	@PostMapping("/createProject")
 	public Project insertProject(@RequestBody CreateProject project) {
 		Client c = cservice.getById(project.getClientid());
@@ -50,12 +62,6 @@ public class ProjectController {
 		Project p = new Project(project.getTitle(), project.getTechstack(), project.getDescription(), project.getDeadline(), true, project.getComments(), e, c);
 		
 		return pservice.InsertProject(p);
-	}
-	
-	@GetMapping("/getClients")
-	public List<Client> getAllClients()
-	{
-		return cservice.getAllClient();
 	}
 	
 }

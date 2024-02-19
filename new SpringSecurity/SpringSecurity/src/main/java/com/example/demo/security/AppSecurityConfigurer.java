@@ -115,6 +115,7 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/createProject").permitAll();
 			authorize.requestMatchers("/getAllProjects").permitAll();
 			authorize.requestMatchers("/getProjectByEmpId/{empid}").permitAll();
+			authorize.requestMatchers("/getProjectByLoginId/{loginid}").permitAll();
 			authorize.requestMatchers("/getManagers").permitAll();
 			authorize.requestMatchers("/getClients").permitAll();
 			
