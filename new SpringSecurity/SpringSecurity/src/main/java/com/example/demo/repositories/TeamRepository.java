@@ -15,4 +15,8 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
 	@Query("select t from Team t where t.pid = :pid")
 	//@Query(value="select e.fullname , t.comments, t.assigned_date from teams t join employees e on t.empid = e.empid join projects p on t.pid = p.pid where p.pid = ?1",nativeQuery = true)
 	public List<Team> teamList(Project pid);
+	
+	@Query(value="update teams set status = 0 where empid = ?1;",nativeQuery = true)
+	public int removeMember(int empid);
+//	
 }
