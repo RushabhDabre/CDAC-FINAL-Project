@@ -12,6 +12,10 @@ import com.example.demo.entities.Employee;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
+	
+	@Query(value = "select count(*) from clients",nativeQuery = true)
+	public int countClients();
+	
 	@Query(value="SELECT * FROM clients",nativeQuery = true)
 	public List<Client> getAllClients();
 }

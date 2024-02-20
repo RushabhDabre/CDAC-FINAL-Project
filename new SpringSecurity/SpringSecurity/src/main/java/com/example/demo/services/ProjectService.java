@@ -50,4 +50,8 @@ public class ProjectService {
 		}
 		return saved;
 	}
+	
+	public int countProject() {
+		return prepo.countProject();
+	}
 }

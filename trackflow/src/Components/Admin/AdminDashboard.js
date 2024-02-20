@@ -31,13 +31,13 @@ export default function AdminDashboard() {
             </div>
             <h1 className='fs-6'>33</h1>
         </div>
-        <div className='card'>
+        {/* <div className='card'>
             <div className='card-inner'>
                 <h3 className='fs-6'>ALERTS</h3>
                 <BsFillBellFill className='card_icon fs-6'/>
             </div>
             <h1 className='fs-6'>42</h1>
-        </div>
+        </div> */}
       </div>
     </main>
     

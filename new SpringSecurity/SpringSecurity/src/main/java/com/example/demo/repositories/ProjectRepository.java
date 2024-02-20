@@ -11,6 +11,12 @@ import com.example.demo.entities.Project;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 	
+	@Query(value = "select count(*) from projects",nativeQuery = true)
+	public int countProject();
+	
+	@Query(value = "select count(*) from projects where empid = ?1",nativeQuery = true)
+	public int countProjectForPM(int empid);
+	
 	@Query(value="select * from projects where empid = :id",nativeQuery = true)
 	public List<Project> getProjectByEmpId(int id);
 	
