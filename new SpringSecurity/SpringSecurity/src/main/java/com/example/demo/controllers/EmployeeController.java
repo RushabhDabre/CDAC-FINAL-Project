@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -96,7 +97,8 @@ public class EmployeeController {
 
 	@PostMapping("/updatepersonals")
 	public Employee UpdatePersnolInfo(@RequestBody UpdatePersonalInfo emp){
-		 return eservice.UpdatePersnolInfo(emp);
+		System.out.println(emp);
+		return eservice.UpdatePersnolInfo(emp);
 	}
 
 

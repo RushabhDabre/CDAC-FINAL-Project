@@ -18,6 +18,7 @@ import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
+import UpdatePersInfo from './Components/Employee/UpdatePersInfo';
 
 function App() {
   const projectRef = useRef(null);
@@ -46,11 +47,13 @@ function App() {
           <Route path="PMProjects" element={<ViewProject/>}/> 
           <Route path="PMTasks" element={<CreateTask/>}/> 
           <Route path="addTeam" element={<AddTeam/>}/> 
+          <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
         </Route>
 
         <Route path="/EMP" element={<EmpSidebar/>}>
           <Route path="EmpHome" element={<EmpDashboard/>}/>
           <Route path="ViewTasks" element={<TaskList/>}/> 
+          <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
         </Route> 
         
 
