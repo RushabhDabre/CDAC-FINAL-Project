@@ -93,22 +93,17 @@ public class EmployeeService {
 	}
 
 
-	public  Employee UpdatePersnolInfo(UpdatePersonalInfo emp){
-		Optional<Employee> empok = erepo.findById(emp.getEmpid());
-		Employee employee = empok.get();
-		Login login = employee.getLogin_id();
+	public Employee  UpdatePersnolInfo(UpdatePersonalInfo emp){
+		Optional<Employee> empOpt = erepo.findById(emp.getEmpid());
+		Employee employee = empOpt.get();
+		employee.setFullName(emp.getFullname());
+		employee.setCurrentAddress(emp.getCurrentAddress());
+		employee.setPermanentAddress(emp.getPermanentAddress());
+		employee.setPhNo(emp.getPhNo());
 
-//		Designation designation = drepo.findById(emp.getDesignationID()).get();
-//		login.setRole(role);
-//		employee.setBasicSal(emp.getBasicSal());
-//		employee.setIncentives(emp.getIncentives());
-//		employee.setLogin_id(login);//
-//		employee.setDesg(designation);
-//		employee.setEmpId(emp.getEmpid());
-//		return erepo.save(employee);
+		erepo.save(employee);
 		return  employee;
 	}
-
 
 	public int InactiveAcc(int empid) {
 		try {

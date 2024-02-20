@@ -2,7 +2,7 @@ package com.example.demo.entities;
 
 
 public class UpdatePersonalInfo {
-    //fullname nationality,fullname,gender,email,phNo,currentAddress,permanentAddress;
+
     int empid;
     String fullname,nationality,email,currentAddress,permanentAddress,phNo;
 
