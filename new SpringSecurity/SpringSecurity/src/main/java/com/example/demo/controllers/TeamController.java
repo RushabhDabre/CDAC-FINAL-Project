@@ -51,6 +51,11 @@ public class TeamController {
 	
 	@PostMapping("/removeMember/{empid}")
 	public int removeMember(@PathVariable("empid") int empid) {
-		return tservice.removeMember(empid);
+		int update = tservice.removeMember(empid);
+		if(update>0) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }

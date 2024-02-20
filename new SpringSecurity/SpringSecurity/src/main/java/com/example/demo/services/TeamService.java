@@ -14,6 +14,8 @@ import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.repositories.TeamRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TeamService {
 	@Autowired
@@ -41,14 +43,10 @@ public class TeamService {
 		return trepo.teamList(p);
 	}
 	
+	@Transactional
 	public int removeMember(int empid) {
 		try {
-			Optional<Employee> empok = erepo.findById(empid);
-			if(empok.isPresent()) {
-				return trepo.removeMember(empid);
-			}else {
-				return 0;
-			}
+			return trepo.removeMember(empid);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return -1;
