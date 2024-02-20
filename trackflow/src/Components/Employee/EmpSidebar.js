@@ -55,9 +55,9 @@ export default function EmpSidebar() {
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
                             {/* <li className='ms-3'>Rushabh</li> */}
-                            <li className='ms-3'>{empName}</li>
+                            <li className='ms-3 text-secondary'>{empName}</li>
+                            <li><a className="dropdown-item" onClick={()=>navigate('UpdatePersInfo')}>Profile</a></li>
                             <li><a className="dropdown-item" onClick={confirmation} >Logout</a></li>
-                            <li><a className="dropdown-item" >Profile</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -75,11 +75,6 @@ export default function EmpSidebar() {
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'ViewTasks'}>
                             <BsFillGrid3X3GapFill className='icon fs-6'/> View Task
-                        </Link>
-                    </li>
-                    <li className='sidebar px-4 py-3 fs-5'>
-                        <Link className='text-decoration-none text-secondary fs-6' to={'UpdatePersInfo'}>
-                            <BsMenuButtonWideFill className='icon fs-6'/> Update Profile
                         </Link>
                     </li>
                 </ul>

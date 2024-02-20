@@ -55,9 +55,9 @@ export default function PmSidebar() {
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
                             {/* <li className='ms-3'>Rushabh</li> */}
-                            <li className='ms-3'>{empName}</li>
+                            <li className='ms-3 text-secondary'>{empName}</li>
+                            <li><a className="dropdown-item" onClick={()=>navigate('UpdatePersInfo')}>Profile</a></li>
                             <li><a className="dropdown-item" onClick={confirmation} >Logout</a></li>
-                            <li><a className="dropdown-item" >Profile</a></li>
                         </ul>
                     </li>
                 </ul>
