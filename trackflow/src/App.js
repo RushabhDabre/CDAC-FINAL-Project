@@ -1,5 +1,5 @@
 import './App.css';
-import { React, useRef } from 'react';
+import { React } from 'react';
 import {Route, Routes} from 'react-router-dom';
 import AddEmployee from './Components/Admin/AddEmployee';
 import Login from './Components/Login'
@@ -19,18 +19,13 @@ import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
 import UpdatePersInfo from './Components/Employee/UpdatePersInfo';
+import ShowTask from './Components/Project Manager/ShowTask';
 
 function App() {
-  const projectRef = useRef(null);
-
-  const openModal = () => {
-    projectRef.current.click();
-  };
 
   return (
     <div className='App-header'>
       <Routes>
-        {/* <Route path="/" element={<CreateProject/>}/>  */}
         <Route path="/" element={<Login/>}/> 
 
         <Route path="/ADMIN" element={<AdminSidebar/>}>
@@ -47,6 +42,7 @@ function App() {
           <Route path="PMProjects" element={<ViewProject/>}/> 
           <Route path="PMTasks" element={<CreateTask/>}/> 
           <Route path="addTeam" element={<AddTeam/>}/> 
+          <Route path="showPMTask" element={<ShowTask/>}/> 
           <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
         </Route>
 
