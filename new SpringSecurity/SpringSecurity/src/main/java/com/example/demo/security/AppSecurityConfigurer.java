@@ -90,7 +90,7 @@ public class AppSecurityConfigurer {
 		http.authorizeHttpRequests(authorize -> {
 			authorize.requestMatchers("/").permitAll();
 			authorize.requestMatchers("/login").permitAll();
-			authorize.requestMatchers("/getEmployee").permitAll();
+			authorize.requestMatchers("/getEmployee/{loginid}").permitAll();
 			
 			//for User Registration
 			authorize.requestMatchers("/userCheck").permitAll();

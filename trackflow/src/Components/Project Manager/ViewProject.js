@@ -95,6 +95,10 @@ export default function ViewProject() {
       });
   }
 
+  const assignTask = (empId)=>{
+    navigate('/PM/PMTasks');
+  }
+
   return (
     <div className="container-fluid ">
           <div className='row mt-2 '>
@@ -112,7 +116,7 @@ export default function ViewProject() {
                 </tr>
               </thead>
               <tbody>
-                {projectRecord.map((v) => {
+                {projectRecord.map((v) => { 
                   return (<tr key={v.empId}>
                     <td className="fs-6">{v.pid}</td>
                     <td className="fs-6">{v.title}</td>
@@ -138,19 +142,23 @@ export default function ViewProject() {
                   <th className="fs-6 fw-medium fs-6">Designation</th>
                   <th className="fs-6 fw-medium fs-6">Comments</th>
                   <th className="fs-6 fw-medium fs-6">Assigned Date</th>
+                  <th className="fs-6 fw-medium fs-6">Assign Task</th>
                   <th className="fs-6 fw-medium fs-6">Remove</th>
                 </tr>
               </thead>
               <tbody>
                   {teamRecord.map((v) => {
-                  return (<tr key={v.eid.empId}>
+                  return (
+                  
+                  <tr key={v.eid.empId}>
                     <td className="fs-6">{v.eid.fullName}</td>
                     <td className="fs-6">{v.eid.desg.designationName}</td>
                     <td className="fs-6">{v.comments}</td>
                     <td className="fs-6">{v.assigneddate}</td>
-                    <td className="fs-6"><button className='btn btn-danger' onClick={()=> confirmation(v.eid.empId)}>Remove</button></td>
+                    <td className="fs-6">{v.eid.login_id.role.role_id !== 2 && <button className='btn btn-info' onClick={()=>assignTask(v.eid.empId)}>Assign</button>}</td>
+                    <td className="fs-6">{v.eid.login_id.role.role_id !== 2 && <button className='btn btn-danger' onClick={()=> confirmation(v.eid.empId)}>Remove</button>}</td>
                   </tr>);
-                })}  
+                })}
               </tbody>
             </table>
           </div>

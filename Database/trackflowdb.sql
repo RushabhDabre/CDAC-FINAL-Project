@@ -103,7 +103,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (13,'MehulGhyar','2024-01-28','M','Indian','mehulghyar321@gmail.com','9876543210','pune','Nagbhid',1000000,9000,'2024-03-02',2,23),(14,'Bakul Mam','2024-01-28','F','Indian','bakulmam@gmail.com','1234567890','pune','pune',56000,4998,'2024-03-01',2,24),(15,'Aditya','2024-01-28','M','Indian','aditya2@gmail.com','9876543210','Pune','Pune',45000,5000,'2024-03-01',1,25),(16,'Krishna','2024-01-28','M','Indian','krishna@gmail.com','1234567890','Pune','Baitul',45000,4999,'2024-03-04',2,26),(17,'ram','2024-02-06','M','Indian','ram123@gmail.com','1234567890','pune','nashik',45000,5000,'2024-02-12',1,27),(20,'pranav','2024-01-28','M','Indian','pranav@gmail.com','9876543210','pune','pune',90000,10000,'2024-02-20',2,39),(22,'Tushar','2024-02-12','M','Indian','tushar@gmail.com','9876543210','Pune','Nagpur',60000,7500,'2024-03-09',2,43),(27,'Anuraag Ghyar','2024-01-28','M','Indian','anya@gmail.com','9876543210','Pune','Nagbhid',67000,5000,'2024-03-08',1,53),(28,'Harshal','2024-01-28','M','Indian','harshal@gmail.com','9876543210','Pune','Nagpur',45000,4997,'2024-03-01',1,54),(29,'Tejas','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Pune',45000,4999,'2024-03-01',1,55),(30,'Shreyash Hake','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Yavatmal',45000,4999,'2024-03-01',1,56),(31,'Tanmay','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Bhandara',45000,4999,'2024-03-01',1,57),(32,'Spandan','2024-01-28','M','Indian','spandan@gmail.com','9876543210','Banguluru','Nagpur',45000,4999,'2024-03-01',1,58),(33,'Ramaksh','2024-01-28','M','Indian','spandan@gmail.com','9876543210','Pune','Nashik',45000,4999,'2024-03-01',1,59);
+INSERT INTO `employees` VALUES (1,'Rushabh Dabare','2001-01-14','M','Indian','rushabhdabare@gmail.com','9067015129','Pune','Wadsa',60000,5000,'2024-03-01',1,1),(13,'MehulGhyar','2024-01-28','M','Indian','mehulghyar321@gmail.com','9876543210','pune','Nagbhid',1000000,9000,'2024-03-02',2,23),(14,'Bakul Mam','2024-01-28','F','Indian','bakulmam@gmail.com','1234567890','pune','pune',56000,4998,'2024-03-01',2,24),(15,'Aditya','2024-01-28','M','Indian','aditya2@gmail.com','9876543210','Pune','Pune',45000,5000,'2024-03-01',1,25),(16,'Krishna','2024-01-28','M','Indian','krishna@gmail.com','1234567890','Pune','Baitul',45000,4999,'2024-03-04',2,26),(17,'ram','2024-02-06','M','Indian','ram123@gmail.com','1234567890','pune','nashik',45000,5000,'2024-02-12',1,27),(20,'pranav','2024-01-28','M','Indian','pranav@gmail.com','9876543210','pune','pune',90000,10000,'2024-02-20',2,39),(22,'Tushar','2024-02-12','M','Indian','tushar@gmail.com','9876543210','Pune','Nagpur',60000,7500,'2024-03-09',2,43),(27,'Anuraag Ghyar','2024-01-28','M','Indian','anya@gmail.com','9876543210','Pune','Nagbhid',67000,5000,'2024-03-08',1,53),(28,'Harshal','2024-01-28','M','Indian','harshal@gmail.com','9876543210','Pune','Nagpur',45000,4997,'2024-03-01',1,54),(29,'Tejas','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Pune',45000,4999,'2024-03-01',1,55),(30,'Shreyash Hake','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Yavatmal',45000,4999,'2024-03-01',1,56),(31,'Tanmay','2024-01-28','M','Indian','tejas@gmail.com','9876543210','Pune','Bhandara',45000,4999,'2024-03-01',1,57),(32,'Spandan','2024-01-28','M','Indian','spandan@gmail.com','9876543210','Banguluru','Nagpur',45000,4999,'2024-03-01',1,58),(33,'Ramaksh','2024-01-28','M','Indian','spandan@gmail.com','9876543210','Pune','Nashik',45000,4999,'2024-03-01',1,59);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,24 +200,6 @@ LOCK TABLES `projects` WRITE;
 INSERT INTO `projects` VALUES (18,'TrackFlow','Microservice Architecture','This is MY first Project','2024-02-25',_binary '','Complete it before 22',13,1),(19,'Project Harshal ','Target','Mission','2024-02-25',_binary '','no comments',15,1);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `insert_team_after_project_insert` AFTER INSERT ON `projects` FOR EACH ROW BEGIN
-    INSERT INTO teams (pid, empid, comments, assigned_date, status, releasedate)
-    VALUES (NEW.pid, NEW.empid, 'You are the team lead of this project', CURRENT_DATE, 1, NULL);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `roles`
@@ -241,6 +223,40 @@ LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
 INSERT INTO `roles` VALUES (1,'admin'),(2,'project_manager'),(3,'employee');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tasks`
+--
+
+DROP TABLE IF EXISTS `tasks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tasks` (
+  `tid` int NOT NULL AUTO_INCREMENT,
+  `tname` varchar(45) NOT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  `assigneddate` date DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `status` bit(1) DEFAULT NULL,
+  `progress` int DEFAULT NULL,
+  `empid` int DEFAULT NULL,
+  `pid` int DEFAULT NULL,
+  PRIMARY KEY (`tid`),
+  KEY `_idx` (`empid`),
+  KEY `pid_idx` (`pid`),
+  CONSTRAINT `fkempid` FOREIGN KEY (`empid`) REFERENCES `employees` (`empid`),
+  CONSTRAINT `fkpid` FOREIGN KEY (`pid`) REFERENCES `projects` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tasks`
+--
+
+LOCK TABLES `tasks` WRITE;
+/*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -276,14 +292,6 @@ LOCK TABLES `teams` WRITE;
 INSERT INTO `teams` VALUES (9,18,13,'You are the team lead of this project','2024-02-17',_binary '',NULL),(10,18,14,'This is your first project','2024-02-17',_binary '',NULL),(11,18,16,'','2024-02-17',_binary '\0',NULL),(12,19,15,'You are the team lead of this project','2024-02-19',_binary '',NULL),(14,19,22,'Your are under adityas team','2024-02-19',_binary '',NULL),(15,19,27,'','2024-02-19',_binary '\0',NULL),(16,19,33,'Fix Bugs','2024-02-20',_binary '\0',NULL);
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'trackflowdb'
---
-
---
--- Dumping routines for database 'trackflowdb'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -294,4 +302,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 10:36:54
+-- Dump completed on 2024-02-20 13:42:45

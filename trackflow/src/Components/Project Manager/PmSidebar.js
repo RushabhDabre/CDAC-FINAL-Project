@@ -1,24 +1,27 @@
-import React, {useEffect} from 'react'
+import React,{useState, useEffect } from 'react'
 import './Sidebar.css';
 import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { RiShutDownLine } from "react-icons/ri";
+import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
 
 export default function PmSidebar() {
-    
+    let navigate = useNavigate();
+    const [empName, setEmpName] = useState("");
+
     useEffect(()=>{
         const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
-        fetch(`http://localhost:8080/getEmployee?loginid=${loginId}`)
+        console.log(loginId);
+        fetch(`http://localhost:8080/getEmployee/${loginId}`)
         .then(resp=>resp.json())
         .then(empinfo => {
           localStorage.setItem("empinfo",JSON.stringify(empinfo));
+          setEmpName(empinfo.fullName);
         })
-      });
-    
-    let navigate = useNavigate();
-    
+    },[]);
+        
     const HandleLogOut=()=>{
         localStorage.clear();
         setTimeout(() => navigate("/"), 500);
@@ -42,12 +45,22 @@ export default function PmSidebar() {
 
   return (
     <div className="container-fluid p-0">
-        <nav className="navbar fixed-top" style={{backgroundColor:"#323452", height: "40px" }}>
+        <nav className="navbar fixed-top navbar-expand-lg" style={{backgroundColor:"#323452", height: "40px" }}>
             <div className="container-fluid">
                 <a className="text-decoration-none text-white fs-6">TRACKFLOW</a>
-                <a className="text-decoration-none text-white fs-6" onClick={confirmation}>
-                    <RiShutDownLine/>
-                </a>
+                <ul className="text-white fs-6 list-unstyled">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle mt-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <FaUserTie className='fs-5' />
+                        </a>
+                        <ul className="dropdown-menu dropdown-menu-end">
+                            {/* <li className='ms-3'>Rushabh</li> */}
+                            <li className='ms-3'>{empName}</li>
+                            <li><a className="dropdown-item" onClick={confirmation} >Logout</a></li>
+                            <li><a className="dropdown-item" >Profile</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
         <div className="row">

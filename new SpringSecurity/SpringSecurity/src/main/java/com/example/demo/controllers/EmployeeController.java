@@ -39,8 +39,8 @@ public class EmployeeController {
 	PasswordEncoder encoder;
 	
 	
- 	@GetMapping("/getEmployee")
- 	public Employee getEmployee(@RequestParam("loginid") int loginid)
+ 	@GetMapping("/getEmployee/{loginid}")
+ 	public Employee getEmployee(@PathVariable("loginid") int loginid)
  	{
  		Login l = lservice.getLogin(loginid);
  		return eservice.getEmployee(l);
