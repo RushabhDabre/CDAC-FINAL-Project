@@ -97,7 +97,7 @@ export default function ViewProject() {
 
   return (
     <div className="container-fluid ">
-          <div className='row'>
+          <div className='row mt-2 '>
             <table className="table table-bordered table-hover" >
               <thead className='table-dark'>
                 <tr>
@@ -129,7 +129,8 @@ export default function ViewProject() {
               </tbody>
             </table>
           </div>
-          <div className='row'>
+          <div className='row mt-2'>
+            <h3 className='text-dark'>TEAM:</h3>
             <table className="table table-bordered table-hover" >
               <thead className='table-dark'>
                 <tr>
@@ -137,7 +138,7 @@ export default function ViewProject() {
                   <th className="fs-6 fw-medium fs-6">Designation</th>
                   <th className="fs-6 fw-medium fs-6">Comments</th>
                   <th className="fs-6 fw-medium fs-6">Assigned Date</th>
-                  <th className="fs-6 fw-medium fs-6 text-danger">Remove</th>
+                  <th className="fs-6 fw-medium fs-6">Remove</th>
                 </tr>
               </thead>
               <tbody>

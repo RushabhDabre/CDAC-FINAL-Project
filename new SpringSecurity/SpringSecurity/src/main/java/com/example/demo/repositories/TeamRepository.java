@@ -13,7 +13,7 @@ import com.example.demo.entities.Team;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Integer> {
 	
-	@Query("select t from Team t where t.pid = :pid")
+	@Query("SELECT t FROM Team t WHERE t.pid = :pid AND t.status = true")
 	//@Query(value="select e.fullname , t.comments, t.assigned_date from teams t join employees e on t.empid = e.empid join projects p on t.pid = p.pid where p.pid = ?1",nativeQuery = true)
 	public List<Team> teamList(Project pid);
 	
