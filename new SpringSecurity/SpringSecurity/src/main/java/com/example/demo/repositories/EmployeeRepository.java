@@ -31,10 +31,14 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	@Modifying
 	@Query(value ="update employees e join login l on e.login_id = l.login_id set l.status = 0 where e.empid = ?1;", nativeQuery = true)
 	public int InactiveAcc(int empid);
-	
+
 	@Query(value="SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id where (l.role_id = 2 and status = 1) and e.empid not in(select p.empid from projects p where p.status = 1)",nativeQuery = true)
 	public List<Employee> getManagers();
-	
+
+	@Modifying
+	@Query(value="update employees e join login l on e.login_id = l.login_id set e.fullname = ?2, e.nationality = ?3, e.email = ?4, l.currentAddress = ?5 ,e.permanentAddress=?6 ,e.phNo= ?7, where e.empid = ?1;", nativeQuery = true)
+	public int UpdatePersonals(int empid,String fullname, String nationality, String email, String currentAddress,
+							   String permanentAddress, String phNo);
 }
 
 /*
