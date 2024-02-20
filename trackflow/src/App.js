@@ -47,6 +47,7 @@ function App() {
           <Route path="PMProjects" element={<ViewProject/>}/> 
           <Route path="PMTasks" element={<CreateTask/>}/> 
           <Route path="addTeam" element={<AddTeam/>}/> 
+          <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
         </Route>
 
         <Route path="/EMP" element={<EmpSidebar/>}>

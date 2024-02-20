@@ -96,13 +96,15 @@ public class EmployeeService {
 	public Employee  UpdatePersnolInfo(UpdatePersonalInfo emp){
 		Optional<Employee> empOpt = erepo.findById(emp.getEmpid());
 		Employee employee = empOpt.get();
-		Login login = employee.getLogin_id();
-		login.setPwd(emp.getPassword());
-		login.setUid(emp.getUsername());
+//		Login login = employee.getLogin_id();
+//		login.setPwd(emp.getPassword());
+//		login.setUid(emp.getUsername());
 		employee.setFullName(emp.getFullname());
 		employee.setCurrentAddress(emp.getCurrentAddress());
 		employee.setPermanentAddress(emp.getPermanentAddress());
 		employee.setPhNo(emp.getPhNo());
+		employee.setEmail(emp.getEmail());
+		employee.setNationality(emp.getNationality());
 
 		erepo.save(employee);
 		return  employee;

@@ -17,15 +17,13 @@ export default function UpdateEmployee() {
    // const access = JSON.parse(localStorage.getItem("loggedUser")).accessToken;  
     const {empId} = useParams();
     const init ={
-        empId:empInfo,
+        empid:empInfo,
         fullname: "",
         nationality: "",
         email: "",
         currentAddress:"",
         permanentAddress:"",
-        phNo: "",
-        username:"",
-        password:""
+        phNo: ""
     }
     
     const reducer = (state,action) => {
@@ -37,11 +35,7 @@ export default function UpdateEmployee() {
         }
     }
 
-    const [user ,dispatch] =useReducer(reducer,init);
-
-    //const access = JSON.parse(localStorage.getItem("loggedUser")).accessToken;
-   
-    
+    const [user ,dispatch] =useReducer(reducer,init);    
 
     useEffect(() => {
         fetch(`http://localhost:8080/getOneEmp/${empInfo}`, {
@@ -57,14 +51,11 @@ export default function UpdateEmployee() {
         })
         .then(data =>{
             dispatch({ type: 'update', fld: 'fullname', val: data.fullName });
-            dispatch({ type: 'update', fld: 'dob', val: data.dob });
             dispatch({ type: 'update', fld: 'nationality', val: data.nationality });
             dispatch({ type: 'update', fld: 'email', val: data.email });
-            dispatch({ type: 'update', fld: 'phNo', val: data.phNo });
             dispatch({ type: 'update', fld: 'currentAddress', val: data.currentAddress });
             dispatch({ type: 'update', fld: 'permanentAddress', val: data.permanentAddress });
-            dispatch({ type: 'update', fld: 'username', val: data.login_id.uid });
-            dispatch({ type: 'update', fld: 'password', val: data.login_id.pwd });
+            dispatch({ type: 'update', fld: 'phNo', val: data.phNo });
             console.log(JSON.stringify(user));
         })
         .catch(error => {
@@ -79,15 +70,13 @@ export default function UpdateEmployee() {
             method: 'POST',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({
-                empId:empInfo,
-                fullname: user.fullName,
+                empid:empInfo,
+                fullname: user.fullname,
                 nationality: user.nationality,
                 email: user.email,
                 currentAddress:user.currentAddress,
                 permanentAddress:user.permanentAddress,
-                phNo: user.phNo,
-                username:user.username,
-                password:user.password
+                phNo: user.phNo
             })
         }
         console.log(JSON.stringify(user))
@@ -171,19 +160,7 @@ export default function UpdateEmployee() {
                                     value={user.nationality} onChange={(e)=>{dispatch({type:'update',fld:'nationality', val: e.target.value})}} />
                                 </div>                                
                             </div>
-                        </div>
-                          
-                        <div className="form-group ">   
-                            <label className='text-muted'><h6>username</h6></label>
-                            <input  type="text" placeholder="e.g. johnweek" className="form-control"  id='username'
-                            value={user.username} onChange={(e)=>{dispatch({type:'update',fld:'username', val: e.target.value})}}  />
-                        </div>
-                        
-                        <div className="form-group ">   
-                            <label className='text-muted'><h6>Password</h6></label>
-                            <input  type="password" placeholder="***********" className="form-control"
-                            name="password" value={user.password} onChange={(e)=>{dispatch({type:'update',fld:'password', val: e.target.value})}}   />
-                        </div>
+                        </div>                          
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
