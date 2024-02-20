@@ -12,6 +12,9 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
+	@Query(value = "select count(*) from employees",nativeQuery = true)
+	public int countEmp();
+	
 	@Query("select e from Employee e where e.login_id =:l")
 	public Employee getEmployee(Login l);
 	
