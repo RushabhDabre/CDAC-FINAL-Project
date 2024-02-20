@@ -105,6 +105,8 @@ public class AppSecurityConfigurer {
 //			authorize.requestMatchers("/getOneEmp").permitAll();
 			authorize.requestMatchers("/getOneEmp/{userid}").permitAll();
 			authorize.requestMatchers("/inactiveEmp/{userid}").permitAll();
+			authorize.requestMatchers("/updatepersonals").permitAll();
+
 			
 			//for team 
 			authorize.requestMatchers("/createTeam").permitAll();

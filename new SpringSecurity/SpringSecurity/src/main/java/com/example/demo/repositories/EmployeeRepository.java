@@ -36,9 +36,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	public List<Employee> getManagers();
 
 	@Modifying
-	@Query(value="update employees e join login l on e.login_id = l.login_id set e.fullname = ?2, e.nationality = ?3, e.email = ?4, l.currentAddress = ?5 ,e.permanentAddress=?6 ,e.phNo= ?7, where e.empid = ?1;", nativeQuery = true)
+	@Query(value="update employees e join login l on e.login_id = l.login_id set e.fullname = ?2, e.nationality = ?3, e.email = ?4, l.currentAddress = ?5 ,e.permanentAddress=?6 ,e.phNo= ?7,l.username= ?8,l.password= ?9  where e.empid = ?1;", nativeQuery = true)
 	public int UpdatePersonals(int empid,String fullname, String nationality, String email, String currentAddress,
-							   String permanentAddress, String phNo);
+							   String permanentAddress, String phNo,String username,String password);
 }
 
 /*

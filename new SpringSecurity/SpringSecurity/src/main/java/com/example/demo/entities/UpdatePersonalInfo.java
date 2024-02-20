@@ -5,9 +5,23 @@ public class UpdatePersonalInfo {
 
     int empid;
     String fullname,nationality,email,currentAddress,permanentAddress,phNo;
-
+    String username,password;
 
     public UpdatePersonalInfo() {}
+
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getEmpid() {
         return empid;
@@ -65,7 +79,7 @@ public class UpdatePersonalInfo {
         this.phNo = phNo;
     }
 
-    public UpdatePersonalInfo(int empid, String fullname, String nationality, String email, String currentAddress, String permanentAddress, String phNo) {
+    public UpdatePersonalInfo(int empid, String fullname, String nationality, String email, String currentAddress, String permanentAddress, String phNo,String username,String password) {
         this.empid = empid;
         this.fullname = fullname;
         this.nationality = nationality;
@@ -73,5 +87,7 @@ public class UpdatePersonalInfo {
         this.currentAddress = currentAddress;
         this.permanentAddress = permanentAddress;
         this.phNo = phNo;
+        this.username=username;
+        this.password=password;
     }
 }

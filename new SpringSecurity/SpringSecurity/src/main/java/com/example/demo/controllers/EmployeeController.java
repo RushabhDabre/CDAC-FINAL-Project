@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,12 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entities.AddEmployee;
-import com.example.demo.entities.Designation;
-import com.example.demo.entities.Employee;
-import com.example.demo.entities.Login;
-import com.example.demo.entities.Role;
-import com.example.demo.entities.UpdateCompany;
 import com.example.demo.services.DesignationService;
 import com.example.demo.services.EmployeeService;
 import com.example.demo.services.LoginService;
@@ -98,7 +93,13 @@ public class EmployeeController {
 	public Employee UpdateAll(@RequestBody UpdateCompany emp) {
  		return eservice.UpdateAll(emp);
 	}
- 	
+
+	@PostMapping("/updatepersonals")
+	public Employee UpdatePersnolInfo(@RequestBody UpdatePersonalInfo emp){
+		 return eservice.UpdatePersnolInfo(emp);
+	}
+
+
  	@PostMapping("/inactiveEmp/{userid}")
  	public int InactiveAcc(@PathVariable("userid")int id) {
  		return eservice.InactiveAcc(id);
