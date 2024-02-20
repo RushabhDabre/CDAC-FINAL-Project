@@ -1,31 +1,17 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD:DotNetApi/DotNetApi/obj/DotNetApi.csproj.nuget.dgspec.json
-    "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj": {}
+    "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj": {
+    "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
+        "projectUniqueName": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
         "projectName": "DotNetApi",
-        "projectPath": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
-        "packagesPath": "C:\\Users\\ADITYA S SHASTRAKAR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\obj\\",
-=======
-    "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj": {}
-  },
-  "projects": {
-    "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj",
-        "projectName": "DotNetWebApi",
-        "projectPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj",
+        "projectPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\obj\\",
->>>>>>> d03956e5f9a1af3265915c2d6ab694432299199c:DotNetApi/DotNetWebApi/obj/DotNetWebApi.csproj.nuget.dgspec.json
+        "outputPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",

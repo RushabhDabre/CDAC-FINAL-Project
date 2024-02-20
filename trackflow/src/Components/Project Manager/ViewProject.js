@@ -96,7 +96,7 @@ export default function ViewProject() {
   }
 
   const assignTask = (empId)=>{
-    navigate('/PM/PMTasks');
+    navigate(`/PM/PMTasks/${empId}`);
   }
 
   return (

@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD:DotNetApi/DotNetApi/obj/project.nuget.cache
-  "dgSpecHash": "m2SXMBVKS+kQCjc4Ofe9ZcGRqIuHVXrtok8GsZsWDeyCWv2pI3GO58dhUUTIQASc9gHU1TK9uaK5KYQJg2scZg==",
+  "dgSpecHash": "5rdvijQpe64p3WIJ8cC3x7/bzJowWUtA3JBFJOy+7hMvYZEE7mru/8nLsiSyIjH7zpqYJB7LxDkOkh1TfwP94Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
-=======
-  "dgSpecHash": "TV+RgcuGMmcYgTnb9yHMQO47PI6likkrd9VNZj7+fumqO1A3Wzh2lT1LjxQ91Xuk+5a0fdpU2RyehYhPqvfMkg==",
-  "success": true,
-  "projectFilePath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj",
->>>>>>> d03956e5f9a1af3265915c2d6ab694432299199c:DotNetApi/DotNetWebApi/obj/project.nuget.cache
+  "projectFilePath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.18\\microsoft.entityframeworkcore.6.0.18.nupkg.sha512",
@@ -38,5 +32,12 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

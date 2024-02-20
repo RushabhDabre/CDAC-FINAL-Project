@@ -1042,19 +1042,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD:DotNetApi/DotNetApi/obj/project.assets.json
-      "projectUniqueName": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
+      "projectUniqueName": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
       "projectName": "DotNetApi",
-      "projectPath": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
-      "packagesPath": "C:\\Users\\ADITYA S SHASTRAKAR\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ADITYA S SHASTRAKAR\\CDAC-FINAL-Project\\DotNetApi\\DotNetApi\\obj\\",
-=======
-      "projectUniqueName": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj",
-      "projectName": "DotNetWebApi",
-      "projectPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\DotNetWebApi.csproj",
+      "projectPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\DotNetApi.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetWebApi\\obj\\",
->>>>>>> d03956e5f9a1af3265915c2d6ab694432299199c:DotNetApi/DotNetWebApi/obj/project.assets.json
+      "outputPath": "D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1130,5 +1122,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\CDAC FINAL Project\\DotNetApi\\DotNetApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

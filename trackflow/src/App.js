@@ -40,7 +40,7 @@ function App() {
         <Route path="/PM" element={<PmSidebar/>}>
           <Route path="PMHome" element={<PmDashboard/>}/>
           <Route path="PMProjects" element={<ViewProject/>}/> 
-          <Route path="PMTasks" element={<CreateTask/>}/> 
+          <Route path="PMTasks/:empId" element={<CreateTask/>}/> 
           <Route path="addTeam" element={<AddTeam/>}/> 
           <Route path="showPMTask" element={<ShowTask/>}/> 
           <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>

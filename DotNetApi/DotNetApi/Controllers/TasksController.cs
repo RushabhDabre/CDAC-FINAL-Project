@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace DotNetApi.Controllers
 {
     [EnableCors]
-    [Route("api/[controller]")]
+    [Route("/[action]")]
     [ApiController]
     public class TasksController : ControllerBase
     {
-        [HttpGet]
+        [HttpPost]
         public List<Tasktable> GetTasktables()
         {
             List<Tasktable> list = new List<Tasktable>();
@@ -22,14 +22,15 @@ namespace DotNetApi.Controllers
         }
 
         [HttpPost]
-        public Tasktable AddTasks(Tasktable tasktable)
+        public Tasktable AddTasks([FromBody] Tasktable task)
         {
-            using(var db = new trackflowdbContext())
+            using (var db = new trackflowdbContext())
             {
-                db.Tasktables.Add(tasktable);
+                db.Tasktables.Add(task);
                 db.SaveChanges();
             }
-            return tasktable;
+            return task;
         }
+
     }
 }
