@@ -55,5 +55,4 @@ public class UpdateCompany {
 		return "UpdateCompany [basicSal=" + basicSal + ", incentives=" + incentives + ", role_id=" + role_id
 				+ ", designationID=" + designationID + "]";
 	}
-	
 }

@@ -4,14 +4,10 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entities.Designation;
-import com.example.demo.entities.Employee;
-import com.example.demo.entities.Login;
-import com.example.demo.entities.Role;
-import com.example.demo.entities.UpdateCompany;
 import com.example.demo.repositories.DesignationRepository;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.LoginRepository;
@@ -82,9 +78,9 @@ public class EmployeeService {
 	}
 	
 	public Employee UpdateAll(UpdateCompany emp) {//int
-		Optional<Employee> empok = erepo.findById(emp.getEmpid());//
-		Employee employee = empok.get(); //
-		Login login = employee.getLogin_id();//
+		Optional<Employee> empok = erepo.findById(emp.getEmpid());
+		Employee employee = empok.get();
+		Login login = employee.getLogin_id();
 		Role role = rrepo.findById(emp.getRole_id()).get();
 		Designation designation = drepo.findById(emp.getDesignationID()).get();
 		login.setRole(role);
@@ -95,7 +91,23 @@ public class EmployeeService {
 		employee.setEmpId(emp.getEmpid());
 		return erepo.save(employee);
 	}
-	
+
+
+	public Employee  UpdatePersnolInfo(UpdatePersonalInfo emp){
+		Optional<Employee> empOpt = erepo.findById(emp.getEmpid());
+		Employee employee = empOpt.get();
+		Login login = employee.getLogin_id();
+		login.setPwd(emp.getPassword());
+		login.setUid(emp.getUsername());
+		employee.setFullName(emp.getFullname());
+		employee.setCurrentAddress(emp.getCurrentAddress());
+		employee.setPermanentAddress(emp.getPermanentAddress());
+		employee.setPhNo(emp.getPhNo());
+
+		erepo.save(employee);
+		return  employee;
+	}
+
 	public int InactiveAcc(int empid) {
 		try {
 			Optional<Employee> empok = erepo.findById(empid);
