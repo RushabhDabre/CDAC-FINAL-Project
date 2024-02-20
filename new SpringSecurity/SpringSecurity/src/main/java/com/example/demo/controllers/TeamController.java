@@ -48,4 +48,14 @@ public class TeamController {
 	public List<Team> teamList(@PathVariable("pid") int pid){
 		return tservice.teamList(pid);
 	}
+	
+	@PostMapping("/removeMember/{empid}")
+	public int removeMember(@PathVariable("empid") int empid) {
+		int update = tservice.removeMember(empid);
+		if(update>0) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }

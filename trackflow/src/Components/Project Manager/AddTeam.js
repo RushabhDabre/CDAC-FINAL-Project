@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 export default function AddTeam() {
     let navigate = useNavigate();
@@ -43,7 +44,7 @@ export default function AddTeam() {
 
     return (
         <div className="container-fluid ">
-            <table className="table table-bordered table-hover" >
+            <table className="table table-bordered table-hover mt-2" >
                 <thead className='table-dark'>
                 <tr>
                     <th className="fs-6 fw-medium">EMPID</th>
@@ -70,6 +71,7 @@ export default function AddTeam() {
                 })}
                 </tbody>
                 </table>
+                <button className='btn btn-outline-dark d-flex align-items-center fs-6' onClick={()=>{navigate('/PM/PMProjects')}}><MdArrowBackIosNew /> Back</button>
         </div>
   )
 }
