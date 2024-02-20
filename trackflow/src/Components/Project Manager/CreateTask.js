@@ -7,17 +7,22 @@ export default function CreateTask() {
     const ref = useRef(null) //used for Loading Bar
     let navigate = useNavigate();
     
+    const pId = JSON.parse(localStorage.getItem("projectInfo"));
+    const assignedDate = new Date();
+    const pid = pId[0].pid;
+
+
+
     const {empId} = useParams();
-    console.log("Employee Id "+empId);
     const init ={
         tname: "",
         description: "",
-        assigneddate: "",
+        assigneddate: assignedDate.toISOString().substring(0,10),
         deadline: "",
         status: true,
         progress: 0,
         empid: empId,
-        pid: 0
+        pid: pid
     }
 
     const reducer = (state,action) => {
@@ -30,25 +35,23 @@ export default function CreateTask() {
     }
 
     const [tasks ,dispatch] =useReducer(reducer,init);
-    const pId = JSON.parse(localStorage.getItem("projectInfo"))
-    console.log("Pid :"+pId[0].pid);
-    const currentDate = new Date().toISOString;
-    console.log(currentDate);
-    const insertData = ()=>{      
-
+    
+    const insertData = (e)=>{      
+        e.preventDefault();
         fetch('https://localhost:7078/AddTasks',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 tname: tasks.tname,
                 description: tasks.description,
-                assigneddate: JSON.stringify(currentDate),
+                assigneddate: assignedDate.toISOString().substring(0,10),
                 deadline: tasks.deadline,
                 status: true,
                 progress: 0,
                 empid: empId,
-                pid: pId[0].pid
+                pid: pid
             })
+            
         })
         .then(res=>{
             if(res.ok){
@@ -58,7 +61,7 @@ export default function CreateTask() {
             }
         })
         .then(obj=>{
-            alert("Team Member Added!");
+            alert("Task Created Successfully!");
         })
         .catch((error)=>{navigate("/errorPage")});
     }
@@ -72,16 +75,19 @@ export default function CreateTask() {
                 <form onSubmit={insertData}>
                     <div className="mb-3">   
                         <label className='text-muted'><h6>Task Name</h6></label>
-                        <input  type="text" placeholder="e.g. login component" className="form-control" />
+                        <input  type="text" placeholder="e.g. login component" className="form-control" name='tname'
+                        value={tasks.tname} onChange={(e)=>{dispatch({type:'update',fld:'tname', val: e.target.value})}} required />
                     </div>
                     <div className="mb-3">   
                         <label className='text-muted'><h6>Description</h6></label>
-                        <textarea placeholder="e.g. dot.net web API for backend" rows="8" className="form-control" />
+                        <textarea placeholder="e.g. dot.net web API for backend" rows="8" className="form-control"  name='description'
+                        value={tasks.description} onChange={(e)=>{dispatch({type:'update',fld:'description', val: e.target.value})}} required />
                     </div>
                     
                     <div className="mb-3">   
                         <label className='text-muted'><h6>Deadline</h6></label>
-                        <input  type="date" className="form-control" />
+                        <input  type="date" className="form-control"  name='deadline'
+                        value={tasks.deadline} onChange={(e)=>{dispatch({type:'update',fld:'deadline', val: e.target.value})}} required/>
                     </div>
                     
                     <div className="row g-3 align-items-center d-flex justify-content-center mb-3">
@@ -89,7 +95,7 @@ export default function CreateTask() {
                             <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{ navigate("/PM/PMProjects")}}>Cancel</button>
                         </div>
                         <div className="col-auto ">
-                            <button type="submit" className="btn  w-100 font-weight-bold mt-2" style={{"backgroundColor":"#323452", "color":"whitesmoke"}} >Create Task</button>
+                            <button type="submit" className="btn  w-100 font-weight-bold mt-2" style={{"backgroundColor":"#323452", "color":"whitesmoke"}} onClick={(e)=>insertData(e)}>Create Task</button>
                         </div>
                     </div>
                 </form>    

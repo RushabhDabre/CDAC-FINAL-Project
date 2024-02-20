@@ -32,5 +32,47 @@ namespace DotNetApi.Controllers
             return task;
         }
 
+
+        [HttpGet]
+        public List<Tasktable> gettasksbypid(int pid)
+        {
+            List<Tasktable> tasks = new List<Tasktable>();
+            using(var db = new trackflowdbContext())
+            {
+                tasks = db.Tasktables.Where(t => t.Pid == pid).ToList();
+            }
+            return tasks;
+        }
+
+        [HttpGet]
+        public List<Tasktable> gettasksbyempid(int EmpId)
+        {
+            List<Tasktable> tasks = new List<Tasktable>();
+            using (var db = new trackflowdbContext())
+            {
+                tasks = db.Tasktables.Where(t => t.Empid == EmpId).ToList();
+            }
+            return tasks;
+        }
+
+        [HttpPost]
+        public void UpdateTaskStatus(int taskId, int  progress)
+        {
+            using (var db = new trackflowdbContext())
+            {
+                var taskToUpdate = db.Tasktables.FirstOrDefault(t => t.Tid == taskId);
+
+                if (taskToUpdate != null)
+                {
+                   
+                    taskToUpdate.Progress = progress;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception($"Task with ID {taskId} not found.");
+                }
+            }
+        }
     }
 }

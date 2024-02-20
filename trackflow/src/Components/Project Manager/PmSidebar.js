@@ -79,7 +79,7 @@ export default function PmSidebar() {
                     </li>
 
                     <li className='sidebar px-4 py-3 fs-5'>
-                        <Link className='text-decoration-none text-secondary fs-6' to={'PMTasks'}>
+                        <Link className='text-decoration-none text-secondary fs-6' to={'showPMTask'}>
                             <BsFillGrid3X3GapFill className='icon fs-6'/> Tasks
                         </Link>
                     </li>

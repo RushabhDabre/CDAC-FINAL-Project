@@ -65,7 +65,7 @@ export default function AddTeam() {
                         onChange={(e)=>{setComments(e.target.value);}}/>
                     </td>
                     <td className="fs-6">
-                        <button className="btn btn-info" onClick={()=>AddTeamMemeber(v.empId)}>add</button>
+                        <button className="btn btn-info" onClick={()=>AddTeamMemeber(v.empId)}>assign</button>
                     </td>
                     </tr>);
                 })}
