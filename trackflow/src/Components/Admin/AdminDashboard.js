@@ -1,35 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './dashboard.css';
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill} from 'react-icons/bs';
-
+import {  BsFillGrid3X3GapFill, BsPeopleFill} from 'react-icons/bs';
+import { FaUserAlt } from "react-icons/fa";
 
 export default function AdminDashboard() {
+  const [value,setValue] = useState(0);
+  useEffect(()=>{
+    fetch('http://localhost:8080/getDashboardData')
+    .then(resp=>resp.json())
+    .then(data=>{setValue(data)});
+  },[])
+
   return (
     <main >
       <div className='main-title'>
             <h3 className='text-dark'>DASHBOARD</h3>
-        </div>
-      <div className='main-cards'>
-        <div className='card'>
+      </div>
+      <div className='main-cards '>
+        <div className='card' style={{backgroundColor:"#7091F5"}}>
             <div className='card-inner'>
-                <h3 className='fs-6'>PRODUCTS</h3>
-                <BsFillArchiveFill className='card_icon fs-6'/>
+                <h3 className='fs-6'>No of Employees</h3>
+                <FaUserAlt className='card_icon fs-6'/>
             </div>
-            <h1 className='fs-6'>300</h1>
+            <h1 className='fs-6'>{value.empdata}</h1>
         </div>
-        <div className='card'>
+        <div className='card' style={{backgroundColor:"#1FAB89"}}>
             <div className='card-inner'>
-                <h3 className='fs-6'>CATEGORIES</h3>
+                <h3 className='fs-6'>No of Projects</h3>
                 <BsFillGrid3X3GapFill className='card_icon fs-6'/>
             </div>
-            <h1 className='fs-6'>12</h1>
+            <h1 className='fs-6'>{value.projectdata}</h1>
         </div>
-        <div className='card'>
+        <div className='card' style={{backgroundColor:"#F30E5C"}}>
             <div className='card-inner'>
-                <h3 className='fs-6'>CUSTOMERS</h3>
+                <h3 className='fs-6'>No of Clients</h3>
                 <BsPeopleFill className='card_icon fs-6'/>
             </div>
-            <h1 className='fs-6'>33</h1>
+            <h1 className='fs-6'>{value.clientdata}</h1>
         </div>
         {/* <div className='card'>
             <div className='card-inner'>

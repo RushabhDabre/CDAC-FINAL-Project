@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {  useNavigate } from "react-router-dom";
-import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
-import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
-
 
 export default function TaskList() {
 
-  let navigate = useNavigate();
   const [originalRecords, setOriginalRecords] = useState([]);
   const [filteredRecords, setFilteredRecords] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,15 +10,17 @@ export default function TaskList() {
   useEffect(() => {    
     const empinfo = JSON.parse(localStorage.getItem("empinfo"));
     const empId = empinfo.empId;  
-      fetch(`https://localhost:7078/gettasksbyempid?EmpId=${empId}`, {
+      fetch(`https://localhost:7078/getactivetasksbyempid?EmpId=${empId}`, {
         method: 'GET',
         headers: {'content-type': 'application/json'},
       })
       .then(resp => resp.json())
       .then(obj => {
-        setOriginalRecords(obj);
-        setFilteredRecords(obj);
-      });
+        const tasksWithProgress = obj.map(task => ({ ...task, progressValue: task.progress / 20 }));
+        setOriginalRecords(tasksWithProgress);
+        setFilteredRecords(tasksWithProgress);  
+    });
+
   },[]);
 
   const lastIndex = currentPage * recordsPerPage;
@@ -60,23 +57,40 @@ export default function TaskList() {
     setCurrentPage(1); // Reset to the first page when changing records per page
   };
 
+  const [progressValue, setProgressValue] = useState(0);
+
+  // const getRangeValue = (e,id) => {
+  //   const newProgressValue = e.target.value;
+  //   setProgressValue(newProgressValue); 
+  // }
+
+  const getRangeValue = (e, id) => {
+    const newProgressValue = e.target.value;
+    setProgressValue(newProgressValue);
   
-  const [value, setValue] = useState(0);
+    // Update the progress immediately in the originalRecords state
+    const updatedRecords = filteredRecords.map(record => {
+      if (record.tid === id) {
+        return { ...record, progressValue: newProgressValue, progress: newProgressValue * 20  };
+      }
+      return record;
+    });
+    setFilteredRecords(updatedRecords);
+  };
   
-  const getRangeValue = (e,taskId) => {
-    const updatedValue = e.target.value; 
-    setValue(updatedValue); 
-    fetch(`https://localhost:7078/UpdateTaskStatus?taskId=${taskId}&progress=${value*20}`, {
+
+  const updateProgress = (taskId, newProgressValue) => {
+    fetch(`https://localhost:7078/UpdateTaskStatus?taskId=${taskId}&progress=${newProgressValue}`, {
       method: 'POST',
       headers: {'content-type': 'application/json'}
     })
-    .then(responseData => {
-      console.log(updatedValue*20);
-      console.log(filteredRecords[0].progress);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(data => {
+        console.log(data);
+        alert("Updated Successfully!!");
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
 
@@ -100,13 +114,14 @@ export default function TaskList() {
       </div>
     </div>
     
-    <table className="mt-2 table table-borderedA table-hover" >
+    <table className="mt-2 table table-bordered " >
       <thead className='table-dark'>
         <tr>
           <th className="fs-6 fw-medium">Task Name</th>
           <th className="fs-6 fw-medium">Description</th>
           <th className="fs-6 fw-medium">Deadline</th>
           <th className="fs-6 fw-medium">Progress</th>
+          <th className="fs-6 fw-medium">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -115,9 +130,11 @@ export default function TaskList() {
             <td className="fs-6">{v.tname}</td>
             <td className="fs-6">{v.description}</td>
             <td className="fs-6">{v.deadline}</td>
-            <td className="col-2 fs-6 bg-secondary">
-              <input type="range" className="form-range" min="0" max="5" id="customRange2" value={value} onChange={(e)=>{getRangeValue(e,v.tid)}}/>
-              <p>Value:{value*20}</p>
+            <td className="col-2 fs-6 ">
+              <input type="range" className="form-range" min="0" max="5" id="customRange2" value={v.progress/20} onChange={(e)=>{getRangeValue(e,v.tid)}}/>
+            </td>
+            <td className="col-2 fs-6 ">
+              <button className='btn btn-info' onClick={() => updateProgress(v.tid, v.progress)} >Update</button>
             </td>
           </tr>);
         })}

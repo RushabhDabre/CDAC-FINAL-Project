@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-custom-alert';
+import 'react-custom-alert/dist/index.css'; // import css file from root.
 
 export default function GetAllProject() {
     let navigate = useNavigate();
@@ -9,16 +11,29 @@ export default function GetAllProject() {
     const [recordsPerPage, setRecordsPerPage] = useState(5); // Default value
     
     useEffect(() => {
-        fetch("http://localhost:8080/getAllProjects", {
+        fetch("http://localhost:8080/getAllActiveProjects", {
           method: 'GET',
           headers: {'content-type': 'application/json'},
         })
         .then(resp => resp.json())
         .then(obj => {
+
           setOriginalRecords(obj);
           setFilteredRecords(obj);
         });
     }, []);
+
+    const endProject = (pid)=>{
+      fetch(`http://localhost:8080/endProject/${pid}`,{
+        method:'POST',
+        headers: {'content-type': 'application/json'}
+      })
+      .then(resp=>{
+        toast.success('Project is Completed Successfully!', { className: 'text-success' });
+      })
+    }
+
+    
 
     const lastIndex = currentPage * recordsPerPage;
     const firstIndex = lastIndex - recordsPerPage;
@@ -56,52 +71,57 @@ export default function GetAllProject() {
 
     return (
         <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-2 d-flex align-items-center">
-            <span className='text-black fs-6 me-2'>Show</span>
-            <select className='form-select form-select-sm' value={recordsPerPage} onChange={handleRecordsPerPageChange}>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-              <option value="25">25</option>
-            </select>
-            <span className='text-black fs-6 ms-2'>entries</span>
+          <ToastContainer floatingTime={5000} />
+          <div className="row">
+            <div className="col-md-2 d-flex align-items-center">
+              <span className='text-black fs-6 me-2'>Show</span>
+              <select className='form-select form-select-sm' value={recordsPerPage} onChange={handleRecordsPerPageChange}>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+              </select>
+              <span className='text-black fs-6 ms-2'>entries</span>
+            </div>
+            <div className='col-7'></div>
+            <div className="col-3 mt-2">
+              <input className="form-control" type="text" placeholder="Search" onChange={handleFilter} />
+            </div>
           </div>
-          <div className='col-7'></div>
-          <div className="col-3 mt-2">
-            <input className="form-control" type="text" placeholder="Search" onChange={handleFilter} />
+          <div className="row">
+            <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button>
           </div>
-        </div>
-        <div className="row">
-          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button>
-        </div>
-        <table className="table table-borderedA table-hover" >
-          <thead className='table-dark'>
-            <tr>
-              <th className="fs-6 fw-medium">PID</th>
-              <th className="fs-6 fw-medium">Title</th>
-              <th className="fs-6 fw-medium">Developer</th>
-              <th className="fs-6 fw-medium">techstack</th>
-              <th className="fs-6 fw-medium">Description</th>
-              <th className="fs-6 fw-medium">Deadline</th>
-              <th className="fs-6 fw-medium">Comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentRecords.map((v) => {
-              return (<tr key={v.empId}>
-                <td className="fs-6">{v.pid}</td>
-                <td className="fs-6">{v.title}</td>
-                <td className="fs-6">{v.empid.fullName}</td>
-                <td className="fs-6">{v.techstack}</td>
-                <td className="fs-6">{v.description}</td>
-                <td className="fs-6">{v.deadline}</td>
-                <td className="fs-6">{v.comments}</td>
-              </tr>);
-            })}
-          </tbody>
-        </table>
+          <table className="table table-borderedA table-hover" >
+            <thead className='table-dark'>
+              <tr>
+                <th className="fs-6 fw-medium">PID</th>
+                <th className="fs-6 fw-medium">Title</th>
+                <th className="fs-6 fw-medium">Developer</th>
+                <th className="fs-6 fw-medium">techstack</th>
+                <th className="fs-6 fw-medium">Description</th>
+                <th className="fs-6 fw-medium">Deadline</th>
+                <th className="fs-6 fw-medium">Comments</th>
+                <th className="fs-6 fw-medium">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentRecords.map((v) => {
+                return (<tr key={v.empId}>
+                  <td className="fs-6">{v.pid}</td>
+                  <td className="fs-6">{v.title}</td>
+                  <td className="fs-6">{v.empid.fullName}</td>
+                  <td className="fs-6">{v.techstack}</td>
+                  <td className="fs-6">{v.description}</td>
+                  <td className="fs-6">{v.deadline}</td>
+                  <td className="fs-6">{v.comments}</td>
+                  <td className="fs-6">
+                    <button className='btn btn-success' onClick={()=>endProject(v.pid)}>Done</button>
+                  </td>
+                </tr>);
+              })}
+            </tbody>
+          </table>
         <div className='row '>
           <div className='col-3'>
             <span className='text-black fs-6'>Showing {firstIndex + 1} to {Math.min(lastIndex, filteredRecords.length)} of {filteredRecords.length} records</span>

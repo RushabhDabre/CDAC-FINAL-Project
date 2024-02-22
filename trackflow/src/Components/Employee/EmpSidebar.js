@@ -1,7 +1,6 @@
 import React,{useState, useEffect } from 'react'
 import './Sidebar.css';
 import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { RiShutDownLine } from "react-icons/ri";
 import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';

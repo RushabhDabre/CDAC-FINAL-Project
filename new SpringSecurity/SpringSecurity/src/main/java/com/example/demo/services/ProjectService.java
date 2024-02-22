@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.Optional;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,9 @@ public class ProjectService {
 	public List<Project> getAll(){
 		return prepo.findAll();
 	}
-	
+
+	public List<Project> getActiveProjects(){return prepo.getActiveProjects();}
+
 	public List<Project> getProjectByEmpId(int empid){
 		return prepo.getProjectByEmpId(empid);
 	}
@@ -50,8 +53,15 @@ public class ProjectService {
 		}
 		return saved;
 	}
-	
-	public int countProject() {
-		return prepo.countProject();
+
+	@Transactional
+	public int EndProject(int pid){
+		try{
+			return prepo.EndProject(pid);
+		}catch(Exception e){
+			e.printStackTrace();
+			return -1;
+		}
 	}
+
 }

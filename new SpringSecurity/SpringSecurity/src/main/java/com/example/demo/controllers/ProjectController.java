@@ -40,7 +40,9 @@ public class ProjectController {
 	public List<Project> getAllProjects(){
 		return pservice.getAll();
 	}
-	
+
+	@GetMapping("/getAllActiveProjects")
+	public List<Project> getActiveProject(){return pservice.getActiveProjects();}
 	
 	@GetMapping("/getProjectByEmpId/{empid}")
 	public List<Project> getProjectByEmpId(@PathVariable("empid") int empid){
@@ -62,6 +64,16 @@ public class ProjectController {
 		Project p = new Project(project.getTitle(), project.getTechstack(), project.getDescription(), project.getDeadline(), true, project.getComments(), e, c);
 		
 		return pservice.InsertProject(p);
+	}
+
+	@PostMapping("/endProject/{pid}")
+	public int EndProject(@PathVariable("pid")int pid){
+		int end = pservice.EndProject(pid);
+		if(end>0){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 	
 }

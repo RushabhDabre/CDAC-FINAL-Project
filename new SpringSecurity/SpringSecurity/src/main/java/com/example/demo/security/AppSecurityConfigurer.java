@@ -88,10 +88,13 @@ public class AppSecurityConfigurer {
 		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.authorizeHttpRequests(authorize -> {
+
 			authorize.requestMatchers("/").permitAll();
+			authorize.requestMatchers("/getDashboardData").permitAll();
+
 			authorize.requestMatchers("/login").permitAll();
 			authorize.requestMatchers("/getEmployee/{loginid}").permitAll();
-			
+
 			//for User Registration
 			authorize.requestMatchers("/userCheck").permitAll();
 			authorize.requestMatchers("/regEmployee").permitAll();
@@ -113,14 +116,17 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/getBenchEmployees").permitAll();
 			authorize.requestMatchers("/teamList/{pid}").permitAll();
 			authorize.requestMatchers("/removeMember/{empid}").permitAll();
+			authorize.requestMatchers("/dasboardDataByEmp/{empid}").permitAll();
 			
 			//for project
 			authorize.requestMatchers("/createProject").permitAll();
 			authorize.requestMatchers("/getAllProjects").permitAll();
+			authorize.requestMatchers("/getAllActiveProjects").permitAll();
 			authorize.requestMatchers("/getProjectByEmpId/{empid}").permitAll();
 			authorize.requestMatchers("/getProjectByLoginId/{loginid}").permitAll();
 			authorize.requestMatchers("/getManagers").permitAll();
 			authorize.requestMatchers("/getClients").permitAll();
+			authorize.requestMatchers("/endProject/{pid}").permitAll();
 			
 			
 			//hasAuthority 

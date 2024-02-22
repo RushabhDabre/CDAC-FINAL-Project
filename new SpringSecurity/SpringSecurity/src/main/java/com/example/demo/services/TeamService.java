@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.DashboardDataByEmp;
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Login;
 import com.example.demo.entities.Project;
@@ -51,5 +52,13 @@ public class TeamService {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public DashboardDataByEmp dasboardDataByEmp(int empId) {
+		DashboardDataByEmp de = new DashboardDataByEmp();
+		de.setEmpguided(trepo.countEmployeeForPM(empId));
+		de.setPworkedon(trepo.countProjectForEmp(empId));
+		de.setPassigned(prepo.countProjectForPM(empId));
+		return de;
 	}
 }

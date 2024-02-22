@@ -31,9 +31,6 @@ public class ClientService {
 	{
 		return crepo.findAll();
 	}
-	
-	public int countClients() {
-		return crepo.countClients();
-	}
+
 	
 }

@@ -55,6 +55,28 @@ namespace DotNetApi.Controllers
             return tasks;
         }
 
+        [HttpGet]
+        public List<Tasktable> getactivetasksbyempid(int EmpId)
+        {
+            List<Tasktable> tasks = new List<Tasktable>();
+            using (var db = new trackflowdbContext())
+            {
+                tasks = db.Tasktables.Where(t => t.Empid == EmpId && t.Status == true).ToList();
+            }
+            return tasks;
+        }
+
+        [HttpGet]
+        public int GetCompletedTaskCount(int EmpId)
+        {
+            int count = 0;
+            using var db = new trackflowdbContext();
+            {
+                count = db.Tasktables.Count(t=> t.Progress == 100 && t.Empid == EmpId);
+            }
+            return count;
+        }
+
         [HttpPost]
         public void UpdateTaskStatus(int taskId, int  progress)
         {

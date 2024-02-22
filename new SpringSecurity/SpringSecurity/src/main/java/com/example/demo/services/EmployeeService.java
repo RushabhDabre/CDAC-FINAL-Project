@@ -5,13 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.entities.*;
+import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.example.demo.repositories.DesignationRepository;
-import com.example.demo.repositories.EmployeeRepository;
-import com.example.demo.repositories.LoginRepository;
-import com.example.demo.repositories.RoleRepository;
 
 @Service
 public class EmployeeService {
@@ -27,7 +23,12 @@ public class EmployeeService {
 	
 	@Autowired
 	DesignationRepository drepo;
-	
+
+	@Autowired
+	ClientRepository crepo;
+
+	@Autowired
+	ProjectRepository prepo;
 	
 	public Employee saveEmployee(Employee emp)
 	{
@@ -96,9 +97,6 @@ public class EmployeeService {
 	public Employee  UpdatePersnolInfo(UpdatePersonalInfo emp){
 		Optional<Employee> empOpt = erepo.findById(emp.getEmpid());
 		Employee employee = empOpt.get();
-//		Login login = employee.getLogin_id();
-//		login.setPwd(emp.getPassword());
-//		login.setUid(emp.getUsername());
 		employee.setFullName(emp.getFullname());
 		employee.setCurrentAddress(emp.getCurrentAddress());
 		employee.setPermanentAddress(emp.getPermanentAddress());
@@ -127,12 +125,12 @@ public class EmployeeService {
 			return -1;
 		}
 	}
-	
-//	public int countEmp() {
-//		return erepo.countEmp()
-//	}
-	
-//	public Employee UpdateAll(int empid, double basicsal, double incentives, int designation_id, int login_id) {
-//	return erepo.UpdateAll(empid, basicsal, incentives, designation_id, login_id);
-//	}
+
+	public DashboardData getDashboardData(){
+		DashboardData dd = new DashboardData();
+		dd.setEmpdata(erepo.countEmp());
+		dd.setProjectdata(prepo.countProject());
+		dd.setClientdata(crepo.countClients());
+		return dd;
+	}
 }

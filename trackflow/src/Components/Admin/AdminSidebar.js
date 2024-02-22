@@ -1,7 +1,5 @@
 import React,{useState, useEffect } from 'react'
-import './Sidebar.css';
 import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { RiShutDownLine } from "react-icons/ri";
 import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
@@ -61,11 +59,11 @@ export default function AdminSidebar() {
                 </ul>
             </div>
         </nav>
-        <div className="row">
-            <div className="col-md-6 position-fixed sticky-top " style={{  top: "40px", bottom: "0", backgroundColor: "#f7f8f9", width: "200px"  }}>
-                <ul className="list-unstyled m-0">
-                    <li className='sidebar px-4 py-3 fs-6'>
-                        <Link className='text-decoration-none text-secondary fs-6' to={'adminHome'}>
+        <div className="row" >
+            <div className="col-md-6 position-fixed sticky-top "  style={{  top: "40px", bottom: "0", backgroundColor: "#f7f8f9", width: "200px"  }}>
+                <ul className="list-unstyled m-0" >
+                    <li className='sidebar px-4 py-4 fs-6 ' >
+                        <Link className='text-decoration-none text-secondary fs-6 hover:bg-secondary hover:text-white' to={'adminHome'}>
                             <BsGrid1X2Fill className='icon fs-6'/> Dashboard
                         </Link>
                     </li>

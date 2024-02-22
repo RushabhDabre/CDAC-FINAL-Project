@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.AddMember;
+import com.example.demo.entities.DashboardDataByEmp;
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Project;
 import com.example.demo.entities.Team;
@@ -57,5 +58,10 @@ public class TeamController {
 		}else {
 			return 0;
 		}
+	}
+	
+	@GetMapping("/dasboardDataByEmp/{empid}")
+	public DashboardDataByEmp dasboardDataByEmp(@PathVariable("empid")int empId) {
+		return tservice.dasboardDataByEmp(empId);
 	}
 }

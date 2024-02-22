@@ -24,6 +24,7 @@ import jakarta.websocket.server.PathParam;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
+	
 	@Autowired
 	EmployeeService eservice;
 	
@@ -106,4 +107,9 @@ public class EmployeeController {
  	public int InactiveAcc(@PathVariable("userid")int id) {
  		return eservice.InactiveAcc(id);
  	}
+
+	 @GetMapping("/getDashboardData")
+	public DashboardData getDashboardData(){
+		 return eservice.getDashboardData();
+	}
 }
