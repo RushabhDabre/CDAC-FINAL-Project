@@ -3,6 +3,7 @@ import React, {useState, useEffect, useRef , useReducer} from 'react';
 import { useForm } from "react-hook-form";
 import {  useNavigate } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function AddEmployee() {
     const ref = useRef(null)
@@ -118,7 +119,10 @@ export default function AddEmployee() {
                     } )
                     .then(obj=>{
                         ref.current.complete();
-                        alert("Regestration Successful");
+                        // alert("Regestration Successful");
+                        toast.success('Regestration Successfully!');
+                        // navigate('/ADMIN/userinfo');
+                        setTimeout(() => navigate('/ADMIN/userinfo'), 1000);
                         console.log(JSON.stringify(obj));
                     })
                     .catch((error)=>{navigate("/errorPage")});
@@ -132,13 +136,15 @@ export default function AddEmployee() {
                     }
                 }
             }).catch((error)=>{navigate("/errorPage")});
-        
-
     }
+
+    const today = new Date();
+    const minDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()); // Calculate date 18 years ago
 
     return (
     <div className="container d-flex justify-content-center">
-            <LoadingBar color="#f11946" ref={ref} shadow={true} /> 
+            <LoadingBar color="#f11946" ref={ref} shadow={true} />
+            <ToastContainer floatingTime={5000} /> 
             <div className='container d-flex justify-content-center'>
                 <div className=" shadow-lg p-4 m-5" style={{"width": '60rem'}}>
                     <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger">{msg}</strong></div>
@@ -156,7 +162,8 @@ export default function AddEmployee() {
                                 <label className='form-label text-muted'><h6>DOB</h6></label>
                                 <input  type="date" placeholder="" className="form-control" name='dob'
                                 {...register("dob",{required: true})} //for Validation
-                                value={user.dob} onChange={(e)=>{dispatch({type:'update',fld:'dob', val: e.target.value})}} required/> 
+                                value={user.dob} onChange={(e)=>{dispatch({type:'update',fld:'dob', val: e.target.value})}} 
+                                max={minDOB.toISOString().split('T')[0]} required/> 
                                 <span className='text-danger fs-6'>{errors.dob?.type === "required" && "Date of Birth is required!"}</span >
                             </div>
                             
@@ -244,7 +251,8 @@ export default function AddEmployee() {
                                 <label className='text-muted'><h6>HireDate</h6></label>
                                 <input  type="date" placeholder="" className="form-control" name='hireDate'
                                 {...register("hdate",{required: true})} //for Validation
-                                value={user.hireDate} onChange={(e)=>{dispatch({type:'update',fld:'hireDate', val: e.target.value})}} required/>  
+                                value={user.hireDate} onChange={(e)=>{dispatch({type:'update',fld:'hireDate', val: e.target.value})}}
+                                min={new Date().toISOString().split('T')[0]} required/>  
                                 <span className='text-danger fs-6'>{errors.hdate?.type === "required" && "feild is required"}</span>
                             </div>
                         </div>

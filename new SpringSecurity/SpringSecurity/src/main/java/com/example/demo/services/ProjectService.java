@@ -22,6 +22,11 @@ public class ProjectService {
 	}
 
 	public List<Project> getActiveProjects(){return prepo.getActiveProjects();}
+	
+	public List<Project>projecthistory(){return prepo.projecthistory();}
+	
+	
+	public List<Project> getCurrentProject(int id){return prepo.getCurrentProject(id);}
 
 	public List<Project> getProjectByEmpId(int empid){
 		return prepo.getProjectByEmpId(empid);

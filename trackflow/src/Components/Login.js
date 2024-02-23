@@ -66,13 +66,13 @@ export default function AddEmployee() {
                 const role_id = obj.roles[0]; // Assuming roles is an array
                 if(role_id === "admin"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/ADMIN/adminHome"), 500);
+                    setTimeout(() => navigate("/ADMIN/adminHome"), 100);
                 } else if(role_id === "project_manager"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/PM/PMHome"), 500);
+                    setTimeout(() => navigate("/PM/PMHome"), 100);
                 } else if(role_id === "employee"){
                     ref.current.complete();
-                    setTimeout(() => navigate("/EMP/EmpHome"), 500);
+                    setTimeout(() => navigate("/EMP/EmpHome"), 100);
                 }
             }
         })

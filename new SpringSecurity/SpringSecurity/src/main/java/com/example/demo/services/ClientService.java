@@ -31,6 +31,10 @@ public class ClientService {
 	{
 		return crepo.findAll();
 	}
+	
+	public List<Client> getClientOfProject(int pid){
+		return crepo.getClientOfProject(pid);
+	}
 
 	
 }

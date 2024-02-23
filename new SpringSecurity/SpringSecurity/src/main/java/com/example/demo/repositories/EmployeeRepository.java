@@ -20,12 +20,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	@Query("select e from Employee e where e.login_id in (select l.login_id from Login l where l.active = true)")
 	public List<Employee> getActiveEmployees();
+	
+	@Query("select e from Employee e where e.login_id in (select l.login_id from Login l where l.active = false)")
+	public List<Employee> employeeHistory();
 	/*
 	 SELECT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND (t.status = 0 OR t.status IS NULL);
 	 * */
-	@Query(value = "SELECT e.*, l.role_id FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND l.role_id = 3 AND e.empid not in (select empid from teams where status = 1)",nativeQuery = true)
+
+//	@Query(value = "SELECT e.*, l.role_id FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND l.role_id = 3 AND e.empid not in (select empid from teams where status = 1)",nativeQuery = true)
+//	public List<Employee> getBenchEmployees();
+
+	@Query(value = "SELECT DISTINCT e.* FROM employees e JOIN login l ON e.login_id = l.login_id LEFT JOIN teams t ON e.empid = t.empid WHERE l.status = 1 AND l.role_id = 3 AND e.empid NOT IN (SELECT empid FROM teams WHERE status = 1)",nativeQuery = true)
 	public List<Employee> getBenchEmployees();
-	
 	
 	@Modifying
 	@Query(value ="update employees e join login l on e.login_id = l.login_id set e.basicsal = ?2, e.incentives = ?3, e.designation_id = ?4, l.role_id = ?5 where e.empid = ?1;", nativeQuery = true)

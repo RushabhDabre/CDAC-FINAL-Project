@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function TaskList() {
 
@@ -85,8 +86,9 @@ export default function TaskList() {
       headers: {'content-type': 'application/json'}
     })
       .then(data => {
+        toast.success('Updated Successfully!!');
         console.log(data);
-        alert("Updated Successfully!!");
+        // alert("Updated Successfully!!");
       })
       .catch(error => {
         console.error('Error:', error);
@@ -96,6 +98,7 @@ export default function TaskList() {
 
   return (
     <div className="container-fluid">
+      <ToastContainer floatingTime={5000} />
     <div className="row">
       <div className="col-md-2 d-flex align-items-center">
         <span className='text-black fs-6 me-2'>Show</span>
@@ -129,7 +132,7 @@ export default function TaskList() {
            return (<tr key={v.tid}>
             <td className="fs-6">{v.tname}</td>
             <td className="fs-6">{v.description}</td>
-            <td className="fs-6">{v.deadline}</td>
+            <td className="fs-6">{v.deadline.split('T')[0]}</td>
             <td className="col-2 fs-6 ">
               <input type="range" className="form-range" min="0" max="5" id="customRange2" value={v.progress/20} onChange={(e)=>{getRangeValue(e,v.tid)}}/>
             </td>

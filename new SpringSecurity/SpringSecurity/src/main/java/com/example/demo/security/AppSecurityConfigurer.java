@@ -100,6 +100,7 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/regEmployee").permitAll();
 			authorize.requestMatchers("/getAllDesign").hasAuthority("admin");
 			authorize.requestMatchers("/getAllRoles").hasAuthority("admin");
+			authorize.requestMatchers("/emphistory").permitAll();
 			
 			//for update Registration
 			authorize.requestMatchers("/updateall").permitAll();
@@ -127,6 +128,11 @@ public class AppSecurityConfigurer {
 			authorize.requestMatchers("/getManagers").permitAll();
 			authorize.requestMatchers("/getClients").permitAll();
 			authorize.requestMatchers("/endProject/{pid}").permitAll();
+			authorize.requestMatchers("/projecthistory").permitAll();
+			authorize.requestMatchers("/getCurrentProject/{empid}").permitAll();
+
+			//client
+			authorize.requestMatchers("/getClientOfProject/{pid}").permitAll();
 			
 			
 			//hasAuthority 

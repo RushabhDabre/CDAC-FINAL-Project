@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {  useNavigate, useParams } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 
-export default function UpdateEmployee() {
+export default function UpdatePMPersInfo() {
     const ref = useRef(null)
     let navigate = useNavigate();
     const { register, formState: {errors , isValid} } = useForm({mode: 'all'});
@@ -164,7 +164,7 @@ export default function UpdateEmployee() {
                         
                         <div className="row g-3 align-items-center d-flex justify-content-center ">
                             <div className="col-auto">
-                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{navigate("/EMP/EmpHome")}}>Cancel</button>
+                                <button type="button" className="btn btn-secondary w-100 font-weight-bold mt-2" onClick={()=>{navigate("/PM/PMHome")}}>Cancel</button>
                             </div>
                             <div className="col-auto ">
                                 <button type="submit" className="btn w-100 font-weight-bold mt-2" style={{"backgroundColor":"#323452", "color":"whitesmoke"}} >Update</button>

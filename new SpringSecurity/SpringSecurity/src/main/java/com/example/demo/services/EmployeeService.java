@@ -52,6 +52,10 @@ public class EmployeeService {
 		return erepo.getActiveEmployees();
 	}
 	
+	public List<Employee> employeeHistory(){
+		return erepo.employeeHistory();
+	}
+	
 	public List<Employee> getManagers()
 	{
 		return erepo.getManagers();

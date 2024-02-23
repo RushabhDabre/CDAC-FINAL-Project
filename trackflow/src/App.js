@@ -18,8 +18,11 @@ import TaskList from './Components/Employee/TaskList';
 import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
-import UpdatePersInfo from './Components/Employee/UpdatePersInfo';
 import ShowTask from './Components/Project Manager/ShowTask';
+import UpdatePMPersInfo from './Components/Project Manager/UpdatePMPersInfo';
+import UpdateEmpPersInfo from './Components/Employee/UpdateEmpPersInfo';
+import EmpHistory from './Components/Admin/EmpHistory';
+import ProjectHistory from './Components/Admin/ProjectHistory';
 
 function App() {
 
@@ -35,6 +38,8 @@ function App() {
           <Route path="updateemp/:empId" element={<UpdateEmployee/>}/>
           <Route path="CreateProject" element={<CreateProject/>}/>
           <Route path="ShowProject"  element={<GetAllProject/>}/>
+          <Route path="emphistory"  element={<EmpHistory/>}/>
+          <Route path="projecthistory"  element={<ProjectHistory/>}/>
         </Route>
 
         <Route path="/PM" element={<PmSidebar/>}>
@@ -43,13 +48,13 @@ function App() {
           <Route path="PMTasks/:empId" element={<CreateTask/>}/> 
           <Route path="addTeam" element={<AddTeam/>}/> 
           <Route path="showPMTask" element={<ShowTask/>}/> 
-          <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
+          <Route path="UpdatePersInfo" element={<UpdatePMPersInfo/>}/>
         </Route>
 
         <Route path="/EMP" element={<EmpSidebar/>}>
           <Route path="EmpHome" element={<EmpDashboard/>}/>
           <Route path="ViewTasks" element={<TaskList/>}/> 
-          <Route path="UpdatePersInfo" element={<UpdatePersInfo/>}/>
+          <Route path="UpdatePersInfo" element={<UpdateEmpPersInfo/>}/>
         </Route> 
         
 

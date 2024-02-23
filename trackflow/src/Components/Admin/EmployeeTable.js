@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
+import { ToastContainer, toast } from 'react-custom-alert';
+import { GrLinkNext } from "react-icons/gr";
+
 
 export default function EmployeeTable() {
   // const [showModal, setModal]
@@ -47,7 +50,8 @@ export default function EmployeeTable() {
         })
         .then(response => {
           if (response.ok) {
-              alert('Employee inactivated successfully');
+              // alert('Employee inactivated successfully');
+              toast.success('Employee inactivated successfully!');
               console.log('Employee inactivated successfully');
           } else {
               console.error('Failed to inactivate employee');
@@ -98,6 +102,7 @@ export default function EmployeeTable() {
 
   return (
     <div className="container-fluid">
+      <ToastContainer floatingTime={5000} />
         <div className="row">
           <div className="col-md-2 d-flex align-items-center">
             <span className='text-black fs-6 me-2'>Show</span>
@@ -115,10 +120,11 @@ export default function EmployeeTable() {
             <input className="form-control" type="text" placeholder="Search" onChange={handleFilter} />
           </div>
         </div>
-        <div className="row">
-          <button className='col-auto mb-3 btn mt-2 ms-3' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/addemp')}}>Add Employee</button>
+        <div className="row justify-content-between mt-2">
+          <button className='col-auto mb-3 btn mt-2 ms-2' style={{"backgroundColor":"#323452", "color":"whitesmoke"}}  onClick={()=>{navigate('/ADMIN/addemp')}}>Add Employee</button>
+          <button className='col-auto mb-3 btn mt-2 btn-outline-dark me-3' onClick={()=>{navigate('/ADMIN/emphistory')}}>Employee History <GrLinkNext/></button>
         </div>
-        <table className="table table-borderedA table-hover" >
+        <table className="table table-bordered table-hover" >
           <thead className='table-dark'>
             <tr>
               <th className="fs-6 fw-medium">ID</th>
@@ -133,7 +139,7 @@ export default function EmployeeTable() {
           </thead>
           <tbody>
             {currentRecords.map((v) => {
-              return (<tr key={v.empId}>
+              return (v.empId !== 1 && <tr key={v.empId}>
                 <td className="fs-6">{v.empId}</td>
                 <td className="fs-6">{v.fullName}</td>
                 <td className="fs-6">{v.dob}</td>

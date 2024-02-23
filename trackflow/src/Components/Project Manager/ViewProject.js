@@ -2,34 +2,13 @@ import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
-
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function ViewProject() {
   let navigate = useNavigate();
 
   const [projectRecord, setProjectRecord] = useState([]);
   const [teamRecord, setTeamRecord] = useState([]);
-
-  // useEffect(() => {
-  //   const lid = JSON.parse(localStorage.getItem("loggedUser")).id;
-  //   fetch(`http://localhost:8080/getProjectByLoginId/${lid}`, { //login
-  //     method: 'GET',
-  //     headers: {'content-type': 'application/json'},
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(obj => {
-  //     setProjectRecord(obj);
-  //     const pId = projectRecord[0].pid;
-  //     console.log(pId); 
-  //     fetch(`http://localhost:8080/teamList/${pId}`, {
-  //       method: 'GET',
-  //       headers: {'content-type': 'application/json'},
-  //     })
-  //     .then(resp => resp.json())
-  //     .then(obj => {setTeamRecord(obj); console.log(teamRecord);});
-  //   });
-  // }, []);
-   
 
   useEffect(() => {
     const lid = JSON.parse(localStorage.getItem("loggedUser")).id;
@@ -84,7 +63,8 @@ export default function ViewProject() {
         })
         .then(response => {
           if (response.ok) {
-              alert('Employee inactivated successfully');
+            toast.success('Employee inactivated successfully!');
+              // alert('Employee inactivated successfully');
               console.log('Employee inactivated successfully');
           } else {
               console.error('Failed to inactivate employee');
@@ -101,6 +81,7 @@ export default function ViewProject() {
 
   return (
     <div className="container-fluid ">
+      <ToastContainer floatingTime={5000} />
           <div className='row mt-2 '>
             <table className="table table-bordered table-hover" >
               <thead className='table-dark'>
@@ -126,7 +107,7 @@ export default function ViewProject() {
                     <td className="fs-6">{v.deadline}</td>
                     <td className="fs-6">{v.comments}</td>
                     <td className="fs-6">
-                      <button className="btn btn-info" onClick={()=>navigate('/PM/addTeam')}>Add</button>
+                      <button className="btn btn-info" onClick={()=>navigate('/PM/addTeam')}>Add Memeber</button>
                     </td>
                   </tr>);
                 })}

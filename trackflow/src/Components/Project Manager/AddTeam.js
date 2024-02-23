@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function AddTeam() {
     let navigate = useNavigate();
@@ -37,13 +38,15 @@ export default function AddTeam() {
             }
         })
         .then(obj=>{
-            alert("Team Member Added!");
+            // alert("Team Member Added!");
+            toast.success('Team Member Added!');
         })
         .catch((error)=>{navigate("/errorPage")});
     }
 
     return (
         <div className="container-fluid ">
+            <ToastContainer floatingTime={800} />
             <table className="table table-bordered table-hover mt-2" >
                 <thead className='table-dark'>
                 <tr>

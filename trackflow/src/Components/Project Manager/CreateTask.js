@@ -2,6 +2,7 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import React, { useReducer, useRef } from 'react';
 import {  useNavigate, useParams } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function CreateTask() {
     const ref = useRef(null) //used for Loading Bar
@@ -61,7 +62,9 @@ export default function CreateTask() {
             }
         })
         .then(obj=>{
-            alert("Task Created Successfully!");
+            // alert("Task Created Successfully!");
+            toast.success('Task Created Successfully!');
+            setTimeout(() => navigate('/PM/PMProjects'), 1000);
         })
         .catch((error)=>{navigate("/errorPage")});
     }
@@ -69,6 +72,7 @@ export default function CreateTask() {
     return (
         <div className="container d-flex justify-content-center ">
         <LoadingBar color="#f11946" ref={ref} shadow={true} /> 
+        <ToastContainer floatingTime={5000} />
         <div className='container d-flex justify-content-center'>
             <div className="shadow-lg p-4 m-5" style={{"width": '40rem'}}>
                 <h5 className="d-flex mb-4 text-dark"><b>Add New Task</b></h5>      
@@ -87,7 +91,8 @@ export default function CreateTask() {
                     <div className="mb-3">   
                         <label className='text-muted'><h6>Deadline</h6></label>
                         <input  type="date" className="form-control"  name='deadline'
-                        value={tasks.deadline} onChange={(e)=>{dispatch({type:'update',fld:'deadline', val: e.target.value})}} required/>
+                        value={tasks.deadline} onChange={(e)=>{dispatch({type:'update',fld:'deadline', val: e.target.value})}}
+                        min={new Date().toISOString().split('T')[0]} required/>
                     </div>
                     
                     <div className="row g-3 align-items-center d-flex justify-content-center mb-3">

@@ -66,6 +66,11 @@ public class EmployeeController {
  		return eservice.getManagers();
  	}
  	
+ 	@GetMapping("/emphistory")
+ 	public List<Employee> employeeHistory(){
+ 		return eservice.employeeHistory();
+ 	}
+ 	
  	
  	@PostMapping("/regEmployee")
  	public Employee regEmployee(@RequestBody AddEmployee emp)

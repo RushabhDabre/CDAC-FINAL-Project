@@ -85,21 +85,25 @@ export default function ShowTask() {
     <table className="mt-2 table table-borderedA table-hover" >
       <thead className='table-dark'>
         <tr>
-          <th className="fs-6 fw-medium">Task Name</th>
+          <th className="fs-6 fw-medium col-1">Emp No</th>
+          <th className="fs-6 fw-medium col-2">Task Name</th>
           <th className="fs-6 fw-medium">Description</th>
-          <th className="fs-6 fw-medium">Deadline</th>
+          <th className="fs-6 fw-medium col-2" >Deadline</th>
           <th className="fs-6 fw-medium">Progress</th>
         </tr>
       </thead>
       <tbody>
         {currentRecords.map((v) => {
            return (<tr key={v.tid}>
+            <td className="fs-6">{v.empid}</td>
             <td className="fs-6">{v.tname}</td>
             <td className="fs-6">{v.description}</td>
-            <td className="fs-6">{v.deadline}</td>
-            <td className="col-2 fs-6">
+            <td className="fs-6">{v.deadline.split('T')[0]}</td>
+            <td className="col-3 fs-6">
             <div className="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-              <div className="progress-bar progress-bar-striped progress-bar-animated" style={{width: `${v.progress}%`}}></div>
+              <div className={`progress-bar progress-bar-striped progress-bar-animated ${
+                v.progress < 25 ? 'bg-danger' : v.progress < 50 ? 'bg-warning' : v.progress < 80 ? 'bg-info' : v.progress === 100 ? 'bg-success' : ''
+              }`} style={{width: `${v.progress}%`}}>{v.progress}%</div>
             </div>
             </td>
           </tr>);

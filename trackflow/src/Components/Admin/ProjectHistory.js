@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {  useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-custom-alert';
 import 'react-custom-alert/dist/index.css'; // import css file from root.
-import { GrLinkNext } from "react-icons/gr";
+import { MdArrowBackIosNew } from "react-icons/md";
 
-
-export default function GetAllProject() {
+export default function ProjectHistory() {
     let navigate = useNavigate();
     const [originalRecords, setOriginalRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
@@ -13,7 +12,7 @@ export default function GetAllProject() {
     const [recordsPerPage, setRecordsPerPage] = useState(5); // Default value
     
     useEffect(() => {
-        fetch("http://localhost:8080/getAllActiveProjects", {
+        fetch("http://localhost:8080/projecthistory", {
           method: 'GET',
           headers: {'content-type': 'application/json'},
         })
@@ -23,19 +22,7 @@ export default function GetAllProject() {
           setOriginalRecords(obj);
           setFilteredRecords(obj);
         });
-    }, []);
-
-    const endProject = (pid)=>{
-      fetch(`http://localhost:8080/endProject/${pid}`,{
-        method:'POST',
-        headers: {'content-type': 'application/json'}
-      })
-      .then(resp=>{
-        toast.success('Project is Completed Successfully!');
-      })
-    }
-
-    
+    }, []); 
 
     const lastIndex = currentPage * recordsPerPage;
     const firstIndex = lastIndex - recordsPerPage;
@@ -73,7 +60,6 @@ export default function GetAllProject() {
 
     return (
         <div className="container-fluid">
-          <ToastContainer floatingTime={5000} />
           <div className="row">
             <div className="col-md-2 d-flex align-items-center">
               <span className='text-black fs-6 me-2'>Show</span>
@@ -91,11 +77,7 @@ export default function GetAllProject() {
               <input className="form-control" type="text" placeholder="Search" onChange={handleFilter} />
             </div>
           </div>
-          <div className="row justify-content-between mt-2">
-            <button className='col-auto mb-3 btn mt-2 ms-2' style={{"backgroundColor":"#323452", "color":"whitesmoke"}} data-bs-target="#empModal" onClick={()=>{navigate('/ADMIN/CreateProject')}}>Add Project</button>
-            <button className='col-auto mb-3 btn mt-2 btn-outline-dark me-3' onClick={()=>{navigate('/ADMIN/projecthistory')}}>Project History <GrLinkNext/></button>
-          </div>
-          <table className="table table-borderedA table-hover" >
+          <table className="table table-borderedA table-hover mt-3" >
             <thead className='table-dark'>
               <tr>
                 <th className="fs-6 fw-medium">PID</th>
@@ -105,7 +87,6 @@ export default function GetAllProject() {
                 <th className="fs-6 fw-medium">Description</th>
                 <th className="fs-6 fw-medium">Deadline</th>
                 <th className="fs-6 fw-medium">Comments</th>
-                <th className="fs-6 fw-medium">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -118,9 +99,6 @@ export default function GetAllProject() {
                   <td className="fs-6">{v.description}</td>
                   <td className="fs-6">{v.deadline}</td>
                   <td className="fs-6">{v.comments}</td>
-                  <td className="fs-6">
-                    <button className='btn btn-success' onClick={()=>endProject(v.pid)}>Done</button>
-                  </td>
                 </tr>);
               })}
             </tbody>
@@ -140,8 +118,10 @@ export default function GetAllProject() {
                 ))}
                 <li className="page-item"><a  className="page-link" onClick={nextPage}>Next</a></li>
             </ul>
+        
           </div>
         </div>
+        <button className='btn btn-outline-dark d-flex align-items-center fs-6' onClick={()=>{navigate('/ADMIN/ShowProject')}}><MdArrowBackIosNew /> Back</button>
       </div>
     )
 }

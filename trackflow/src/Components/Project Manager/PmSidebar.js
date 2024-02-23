@@ -6,10 +6,23 @@ import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function PmSidebar() {
     let navigate = useNavigate();
     const [empName, setEmpName] = useState("");
+
+    useEffect(() => {
+        const lid = JSON.parse(localStorage.getItem("loggedUser")).id;
+        fetch(`http://localhost:8080/getProjectByLoginId/${lid}`, {
+          method: 'GET',
+          headers: {'content-type': 'application/json'},
+        })
+        .then(resp => resp.json())
+        .then(obj => {
+          localStorage.setItem("projectInfo",JSON.stringify(obj));
+        });
+    }, []);
 
     useEffect(()=>{
         const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
@@ -23,8 +36,9 @@ export default function PmSidebar() {
     },[]);
         
     const HandleLogOut=()=>{
+        toast.success('Logged Out!');
         localStorage.clear();
-        setTimeout(() => navigate("/"), 500);
+        setTimeout(() => navigate("/"), 800);
     };
 
     const confirmation = () =>{
@@ -45,6 +59,7 @@ export default function PmSidebar() {
 
   return (
     <div className="container-fluid p-0">
+        <ToastContainer floatingTime={5000} />
         <nav className="navbar fixed-top navbar-expand-lg" style={{backgroundColor:"#323452", height: "40px" }}>
             <div className="container-fluid">
                 <a className="text-decoration-none text-white fs-6">TRACKFLOW</a>

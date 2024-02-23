@@ -76,4 +76,11 @@ public class ProjectController {
 		}
 	}
 	
+	@GetMapping("/projecthistory")
+	public List<Project>projecthistory(){return pservice.projecthistory();}
+	
+	
+	@GetMapping("/getCurrentProject/{empid}")
+	public List<Project>getCurrentProject(@PathVariable("empid")int id){return pservice.getCurrentProject(id);}
+	
 }

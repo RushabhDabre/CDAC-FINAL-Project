@@ -5,6 +5,7 @@ import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function EmpSidebar() {
     let navigate = useNavigate();
@@ -22,8 +23,9 @@ export default function EmpSidebar() {
     },[]);
 
     const HandleLogOut=()=>{
+        toast.success('Logged Out!');
         localStorage.clear();
-        setTimeout(() => navigate("/"), 500);
+        setTimeout(() => navigate("/"), 800);
     };
 
     const confirmation = () =>{
@@ -44,6 +46,7 @@ export default function EmpSidebar() {
 
   return (
     <div className="container-fluid p-0">
+        <ToastContainer floatingTime={5000} />
         <nav className="navbar fixed-top navbar-expand-lg" style={{backgroundColor:"#323452", height: "40px" }}>
             <div className="container-fluid">
                 <a className="text-decoration-none text-white fs-6">TRACKFLOW</a>

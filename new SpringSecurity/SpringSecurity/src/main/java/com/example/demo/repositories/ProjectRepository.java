@@ -21,18 +21,22 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
 	@Query("select p from Project p where p.status = true")
 	public List<Project>getActiveProjects();
+	
+	@Query("select p from Project p where p.status = false")
+	public List<Project>projecthistory();
 
-	@Query(value = "select * from projects where empid = :id", nativeQuery = true)
+	@Query(value = "select * from projects where status = true and empid = :id", nativeQuery = true)
 	public List<Project> getProjectByEmpId(int id);
 
-	@Query(value = "select p.pid from projects p where p.empid = (select e.empid from employees e where e.login_id = :id) ;", nativeQuery = true)
+//	@Query(value = "select pid from projects p where p.status = true AND p.empid = (select e.empid from employees e where e.login_id = ?1)", nativeQuery = true)
+	@Query(value = "SELECT pid FROM projects p JOIN employees e ON p.empid = e.empid WHERE status = true AND e.login_id = ?1",nativeQuery = true)
 	public List<Project> getProjectByLoginId(int id);
 
 	@Modifying
 	@Query(value = "UPDATE teams AS t JOIN projects AS p ON t.pid = p.pid JOIN tasktable AS tk ON t.pid = tk.pid SET t.status = 0, p.status = 0, tk.status = 0 WHERE t.pid = ?1", nativeQuery = true)
 	public int EndProject(int pid);
 //	@Query(value = "UPDATE teams AS t JOIN projects AS p ON t.pid = p.pid SET t.status = 0, p.status = 0 WHERE t.pid = ?1", nativeQuery = true)
-
+	
+	@Query(value = "select p.* from projects p join teams t on p.pid = t.pid where p.status = 1 and t.status = 1 and t.empid = :id", nativeQuery = true)
+	public List<Project> getCurrentProject(int id);
 }
-
-

@@ -18,4 +18,8 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 	
 	@Query(value="SELECT * FROM clients",nativeQuery = true)
 	public List<Client> getAllClients();
+	
+	@Query(value="select c.* from projects p join clients c on p.clientid = c.clientid where p.pid = :empid",nativeQuery = true)
+	public List<Client> getClientOfProject(int empid);
+	
 }

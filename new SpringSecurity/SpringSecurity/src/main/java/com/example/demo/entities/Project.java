@@ -24,7 +24,7 @@ public class Project {
     @Column
     public Date deadline;
 
-    @Column
+    @Column(name = "status")
     public boolean status;
 
     @Column

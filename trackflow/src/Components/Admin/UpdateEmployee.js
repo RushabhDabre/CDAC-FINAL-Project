@@ -3,6 +3,7 @@ import React, {useState, useEffect, useRef , useReducer} from 'react';
 import { useForm } from "react-hook-form";
 import {  useNavigate, useParams } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
+import { ToastContainer, toast } from 'react-custom-alert';
 
 export default function UpdateEmployee() {
     const ref = useRef(null)
@@ -127,7 +128,10 @@ export default function UpdateEmployee() {
         } )
         .then(obj=>{
             ref.current.complete();
-            alert("Data Updated Successfully");
+            toast.success('Updated Successfully!');
+            setTimeout(() => navigate('/ADMIN/userinfo'), 1000);
+            // navigate('/ADMIN/userinfo');
+            // alert("Data Updated Successfully");
         })
         .catch((error)=>{navigate("/errorPage")});
     }
@@ -135,6 +139,7 @@ export default function UpdateEmployee() {
     return (
     <div className="container d-flex justify-content-center">
             <LoadingBar color="#f11946" ref={ref} shadow={true} /> 
+            <ToastContainer floatingTime={5000} />
             <div className='container d-flex justify-content-center'>
                 <div className=" shadow-lg p-4 m-5" style={{"width": '40rem'}}>
                     <div className={`border border-danger  ${isVisible ? 'd-none' : ''} d-flex justify-content-center`}><strong className="text-danger">{msg}</strong></div>
