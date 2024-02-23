@@ -24,6 +24,7 @@ import UpdateEmpPersInfo from './Components/Employee/UpdateEmpPersInfo';
 import EmpHistory from './Components/Admin/EmpHistory';
 import ProjectHistory from './Components/Admin/ProjectHistory';
 import AddDesignation from './Components/Admin/AddDesignation';
+import AddClient from './Components/Admin/AddClient';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="emphistory"  element={<EmpHistory/>}/>
           <Route path="projecthistory"  element={<ProjectHistory/>}/>
           <Route path="adddesignation"  element={<AddDesignation/>}/>
+          <Route path="addclient"  element={<AddClient/>}/>
         </Route>
 
         <Route path="/PM" element={<PmSidebar/>}>

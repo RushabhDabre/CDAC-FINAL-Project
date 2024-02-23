@@ -88,6 +88,11 @@ export default function AdminSidebar() {
                             <BsMenuButtonWideFill className='icon fs-6'/> Designations
                         </Link>
                     </li>
+                    <li className='sidebar px-4 py-3 fs-5'>
+                        <Link className='text-decoration-none text-secondary fs-6' to={'addclient'}>
+                            <BsMenuButtonWideFill className='icon fs-6'/> Client
+                        </Link>
+                    </li>
                 </ul>
             </div>
             <div className='col-md-9 offset-md-2 position-absolute' style={{top: "40px"}}>
