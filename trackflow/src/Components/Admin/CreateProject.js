@@ -53,8 +53,6 @@ export default function CreateProject() {
             }
         })
         .then(obj => {
-            // alert("Created Project Successfully");
-            console.log(JSON.stringify(obj));
             toast.success('Created Project Successfully!');
             setTimeout(() => navigate('/ADMIN/ShowProject'), 1000);
         })
@@ -72,7 +70,6 @@ export default function CreateProject() {
         .then(response => response.json())
         .then(data => {
             setManagers(data);
-            // data.forEach(manager => console.log(manager.empId));
         })
         .catch(error => {
             console.error('Error fetching managers:', error);
@@ -88,7 +85,6 @@ export default function CreateProject() {
         .then(response => response.json())
         .then(data => {
             setClinets(data);
-            // console.log(JSON.stringify(data.clientid));
         })
         .catch(error => {
           console.error('Error fetching managers:', error);

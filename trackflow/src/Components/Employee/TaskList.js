@@ -87,8 +87,6 @@ export default function TaskList() {
     })
       .then(data => {
         toast.success('Updated Successfully!!');
-        console.log(data);
-        // alert("Updated Successfully!!");
       })
       .catch(error => {
         console.error('Error:', error);

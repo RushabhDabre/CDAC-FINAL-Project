@@ -19,7 +19,6 @@ export default function AddTeam() {
     const [comments, setComments] = useState("");
     const pId = JSON.parse(localStorage.getItem("projectInfo"))
     
-    console.log(pId[0].pid);
     const AddTeamMemeber = (empID) =>{
         fetch('http://localhost:8080/createTeam',{
             method: 'POST',

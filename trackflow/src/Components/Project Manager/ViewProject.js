@@ -26,7 +26,6 @@ export default function ViewProject() {
   useEffect(() => {
     if (projectRecord.length > 0) {
       const pId = projectRecord[0].pid;
-      console.log(pId); 
       fetch(`http://localhost:8080/teamList/${pId}`, {
         method: 'GET',
         headers: {'content-type': 'application/json'},
@@ -34,7 +33,6 @@ export default function ViewProject() {
       .then(resp => resp.json())
       .then(obj => {
         setTeamRecord(obj);
-        console.log(teamRecord);
       });
     }
   }, [projectRecord]);
@@ -64,8 +62,6 @@ export default function ViewProject() {
         .then(response => {
           if (response.ok) {
             toast.success('Employee inactivated successfully!');
-              // alert('Employee inactivated successfully');
-              console.log('Employee inactivated successfully');
           } else {
               console.error('Failed to inactivate employee');
           }
@@ -146,41 +142,3 @@ export default function ViewProject() {
     </div>
   )
 }
-
-
-
-/*
-useEffect(()=>{
-    const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
-    var eid;
-    fetch(`http://localhost:8080/getEmployee?loginid=${loginId}`)
-    .then(resp=>resp.json())
-    .then(empinfo => {
-      eid = empinfo.empId;
-      fetch(`http://localhost:8080/getProjectByEmpId/${eid}`, {
-      method: 'GET',
-      headers: {'content-type': 'application/json'},
-      })
-      .then(resp => resp.json())
-      .then(obj => {
-        setProjectRecord(obj);
-
-
-        // fetch(`http://localhost:8080/teamList/${pId}`, {
-        //   method: 'GET',
-        //   headers: {'content-type': 'application/json'},
-        // })
-        // .then(resp => resp.json())
-        // .then(obj => {setTeamRecord(obj); console.log(JSON.stringify(teamRecord));});
-      });
-    })
-    
-    // var pI
-
-    // const pidArr = JSON.parse(localStorage.getItem("projectInfo"));
-    // const pId = pidArr[0].pid;
-    // console.log(pId)
-    
-  },[]);
-*/
-

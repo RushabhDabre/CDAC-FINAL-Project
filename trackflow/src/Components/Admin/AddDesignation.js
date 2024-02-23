@@ -29,7 +29,6 @@ export default function AddDesignation() {
             body: JSON.stringify(designation) 
         })
         .then(obj => {
-            console.log(JSON.stringify(obj));
             toast.success('Added Designation Successfully!');
             setTimeout(() => navigate('/ADMIN/adminHome'), 800);
         })

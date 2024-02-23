@@ -35,7 +35,6 @@ export default function AddClient() {
             body: JSON.stringify(client) 
         })
         .then(obj => {
-            console.log(JSON.stringify(obj));
             toast.success('Added Client Details Successfully!');
             setTimeout(() => navigate('/ADMIN/adminHome'), 800);
         })

@@ -52,7 +52,6 @@ export default function EmployeeTable() {
           if (response.ok) {
               // alert('Employee inactivated successfully');
               toast.success('Employee inactivated successfully!');
-              console.log('Employee inactivated successfully');
           } else {
               console.error('Failed to inactivate employee');
           }

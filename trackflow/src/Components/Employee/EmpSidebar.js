@@ -13,7 +13,6 @@ export default function EmpSidebar() {
     
     useEffect(()=>{
         const loginId = JSON.parse(localStorage.getItem("loggedUser")).id;
-        console.log(loginId);
         fetch(`http://localhost:8080/getEmployee/${loginId}`)
         .then(resp=>resp.json())
         .then(empinfo => {

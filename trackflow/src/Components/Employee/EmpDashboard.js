@@ -14,7 +14,6 @@ export default function EmpDashboard() {
       const empInfo = JSON.parse(localStorage.getItem("empinfo"));
       if (empInfo && empInfo.empId) {
         const empId = empInfo.empId;
-        console.log(empId);
         fetch(`http://localhost:8080/dasboardDataByEmp/${empId}`)
           .then(resp => resp.json())
           .then(data => {
@@ -32,8 +31,6 @@ export default function EmpDashboard() {
           .catch(error => {
             console.error('Error fetching dashboard data:', error);
           });
-      } else {
-        console.log('empinfo or empId is null or undefined');
       }
     };
 
@@ -48,32 +45,36 @@ export default function EmpDashboard() {
   const [clientInfo, setClientInfo] = useState([]);
     
   useEffect(() => {
-    const empInfo = JSON.parse(localStorage.getItem("empinfo"));
-    if (empInfo && empInfo.empId) {
-      const empId = empInfo.empId;
-      fetch(`http://localhost:8080/getCurrentProject/${empId}`)
-        .then(resp => resp.json())
-        .then(data => {
-          setProjectInfo(data);
-  
-          const pid = data[0].pid;
-          console.log("for employee" + pid);
-  
-          fetch(`http://localhost:8080/getClientOfProject/${pid}`)
-            .then(resp => resp.json())
-            .then(data => {
-              setClientInfo(data);
-            })
-            .catch(error => {
-              console.error('Error fetching data:', error);
-            });
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    } else {
-      console.log('empinfo or empId is null or undefined');
-    }
+    const loadData = () => {
+      const empInfo = JSON.parse(localStorage.getItem("empinfo"));
+      if (empInfo && empInfo.empId) {
+        const empId = empInfo.empId;
+        fetch(`http://localhost:8080/getCurrentProject/${empId}`)
+          .then(resp => resp.json())
+          .then(data => {
+            if (data && data.length > 0) {
+              setProjectInfo(data);
+              const pid = data[0].pid;
+              fetch(`http://localhost:8080/getClientOfProject/${pid}`)
+                .then(resp => resp.json())
+                .then(data => {
+                  setClientInfo(data);
+                })
+                .catch(error => {
+                  console.error('Error fetching client data:', error);
+                });
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }
+    };
+
+    loadData();
+
+    const timeout = setTimeout(loadData, 1000); 
+    return () => clearTimeout(timeout);
   }, []);
 
   

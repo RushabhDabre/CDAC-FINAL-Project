@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill} from 'react-icons/bs';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function PmDashboard() {
 
@@ -15,7 +17,6 @@ export default function PmDashboard() {
             .then(resp => resp.json())
             .then(data => {
               setValue(data);
-              console.log(value);
             })
             .catch(error => {
               console.error('Error fetching dashboard data:', error);
@@ -32,39 +33,42 @@ export default function PmDashboard() {
     }, []);
 
 
-    const [projectInfo, setProjectInfo] = useState([]);
+  const [projectInfo, setProjectInfo] = useState([]);
   const [clientInfo, setClientInfo] = useState([]);
     
   useEffect(() => {
-    const empInfo = JSON.parse(localStorage.getItem("empinfo"));
-    if (empInfo && empInfo.empId) {
-      const empId = empInfo.empId;
-      fetch(`http://localhost:8080/getCurrentProject/${empId}`)
-        .then(resp => resp.json())
-        .then(data => {
-          setProjectInfo(data);
-  
-          const pid = data[0].pid;
-          console.log("for employee" + pid);
-  
-          fetch(`http://localhost:8080/getClientOfProject/${pid}`)
-            .then(resp => resp.json())
-            .then(data => {
-              setClientInfo(data);
-            })
-            .catch(error => {
-              console.error('Error fetching data:', error);
-            });
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    } else {
-      console.log('empinfo or empId is null or undefined');
-    }
+    const loadData = () => {
+      const empInfo = JSON.parse(localStorage.getItem("empinfo"));
+      if (empInfo && empInfo.empId) {
+        const empId = empInfo.empId;
+        fetch(`http://localhost:8080/getCurrentProject/${empId}`)
+          .then(resp => resp.json())
+          .then(data => {
+            if (data && data.length > 0) {
+              setProjectInfo(data);
+              const pid = data[0].pid;
+              fetch(`http://localhost:8080/getClientOfProject/${pid}`)
+                .then(resp => resp.json())
+                .then(data => {
+                  setClientInfo(data);
+                })
+                .catch(error => {
+                  console.error('Error fetching client data:', error);
+                });
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }
+    };
+
+    loadData();
+
+    const timeout = setTimeout(loadData, 1000); 
+    return () => clearTimeout(timeout);
   }, []);
 
-  
   const [activeTab, setActiveTab] = useState('tab1');
 
   // Function to handle tab click
@@ -74,7 +78,7 @@ export default function PmDashboard() {
 
 
   return (
-    <main >
+    <div >
       <div className='main-title'>
             <h3 className='text-dark'>DASHBOARD</h3>
         </div>
@@ -111,7 +115,9 @@ export default function PmDashboard() {
 
       <div className="tab-content mt-3 mb-3">
         <div id="tab1" className={`tab-pane fade ${activeTab === 'tab1' ? 'show active' : ''} fs-6 bg-light p-4 rounded`}>
-          {projectInfo.map((project, index) => (
+          {projectInfo.length === 0 ? (
+              <Skeleton height={100} count={3} />
+            ) : ( projectInfo.map((project, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card h-100" style={{ backgroundColor: "white" }}>
               <div className="card-body">
@@ -123,11 +129,13 @@ export default function PmDashboard() {
               </div>
             </div>
           </div>
-        ))}
+        )))}
         </div>
 
         <div id="tab2" className={`tab-pane fade ${activeTab === 'tab2' ? 'show active' : ''} fs-6 bg-light p-4 rounded`}>
-        {clientInfo.map((client, index) => (
+        {clientInfo.length === 0 ? (
+              <Skeleton height={100} count={3} />
+            ) : (clientInfo.map((client, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card h-100" style={{ backgroundColor: "white" }}>
               <div className="card-body" >
@@ -139,12 +147,12 @@ export default function PmDashboard() {
               </div>
             </div>
           </div>
-        ))}
+        )))}
         </div>
       </div>
     </div>
 
-    </main>
+    </div>
     
   );
 }

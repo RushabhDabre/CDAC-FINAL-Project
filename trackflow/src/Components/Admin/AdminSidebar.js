@@ -1,6 +1,7 @@
 import React,{useState, useEffect } from 'react'
-import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
+import {BsGrid1X2Fill, BsPeopleFill, BsMenuButtonWideFill } from 'react-icons/bs';
 import { FaUserTie } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
@@ -85,12 +86,12 @@ export default function AdminSidebar() {
                     </li>
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'adddesignation'}>
-                            <BsMenuButtonWideFill className='icon fs-6'/> Designations
+                            <AiFillEdit className='icon fs-6'/> Designations
                         </Link>
                     </li>
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'addclient'}>
-                            <BsMenuButtonWideFill className='icon fs-6'/> Client
+                        <BsPeopleFill className='card_icon fs-6'/> Client
                         </Link>
                     </li>
                 </ul>

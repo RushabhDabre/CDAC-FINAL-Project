@@ -12,9 +12,7 @@ export default function UpdateEmpPersInfo() {
     const [msg,setmsg]=useState("");
 
     const empInfo= JSON.parse(localStorage.getItem("empinfo")).empId;
-    console.log(empInfo);
-    
-   // const access = JSON.parse(localStorage.getItem("loggedUser")).accessToken;  
+
     const {empId} = useParams();
     const init ={
         empid:empInfo,
@@ -56,7 +54,6 @@ export default function UpdateEmpPersInfo() {
             dispatch({ type: 'update', fld: 'currentAddress', val: data.currentAddress });
             dispatch({ type: 'update', fld: 'permanentAddress', val: data.permanentAddress });
             dispatch({ type: 'update', fld: 'phNo', val: data.phNo });
-            console.log(JSON.stringify(user));
         })
         .catch(error => {
           console.error('Error fetching employee data:', error);
@@ -79,7 +76,6 @@ export default function UpdateEmpPersInfo() {
                 phNo: user.phNo
             })
         }
-        console.log(JSON.stringify(user))
         fetch("http://localhost:8080/updatepersonals",reqOptions)
         .then(resp=>{
             if(resp.ok){

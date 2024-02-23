@@ -77,6 +77,17 @@ namespace DotNetApi.Controllers
             return count;
         }
 
+        [HttpGet]
+        public int GetIncompletedTaskCount(int EmpId)
+        {
+            int count = 0;
+            using var db = new trackflowdbContext();
+            {
+                count = db.Tasktables.Count(t => t.Progress < 100 && t.Empid == EmpId);
+            }
+            return count;
+        }
+
         [HttpPost]
         public void UpdateTaskStatus(int taskId, int  progress)
         {

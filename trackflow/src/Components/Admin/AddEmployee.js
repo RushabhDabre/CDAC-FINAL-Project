@@ -70,7 +70,6 @@ export default function AddEmployee() {
     const [selectedRole, setSelectedRole] = useState(0);
 
     const handleDesignationChange = (e) => {
-        console.log(e.target.value)
         dispatch({type:'update',fld:'designationID', val: e.target.value})
         setSelectedDesignation(e.target.value); // Update selected role when user selects a role
     };
@@ -103,7 +102,6 @@ export default function AddEmployee() {
             .then((resp)=>resp.json())
             .then((count)=>{
                 if(count === 0){     
-                    console.log("user does not exist!");
                     const reqOptions = {
                         method: 'POST',
                         headers: {'content-type':'application/json'},
@@ -123,7 +121,6 @@ export default function AddEmployee() {
                         toast.success('Regestration Successfully!');
                         // navigate('/ADMIN/userinfo');
                         setTimeout(() => navigate('/ADMIN/userinfo'), 1000);
-                        console.log(JSON.stringify(obj));
                     })
                     .catch((error)=>{navigate("/errorPage")});
                 }else{

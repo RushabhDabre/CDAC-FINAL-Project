@@ -96,7 +96,6 @@ export default function UpdateEmployee() {
             dispatch({ type: 'update', fld: 'password', val: data.login_id.pwd });
             dispatch({ type: 'update', fld: 'designationID', val: data.desg.designationID });
             dispatch({ type: 'update', fld: 'role_id', val: data.login_id.role.role_id });
-            console.log(JSON.stringify(user));
         })
         .catch(error => {
           console.error('Error fetching employee data:', error);
@@ -117,7 +116,6 @@ export default function UpdateEmployee() {
                 role_id:user.role_id
             })
         }
-        console.log(JSON.stringify(user))
         fetch("http://localhost:8080/updateall",reqOptions)
         .then(res=>{
             if(res.ok){
