@@ -42,7 +42,7 @@ app.post("/insertdata",function(req,res){
     })
 });
 
-app.post("/inserted",function(req,res){
+app.post("/insertClient",function(req,res){
     var cnm=req.body.clientname;
 	var web =req.body.website;
 	var dom=req.body.domain;
