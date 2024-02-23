@@ -5,6 +5,8 @@ import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
 import { ToastContainer, toast } from 'react-custom-alert';
+import { FaUserAlt } from "react-icons/fa";
+
 
 export default function AdminSidebar() {
     let navigate = useNavigate();
@@ -73,7 +75,7 @@ export default function AdminSidebar() {
                     
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'userinfo'}>
-                            <BsFillGrid3X3GapFill className='icon fs-6'/> Employees
+                        <FaUserAlt className='card_icon fs-6'/> Employees
                         </Link>
                     </li>
                     <li className='sidebar px-4 py-3 fs-5'>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import { BsFillArchiveFill, BsFillGrid3X3GapFill} from 'react-icons/bs';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function EmpDashboard() {
 
@@ -120,7 +122,9 @@ export default function EmpDashboard() {
 
       <div className="tab-content mt-3 mb-3">
         <div id="tab1" className={`tab-pane fade ${activeTab === 'tab1' ? 'show active' : ''} fs-6 bg-light p-4 rounded`}>
-          {projectInfo.map((project, index) => (
+          {projectInfo.length === 0 ? (
+              <Skeleton height={100} count={3} />
+            ) : ( projectInfo.map((project, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card h-100" style={{ backgroundColor: "white" }}>
               <div className="card-body">
@@ -132,11 +136,13 @@ export default function EmpDashboard() {
               </div>
             </div>
           </div>
-        ))}
+        )))}
         </div>
 
         <div id="tab2" className={`tab-pane fade ${activeTab === 'tab2' ? 'show active' : ''} fs-6 bg-light p-4 rounded`}>
-        {clientInfo.map((client, index) => (
+        {clientInfo.length === 0 ? (
+              <Skeleton height={100} count={3} />
+            ) : (clientInfo.map((client, index) => (
           <div className="col-md-4 mb-4" key={index}>
             <div className="card h-100" style={{ backgroundColor: "white" }}>
               <div className="card-body" >
@@ -148,7 +154,7 @@ export default function EmpDashboard() {
               </div>
             </div>
           </div>
-        ))}
+        )))}
         </div>
       </div>
     </div>
