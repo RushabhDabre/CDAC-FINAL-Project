@@ -24,14 +24,16 @@ import UpdateEmpPersInfo from './Components/Employee/UpdateEmpPersInfo';
 import EmpHistory from './Components/Admin/EmpHistory';
 import ProjectHistory from './Components/Admin/ProjectHistory';
 
+
 function App() {
 
   return (
     <div className='App-header'>
       <Routes>
         <Route path="/" element={<Login/>}/> 
+       
 
-        <Route path="/ADMIN" element={<AdminSidebar/>}>
+        {/* <Route path="/ADMIN" element={<AdminSidebar/>}>
           <Route path="adminHome" element={<AdminDashboard/>}/>
           <Route path="userinfo" element={<EmployeeTable/>}/> 
           <Route path="addemp" element={<AddEmployee/>}/> 
@@ -58,7 +60,8 @@ function App() {
         </Route> 
         
 
-        <Route path="/errorPage" element={<ErrorPage/>}/> 
+        <Route path="/errorPage" element={<ErrorPage/>}/>  */}
+        {/* <Route path='./Express'    element={</>}/> */}
       </Routes>
     </div>
   );
