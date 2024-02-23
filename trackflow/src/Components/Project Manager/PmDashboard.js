@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './dashboard.css';
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill} from 'react-icons/bs';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill} from 'react-icons/bs';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -85,7 +85,7 @@ export default function PmDashboard() {
       <div className='main-cards'>
         <div className='card' style={{backgroundColor:"#7091F5"}}>
             <div className='card-inner'>
-                <h3 className='fs-6'>No of Projects Assigned</h3>
+                <h3 className='fs-6'>No of Projects Worked on</h3>
                 <BsFillArchiveFill className='card_icon fs-6'/>
             </div>
             <h1 className='fs-6'>{value.passigned}</h1>

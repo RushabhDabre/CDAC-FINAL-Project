@@ -1,7 +1,7 @@
 import React,{useState, useEffect } from 'react'
 import './Sidebar.css';
 import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { FaUserTie } from "react-icons/fa";
+import { FaUserTie, FaTasks } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
 import '../../../node_modules/react-confirm-alert/src/react-confirm-alert.css';
@@ -75,7 +75,7 @@ export default function EmpSidebar() {
                     
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'ViewTasks'}>
-                            <BsFillGrid3X3GapFill className='icon fs-6'/> View Task
+                            <FaTasks className='icon fs-6'/> View Task
                         </Link>
                     </li>
                 </ul>

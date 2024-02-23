@@ -8,6 +8,7 @@ export default function EmpDashboard() {
 
   const [value, setValue] = useState(0);
   const [countTask, setCountTask] = useState(0);
+  const [IcountTask, IsetCountTask] = useState(0);
 
   useEffect(() => {
     const loadData = () => {
@@ -27,6 +28,15 @@ export default function EmpDashboard() {
           .then(resp => resp.json())
           .then(data => {
             setCountTask(data);
+          })
+          .catch(error => {
+            console.error('Error fetching dashboard data:', error);
+          });
+
+        fetch(`https://localhost:7078/GetIncompletedTaskCount?EmpId=${empId}`)
+          .then(resp => resp.json())
+          .then(data => {
+            IsetCountTask(data);
           })
           .catch(error => {
             console.error('Error fetching dashboard data:', error);
@@ -91,6 +101,13 @@ export default function EmpDashboard() {
         <h3 className='text-dark'>DASHBOARD</h3>
       </div>
       <div className='main-cards'>
+        <div className='card' style={{backgroundColor:"#FF004D"}}>
+            <div className='card-inner'>
+                <h3 className='fs-6'>No of Pending Tasks</h3>
+                <BsFillGrid3X3GapFill className='card_icon fs-6'/>
+            </div>
+            <h1 className='fs-6'>{IcountTask}</h1>
+        </div>
         <div className='card' style={{backgroundColor:"#7091F5"}}>
             <div className='card-inner'>
                 <h3 className='fs-6'>No of Project Assigned</h3>

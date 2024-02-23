@@ -1,7 +1,8 @@
 import React,{useState, useEffect } from 'react'
 import './Sidebar.css';
-import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsMenuButtonWideFill } from 'react-icons/bs';
-import { RiShutDownLine } from "react-icons/ri";
+import {BsGrid1X2Fill, BsFillGrid3X3GapFill, BsFillArchiveFill } from 'react-icons/bs';
+import { FaTasks } from "react-icons/fa";
+
 import { FaUserTie } from "react-icons/fa";
 import {  Link, Outlet, useNavigate } from "react-router-dom";
 import { confirmAlert } from '../../../node_modules/react-confirm-alert/lib/index.js';
@@ -88,13 +89,13 @@ export default function PmSidebar() {
                     
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'PMProjects'}>
-                            <BsFillGrid3X3GapFill className='icon fs-6'/> Projects
+                            <BsFillArchiveFill className='icon fs-6'/> Projects
                         </Link>
                     </li>
 
                     <li className='sidebar px-4 py-3 fs-5'>
                         <Link className='text-decoration-none text-secondary fs-6' to={'showPMTask'}>
-                            <BsFillGrid3X3GapFill className='icon fs-6'/> Tasks
+                            <FaTasks className='icon fs-6'/> Tasks
                         </Link>
                     </li>
                 </ul>
