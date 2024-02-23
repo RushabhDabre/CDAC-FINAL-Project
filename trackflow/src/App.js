@@ -19,6 +19,7 @@ import EmpSidebar from './Components/Employee/EmpSidebar';
 import GetAllProject from './Components/Admin/GetAllProject';
 import AddTeam from './Components/Project Manager/AddTeam';
 
+
 function App() {
   const projectRef = useRef(null);
 
@@ -31,8 +32,9 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<CreateProject/>}/>  */}
         <Route path="/" element={<Login/>}/> 
+       
 
-        <Route path="/ADMIN" element={<AdminSidebar/>}>
+        {/* <Route path="/ADMIN" element={<AdminSidebar/>}>
           <Route path="adminHome" element={<AdminDashboard/>}/>
           <Route path="userinfo" element={<EmployeeTable/>}/> 
           <Route path="addemp" element={<AddEmployee/>}/> 
@@ -54,7 +56,8 @@ function App() {
         </Route> 
         
 
-        <Route path="/errorPage" element={<ErrorPage/>}/> 
+        <Route path="/errorPage" element={<ErrorPage/>}/>  */}
+        {/* <Route path='./Express'    element={</>}/> */}
       </Routes>
     </div>
   );
