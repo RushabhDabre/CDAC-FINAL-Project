@@ -28,7 +28,7 @@ export default function PmDashboard() {
   
       loadData();
   
-      const timeout = setTimeout(loadData, 100); 
+      const timeout = setTimeout(loadData, 1000); 
       return () => clearTimeout(timeout);
     }, []);
 
@@ -65,7 +65,7 @@ export default function PmDashboard() {
 
     loadData();
 
-    const timeout = setTimeout(loadData, 1000); 
+    const timeout = setTimeout(loadData, 2000); 
     return () => clearTimeout(timeout);
   }, []);
 
@@ -140,7 +140,12 @@ export default function PmDashboard() {
             <div className="card h-100" style={{ backgroundColor: "white" }}>
               <div className="card-body" >
                 <p className="card-text"><strong>Client Name:</strong> {client.clientname}</p>
-                <p className="card-text"><strong>Website:</strong> {client.website}</p>
+                <p className="card-text">
+                  <strong>Website:</strong>{" "}
+                  <a href={client.website} target="_blank" rel="noopener noreferrer">
+                    {client.website}
+                  </a>
+                </p>
                 <p className="card-text"><strong>Domain:</strong> {client.domain}</p>
                 <p className="card-text"><strong>Address:</strong> {client.address}</p>
                 <p className="card-text"><strong>Contact:</strong> {client.contact}</p>
